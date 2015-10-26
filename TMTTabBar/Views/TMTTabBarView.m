@@ -16,6 +16,8 @@
 - (void)updateLayout;
 
 - (NSSize)calculateTabSize;
+
+- (void)activateTabItem:(TMTTabItemView *)actionedItem;
 @end
 
 @implementation TMTTabBarView {
@@ -106,13 +108,6 @@
     return NSMakeSize(tabWidth, viewSize.height);
 }
 
-
-#pragma mark - TMTTabItemDelegate
-
-- (void)clickedOnTab:(TMTTabItemView *_Nonnull)actionedItem {
-    [self activateTabItem:actionedItem];
-}
-
 - (void)activateTabItem:(TMTTabItemView *)actionedItem {
     actionedItem.active = YES;
     for(TMTTabItemView *item in _tabViews) {
@@ -120,6 +115,12 @@
             item.active = NO;
         }
     }
+}
+
+#pragma mark - TMTTabItemDelegate
+
+- (void)clickedOnTab:(TMTTabItemView *_Nonnull)actionedItem {
+    [self activateTabItem:actionedItem];
 }
 
 
