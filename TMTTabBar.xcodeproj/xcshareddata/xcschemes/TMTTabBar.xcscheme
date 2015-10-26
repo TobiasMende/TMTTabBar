@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D228D6A11BDDE4BD00A88303"
+               BuildableName = "TMTTabBarTests.xctest"
+               BlueprintName = "TMTTabBarTests"
+               ReferencedContainer = "container:TMTTabBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D22108B71BDD680000852E6B"
+            BuildableName = "TMTTabBarDemo.app"
+            BlueprintName = "TMTTabBarDemo"
+            ReferencedContainer = "container:TMTTabBar.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D22108991BDD67E400852E6B"
-            BuildableName = "TMTTabBar.framework"
-            BlueprintName = "TMTTabBar"
+            BlueprintIdentifier = "D22108B71BDD680000852E6B"
+            BuildableName = "TMTTabBarDemo.app"
+            BlueprintName = "TMTTabBarDemo"
             ReferencedContainer = "container:TMTTabBar.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
