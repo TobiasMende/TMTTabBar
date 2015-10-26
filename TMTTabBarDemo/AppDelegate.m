@@ -6,7 +6,7 @@
 //  Copyright © 2015 Tobias Mende. All rights reserved.
 //
 
-#import <TMTTabBarView/TMTTabBarView.h>
+#import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabView.h"
 #import "AppDelegate.h"
 
