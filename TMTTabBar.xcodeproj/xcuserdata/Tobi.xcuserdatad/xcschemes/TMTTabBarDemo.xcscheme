@@ -9,6 +9,20 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D228D6A11BDDE4BD00A88303"
+               BuildableName = "TMTTabBarTests.xctest"
+               BlueprintName = "TMTTabBarTests"
+               ReferencedContainer = "container:TMTTabBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
@@ -17,7 +31,21 @@
                BlueprintIdentifier = "D22108B71BDD680000852E6B"
                BuildableName = "TMTTabBarDemo.app"
                BlueprintName = "TMTTabBarDemo"
-               ReferencedContainer = "container:TMTTabBarView.xcodeproj">
+               ReferencedContainer = "container:TMTTabBar.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D22108991BDD67E400852E6B"
+               BuildableName = "TMTTabBar.framework"
+               BlueprintName = "TMTTabBar"
+               ReferencedContainer = "container:TMTTabBar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,16 +56,17 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D228D6A11BDDE4BD00A88303"
+               BuildableName = "TMTTabBarTests.xctest"
+               BlueprintName = "TMTTabBarTests"
+               ReferencedContainer = "container:TMTTabBar.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D22108B71BDD680000852E6B"
-            BuildableName = "TMTTabBarDemo.app"
-            BlueprintName = "TMTTabBarDemo"
-            ReferencedContainer = "container:TMTTabBarView.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -58,7 +87,7 @@
             BlueprintIdentifier = "D22108B71BDD680000852E6B"
             BuildableName = "TMTTabBarDemo.app"
             BlueprintName = "TMTTabBarDemo"
-            ReferencedContainer = "container:TMTTabBarView.xcodeproj">
+            ReferencedContainer = "container:TMTTabBar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,16 +99,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D22108B71BDD680000852E6B"
             BuildableName = "TMTTabBarDemo.app"
             BlueprintName = "TMTTabBarDemo"
-            ReferencedContainer = "container:TMTTabBarView.xcodeproj">
+            ReferencedContainer = "container:TMTTabBar.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

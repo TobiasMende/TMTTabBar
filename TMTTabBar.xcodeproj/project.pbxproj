@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D22108A51BDD67E400852E6B /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
+		27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */; };
 		D22108BC1BDD680000852E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108BB1BDD680000852E6B /* AppDelegate.m */; };
 		D22108BF1BDD680000852E6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108BE1BDD680000852E6B /* main.m */; };
 		D22108C11BDD680000852E6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22108C01BDD680000852E6B /* Assets.xcassets */; };
@@ -18,23 +18,23 @@
 		D22108DC1BDD737200852E6B /* TMTTabView.h in Headers */ = {isa = PBXBuildFile; fileRef = D22108D41BDD737200852E6B /* TMTTabView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D22108DD1BDD737200852E6B /* TMTTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108D51BDD737200852E6B /* TMTTabView.m */; };
 		D22108E11BDD738800852E6B /* TMTTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D22108E01BDD738800852E6B /* TMTTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D22108E21BDD73E700852E6B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22108D71BDD737200852E6B /* Info.plist */; };
-		D22108E31BDD73F500852E6B /* TMTTabBarViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108D81BDD737200852E6B /* TMTTabBarViewTests.m */; };
+		D228D6A51BDDE4BD00A88303 /* TMTTabBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */; };
+		D228D6A71BDDE4BD00A88303 /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D22108A61BDD67E400852E6B /* PBXContainerItemProxy */ = {
+		D228D6A81BDDE4BD00A88303 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D22108911BDD67E400852E6B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D22108991BDD67E400852E6B;
-			remoteInfo = TMTTabBarView;
+			remoteInfo = TMTTabBar;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarViewTest.m; sourceTree = "<group>"; };
 		D221089A1BDD67E400852E6B /* TMTTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMTTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D22108A41BDD67E400852E6B /* TMTTabBarViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTTabBarViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22108B81BDD680000852E6B /* TMTTabBarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMTTabBarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22108BA1BDD680000852E6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D22108BB1BDD680000852E6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,9 +47,10 @@
 		D22108D31BDD737200852E6B /* TMTTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarView.m; sourceTree = "<group>"; };
 		D22108D41BDD737200852E6B /* TMTTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabView.h; sourceTree = "<group>"; };
 		D22108D51BDD737200852E6B /* TMTTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabView.m; sourceTree = "<group>"; };
-		D22108D71BDD737200852E6B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D22108D81BDD737200852E6B /* TMTTabBarViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarViewTests.m; sourceTree = "<group>"; };
 		D22108E01BDD738800852E6B /* TMTTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBar.h; sourceTree = "<group>"; };
+		D228D6A21BDDE4BD00A88303 /* TMTTabBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTTabBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarTests.m; sourceTree = "<group>"; };
+		D228D6A61BDDE4BD00A88303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D22108A11BDD67E400852E6B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22108A51BDD67E400852E6B /* TMTTabBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +69,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D228D69F1BDDE4BD00A88303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228D6A71BDDE4BD00A88303 /* TMTTabBar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -83,8 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				D22108D01BDD737200852E6B /* TMTTabBar */,
-				D22108D61BDD737200852E6B /* TMTTabBarTests */,
 				D22108B91BDD680000852E6B /* TMTTabBarDemo */,
+				D228D6A31BDDE4BD00A88303 /* TMTTabBarTests */,
 				D221089B1BDD67E400852E6B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,8 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				D221089A1BDD67E400852E6B /* TMTTabBar.framework */,
-				D22108A41BDD67E400852E6B /* TMTTabBarViewTests.xctest */,
 				D22108B81BDD680000852E6B /* TMTTabBarDemo.app */,
+				D228D6A21BDDE4BD00A88303 /* TMTTabBarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,11 +134,12 @@
 			path = TMTTabBar;
 			sourceTree = "<group>";
 		};
-		D22108D61BDD737200852E6B /* TMTTabBarTests */ = {
+		D228D6A31BDDE4BD00A88303 /* TMTTabBarTests */ = {
 			isa = PBXGroup;
 			children = (
-				D22108D71BDD737200852E6B /* Info.plist */,
-				D22108D81BDD737200852E6B /* TMTTabBarViewTests.m */,
+				D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */,
+				D228D6A61BDDE4BD00A88303 /* Info.plist */,
+				27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */,
 			);
 			path = TMTTabBarTests;
 			sourceTree = "<group>";
@@ -176,24 +178,6 @@
 			productReference = D221089A1BDD67E400852E6B /* TMTTabBar.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D22108A31BDD67E400852E6B /* TMTTabBarViewTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D22108B11BDD67E400852E6B /* Build configuration list for PBXNativeTarget "TMTTabBarViewTests" */;
-			buildPhases = (
-				D22108A01BDD67E400852E6B /* Sources */,
-				D22108A11BDD67E400852E6B /* Frameworks */,
-				D22108A21BDD67E400852E6B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D22108A71BDD67E400852E6B /* PBXTargetDependency */,
-			);
-			name = TMTTabBarViewTests;
-			productName = TMTTabBarViewTests;
-			productReference = D22108A41BDD67E400852E6B /* TMTTabBarViewTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D22108B71BDD680000852E6B /* TMTTabBarDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22108C61BDD680000852E6B /* Build configuration list for PBXNativeTarget "TMTTabBarDemo" */;
@@ -211,6 +195,24 @@
 			productReference = D22108B81BDD680000852E6B /* TMTTabBarDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D228D6A11BDDE4BD00A88303 /* TMTTabBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D228D6AA1BDDE4BD00A88303 /* Build configuration list for PBXNativeTarget "TMTTabBarTests" */;
+			buildPhases = (
+				D228D69E1BDDE4BD00A88303 /* Sources */,
+				D228D69F1BDDE4BD00A88303 /* Frameworks */,
+				D228D6A01BDDE4BD00A88303 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D228D6A91BDDE4BD00A88303 /* PBXTargetDependency */,
+			);
+			name = TMTTabBarTests;
+			productName = TMTTabBarTests;
+			productReference = D228D6A21BDDE4BD00A88303 /* TMTTabBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -223,15 +225,15 @@
 					D22108991BDD67E400852E6B = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					D22108A31BDD67E400852E6B = {
+					D22108B71BDD680000852E6B = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					D22108B71BDD680000852E6B = {
+					D228D6A11BDDE4BD00A88303 = {
 						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = D22108941BDD67E400852E6B /* Build configuration list for PBXProject "TMTTabBarView" */;
+			buildConfigurationList = D22108941BDD67E400852E6B /* Build configuration list for PBXProject "TMTTabBar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -245,8 +247,8 @@
 			projectRoot = "";
 			targets = (
 				D22108991BDD67E400852E6B /* TMTTabBar */,
-				D22108A31BDD67E400852E6B /* TMTTabBarViewTests */,
 				D22108B71BDD680000852E6B /* TMTTabBarDemo */,
+				D228D6A11BDDE4BD00A88303 /* TMTTabBarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -259,20 +261,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D22108A21BDD67E400852E6B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22108E21BDD73E700852E6B /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D22108B61BDD680000852E6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D22108C11BDD680000852E6B /* Assets.xcassets in Resources */,
 				D22108C41BDD680000852E6B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D228D6A01BDDE4BD00A88303 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,14 +289,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D22108A01BDD67E400852E6B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D22108E31BDD73F500852E6B /* TMTTabBarViewTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D22108B41BDD680000852E6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,13 +298,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D228D69E1BDDE4BD00A88303 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D228D6A51BDDE4BD00A88303 /* TMTTabBarTests.m in Sources */,
+				27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D22108A71BDD67E400852E6B /* PBXTargetDependency */ = {
+		D228D6A91BDDE4BD00A88303 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D22108991BDD67E400852E6B /* TMTTabBar */;
-			targetProxy = D22108A61BDD67E400852E6B /* PBXContainerItemProxy */;
+			targetProxy = D228D6A81BDDE4BD00A88303 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -448,28 +450,6 @@
 			};
 			name = Release;
 		};
-		D22108B21BDD67E400852E6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TMTTabBarViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tobiasmende.TMTTabBarViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		D22108B31BDD67E400852E6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = TMTTabBarViewTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = de.tobiasmende.TMTTabBarViewTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		D22108C71BDD680000852E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,10 +474,32 @@
 			};
 			name = Release;
 		};
+		D228D6AB1BDDE4BD00A88303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TMTTabBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.tobiasmende.TMTTabBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D228D6AC1BDDE4BD00A88303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = TMTTabBarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.tobiasmende.TMTTabBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D22108941BDD67E400852E6B /* Build configuration list for PBXProject "TMTTabBarView" */ = {
+		D22108941BDD67E400852E6B /* Build configuration list for PBXProject "TMTTabBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D22108AC1BDD67E400852E6B /* Debug */,
@@ -513,20 +515,22 @@
 				D22108B01BDD67E400852E6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		D22108B11BDD67E400852E6B /* Build configuration list for PBXNativeTarget "TMTTabBarViewTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D22108B21BDD67E400852E6B /* Debug */,
-				D22108B31BDD67E400852E6B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D22108C61BDD680000852E6B /* Build configuration list for PBXNativeTarget "TMTTabBarDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D22108C71BDD680000852E6B /* Debug */,
 				D22108C81BDD680000852E6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D228D6AA1BDDE4BD00A88303 /* Build configuration list for PBXNativeTarget "TMTTabBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D228D6AB1BDDE4BD00A88303 /* Debug */,
+				D228D6AC1BDDE4BD00A88303 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TMTTabBarDemo.xcscheme</key>
+		<key>TMTTabBar.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>TMTTabBarView.xcscheme</key>
+		<key>TMTTabBarDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>TMTTabBarTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>D22108B71BDD680000852E6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D228D6A11BDDE4BD00A88303</key>
 		<dict>
 			<key>primary</key>
 			<true/>
