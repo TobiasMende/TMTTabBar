@@ -6,7 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TMTTabItemStack<__covariant ItemType> : NSObject {
+@interface TMTTabItemStack<__covariant ItemType> : NSObject<NSFastEnumeration> {
     NSMutableArray<ItemType> *_items;
 }
 - (instancetype)init;
@@ -20,4 +20,6 @@
 - (id)peek;
 
 - (NSUInteger)size;
+
+- (void)remove:(ItemType)item;
 @end

@@ -8,6 +8,7 @@
 
 #import "TMTTabBarView.h"
 #import "TMTTabItemView.h"
+#import "TMTTabItemStack.h"
 
 
 @interface TMTTabBarView ()
@@ -21,7 +22,7 @@
 @end
 
 @implementation TMTTabBarView {
-    NSMutableArray<TMTTabItemView *> * _tabViews;
+    TMTTabItemStack<TMTTabItemView *> * _tabViews;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -49,7 +50,7 @@
 }
 
 - (void)initMember {
-    _tabViews = [NSMutableArray new];
+    _tabViews = [TMTTabItemStack new];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -61,7 +62,7 @@
 - (void)addTabView:(TMTTabItemView *)tabView {
     assert(!tabView.parent);
     tabView.parent = self;
-    [_tabViews addObject:tabView];
+    [_tabViews push:tabView];
     [self addSubview:tabView];
     [self updateLayout];
 }
@@ -70,20 +71,20 @@
     if(tabView.parent != self) {
         return;
     }
-    [_tabViews removeObject:tabView];
+    [_tabViews remove:tabView];
     [tabView removeFromSuperview];
     tabView.parent = nil;
     [self updateLayout];
 }
 
 - (void)updateLayout {
-    if(_tabViews.count == 0) {
+    if(_tabViews.size == 0) {
         return;
     }
 
     NSSize tabSize = self.calculateTabSize;
     [self updateTabBounds:tabSize];
-    [self activateTabItem:_tabViews.lastObject];
+    [self activateTabItem:_tabViews.peek];
 
     self.needsDisplay = YES;
 }
@@ -109,6 +110,7 @@
 }
 
 - (void)activateTabItem:(TMTTabItemView *)actionedItem {
+    [_tabViews push:actionedItem];
     actionedItem.active = YES;
     for(TMTTabItemView *item in _tabViews) {
         if (item != actionedItem) {

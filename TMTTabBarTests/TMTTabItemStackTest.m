@@ -87,6 +87,16 @@
     XCTAssertEqualObjects(stack.pop, item1);
 }
 
+- (void)testRemoveDecreasesStackSize {
+    [stack push:item1];
+    [stack push:item2];
+    [stack push:item3];
+
+    [stack remove:item2];
+
+    XCTAssertEqual(stack.size, 2);
+}
+
 - (void)testPeekEmptyStackReturnsNil {
     XCTAssertNil(stack.peek);
 }
@@ -104,4 +114,17 @@
     XCTAssertEqual(stack.size, 2);
 }
 
+
+- (void)testIterationThroughStackReturnsItemsInReversePushOrder {
+    [stack push:item1];
+    [stack push:item2];
+    [stack push:item3];
+
+    NSArray *order = @[item3, item2, item1];
+    NSUInteger counter = 0;
+    for(TMTTabItem *item in stack) {
+        XCTAssertEqualObjects(item, order[counter++]);
+    }
+
+}
 @end
