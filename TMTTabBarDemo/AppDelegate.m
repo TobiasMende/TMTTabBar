@@ -7,7 +7,7 @@
 //
 
 #import <TMTTabBar/TMTTabBar.h>
-#import "TMTTabView.h"
+#import "TMTTabItemView.h"
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -27,13 +27,13 @@
 }
 
 - (IBAction)addTab:(id)sender {
-    TMTTabView *view = [[TMTTabView alloc] initWithFrame:NSMakeRect(0,0,0,0)];
+    TMTTabItemView *view = [[TMTTabItemView alloc] initWithFrame:NSMakeRect(0,0,0,0)];
     view.label = [NSString stringWithFormat:@"Tab %i", self.tabCounter++];
     [self.tabBar addTabView:view];
 }
 
 - (IBAction)removeTab:(id)sender {
-    TMTTabView *view = (TMTTabView*)self.tabBar.subviews.lastObject;
+    TMTTabItemView *view = (TMTTabItemView *)self.tabBar.subviews.lastObject;
     if(view) {
         [self.tabBar removeTabView:view];
     }

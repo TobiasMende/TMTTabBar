@@ -7,17 +7,47 @@
 //
 
 #import "TMTTabBarView.h"
-#import "TMTTabView.h"
+#import "TMTTabItemView.h"
 
 
 @interface TMTTabBarView ()
+- (void)initMember;
+
 - (void)updateLayout;
 
 - (NSSize)calculateTabSize;
 @end
 
 @implementation TMTTabBarView {
-    NSMutableArray<TMTTabView *> * _tabViews;
+    NSMutableArray<TMTTabItemView *> * _tabViews;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self initMember];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(NSRect)frameRect {
+    self = [super initWithFrame:frameRect];
+    if (self) {
+        [self initMember];
+    }
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if  (self) {
+        [self initMember];
+    }
+    return self;
+}
+
+- (void)initMember {
+    _tabViews = [NSMutableArray new];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -26,21 +56,32 @@
     // Drawing code here.
 }
 
-- (void)addTabView:(TMTTabView *)tabView {
+- (void)addTabView:(TMTTabItemView *)tabView {
+    assert(!tabView.parent);
+    tabView.parent = self;
     [_tabViews addObject:tabView];
     [self addSubview:tabView];
     [self updateLayout];
 }
 
-- (void)removeTabView:(TMTTabView *)tabView {
+- (void)removeTabView:(TMTTabItemView *)tabView {
+    if(tabView.parent != self) {
+        return;
+    }
     [_tabViews removeObject:tabView];
     [tabView removeFromSuperview];
+    tabView.parent = nil;
     [self updateLayout];
 }
 
 - (void)updateLayout {
+    if(_tabViews.count == 0) {
+        return;
+    }
+
     NSSize tabSize = self.calculateTabSize;
     [self updateTabBounds:tabSize];
+    [self activateTabItem:_tabViews.lastObject];
 
     self.needsDisplay = YES;
 }
@@ -63,6 +104,22 @@
     const NSSize viewSize = self.bounds.size;
     const CGFloat tabWidth = viewSize.width / (CGFloat)numberOfSubviews;
     return NSMakeSize(tabWidth, viewSize.height);
+}
+
+
+#pragma mark - TMTTabItemDelegate
+
+- (void)clickedOnTab:(TMTTabItemView *_Nonnull)actionedItem {
+    [self activateTabItem:actionedItem];
+}
+
+- (void)activateTabItem:(TMTTabItemView *)actionedItem {
+    actionedItem.active = YES;
+    for(TMTTabItemView *item in _tabViews) {
+        if (item != actionedItem) {
+            item.active = NO;
+        }
+    }
 }
 
 

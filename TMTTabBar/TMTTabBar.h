@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include "TMTTabView.h"
+#include "TMTTabItemView.h"
 #include "TMTTabBarView.h"
 //! Project version number for TMTTabBarView.
 FOUNDATION_EXPORT double TMTTabBarVersionNumber;
