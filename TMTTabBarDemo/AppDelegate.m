@@ -28,7 +28,7 @@
 
 - (IBAction)addTab:(id)sender {
     TMTTabItemView *view = [[TMTTabItemView alloc] initWithFrame:NSMakeRect(0,0,0,0)];
-    view.label = [NSString stringWithFormat:@"Tab %i", self.tabCounter++];
+    view.title = [NSString stringWithFormat:@"Tab %i", self.tabCounter++];
     [self.tabBar addTabView:view];
 }
 

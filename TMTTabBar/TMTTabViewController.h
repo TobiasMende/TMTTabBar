@@ -13,5 +13,5 @@
 @property (nonnull) TMTTabBarView *tabBar;
 @property (nonnull) NSBox *tabContainer;
 
-// TODO add methods for addition and removal of tab items (and add TMTTabItem as container for a view and a tab label ...)
+// TODO add methods for addition and removal of tab items (and add TMTTabItem as container for a view and a tab title ...)
 @end

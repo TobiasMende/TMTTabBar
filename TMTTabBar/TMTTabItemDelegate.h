@@ -8,5 +8,6 @@
 @class TMTTabItemView;
 
 @protocol TMTTabItemDelegate <NSObject>
-- (void)clickedOnTab:(TMTTabItemView * _Nonnull)item;
+- (void)selectTab:(TMTTabItemView * _Nonnull)item;
+- (void)closeTab:(TMTTabItemView * _Nonnull)item;
 @end

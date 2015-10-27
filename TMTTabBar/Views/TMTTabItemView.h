@@ -12,8 +12,11 @@
 @protocol TMTTabItemDelegate;
 
 @interface TMTTabItemView : NSView
-@property (nonnull) NSString *label;
+
 @property (nonatomic) BOOL active;
+@property (nonnull) NSString* title;
+
 @property (nonnull) TMTTabItemStyle *style;
 @property (weak) id<TMTTabItemDelegate> parent;
+
 @end

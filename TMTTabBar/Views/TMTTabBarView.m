@@ -51,6 +51,7 @@
 
 - (void)initMember {
     _tabViews = [TMTTabItemStack new];
+    self.autoresizesSubviews = YES;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -121,8 +122,12 @@
 
 #pragma mark - TMTTabItemDelegate
 
-- (void)clickedOnTab:(TMTTabItemView *_Nonnull)actionedItem {
+- (void)selectTab:(TMTTabItemView *_Nonnull)actionedItem {
     [self activateTabItem:actionedItem];
+}
+
+- (void)closeTab:(TMTTabItemView *_Nonnull)item {
+    [self removeTabView:item];
 }
 
 

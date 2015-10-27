@@ -9,18 +9,27 @@
 #import "TMTTabItemView.h"
 #import "TMTTabItemStyle.h"
 #import "TMTTabItemDelegate.h"
+#import "TMTTabTitleView.h"
 
 @interface TMTTabItemView ()
 - (void)initMember;
+
+- (void)initTitleView;
 
 - (void)drawBorders;
 
 - (void)drawBackground;
 
 - (void)drawLabel;
+
+- (void)closeTab;
 @end
 
-@implementation TMTTabItemView
+@implementation TMTTabItemView {
+    TMTTabTitleView *_titleView;
+    NSButton* _closeButton;
+    NSTrackingArea*_trackingArea;
+}
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -40,8 +49,81 @@
     return self;
 }
 
+- (void)dealloc {
+    [_titleView unbind:@"value"];
+}
+
 - (void)initMember {
     _style = [TMTTabItemStyle new];
+    [self initCloseButton];
+    [self initTitleView];
+}
+
+- (void)initCloseButton {
+    _closeButton = [NSButton new];
+    _closeButton.bezelStyle = NSRegularSquareBezelStyle;
+    _closeButton.bordered = NO;
+    _closeButton.image = [NSImage imageNamed:NSImageNameStopProgressTemplate];
+    _closeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_closeButton];
+
+    [NSLayoutConstraint constraintWithItem:_closeButton
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:10
+                                  constant:5].active = YES;
+
+    [NSLayoutConstraint constraintWithItem:_closeButton
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.f constant:0.f].active = YES;
+
+    _closeButton.alphaValue = 0.0f;
+    _closeButton.target = self;
+    _closeButton.action = @selector(closeTab);
+
+}
+
+- (void)initTitleView {
+    _titleView = [TMTTabTitleView new];
+    [self addSubview:_titleView];
+    [_titleView bind:@"value" toObject:self withKeyPath:@"title" options:@{NSValidatesImmediatelyBindingOption : @YES,
+            NSContinuouslyUpdatesValueBindingOption : @YES}];
+
+
+    [NSLayoutConstraint constraintWithItem:_titleView
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                    toItem:_closeButton
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1
+                                  constant:0].active = YES;
+    [NSLayoutConstraint constraintWithItem:_titleView
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationLessThanOrEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1
+                                  constant:0].active = YES;
+    [NSLayoutConstraint constraintWithItem:_titleView
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1
+                                  constant:0].active = YES;
+    [NSLayoutConstraint constraintWithItem:_titleView
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1
+                                  constant:0].active = YES;
+
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -70,29 +152,56 @@
 }
 
 - (void)drawBackground {
-    if (self.active) {
-        [self.style.activeBackgroundColor setFill];
-    } else {
-        [self.style.inactiveBackgroundColor setFill];
-    }
+    NSColor* color = self.active ? self.style.activeBackgroundColor : self.style.inactiveBackgroundColor;
+
+    //_titleView.backgroundColor = color;
+    [color setFill];
     NSRectFill(self.bounds);
 }
 
 - (void)drawLabel {
-    NSColor *textColor = self.active ? self.style.activeTextColor : self.style.inactiveTextColor;
-    NSDictionary *attributes = @{NSForegroundColorAttributeName : textColor};
-    [self.label drawInRect:self.bounds withAttributes:attributes];
+    _titleView.textColor = self.active ? self.style.activeTextColor : self.style.inactiveTextColor;
 }
+
+#pragma mark - Setter and Getter
 
 - (void)setActive:(BOOL)active {
     _active = active;
     self.needsDisplay = YES;
 }
 
+#pragma mark - Actions
+
+- (void)closeTab {
+    [self.parent closeTab:self];
+}
+
 #pragma mark - Mouse Actions
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    [self.parent clickedOnTab:self];
+    [self.parent selectTab:self];
+}
+
+- (void)mouseEntered:(NSEvent *)theEvent {
+    [_closeButton.animator setAlphaValue:1.0f];
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+    [_closeButton.animator setAlphaValue:0.0f];
+}
+
+
+- (void)updateTrackingAreas {
+    if(_trackingArea != nil) {
+        [self removeTrackingArea:_trackingArea];
+    }
+
+    int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
+    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
+                                                  options:opts
+                                                    owner:self
+                                                 userInfo:nil];
+    [self addTrackingArea:_trackingArea];
 }
 
 @end
