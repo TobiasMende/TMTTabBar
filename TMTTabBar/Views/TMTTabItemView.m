@@ -112,7 +112,7 @@
                                     toItem:self
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1
-                                  constant:5].active = YES;
+                                  constant:self.style.leftMargin].active = YES;
 
     [NSLayoutConstraint constraintWithItem:_closeButton
                                  attribute:NSLayoutAttributeCenterY
@@ -137,7 +137,7 @@
                                     toItem:self
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1
-                                  constant:5].active = YES;
+                                  constant:-self.style.rightMargin].active = YES;
 
     [NSLayoutConstraint constraintWithItem:_customView
                                  attribute:NSLayoutAttributeTop

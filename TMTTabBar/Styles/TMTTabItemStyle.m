@@ -20,6 +20,8 @@
 
         _inactiveTextColor = [NSColor controlTextColor];
         _activeTextColor = [NSColor controlTextColor];
+        _rightMargin = 1;
+        _leftMargin = 4;
     }
     return self;
 }

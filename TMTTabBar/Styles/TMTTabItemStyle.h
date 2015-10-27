@@ -17,6 +17,9 @@
 @property (nonnull) NSColor *inactiveTextColor;
 @property (nonnull) NSColor *activeTextColor;
 
+@property CGFloat rightMargin;
+@property CGFloat leftMargin;
+
 - (id _Nonnull) init;
 
 @end
