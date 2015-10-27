@@ -14,12 +14,18 @@
 @interface TMTTabItemView ()
 - (void)initMember;
 
+- (void)initSubviews;
+- (void)initCloseButton;
 - (void)initTitleView;
+- (void)initCustomView;
+
+- (void)setupLayout;
+- (void)setupCloseButtonLayout;
+- (void)setupCustomViewLayout;
+- (void)setupTitleViewLayout;
 
 - (void)drawBorders;
-
 - (void)drawBackground;
-
 - (void)drawLabel;
 
 - (void)closeTab;
@@ -88,7 +94,6 @@
 
 }
 
-
 - (void)initCustomView {
     _customView = [NSBox new];
     _customView.borderType = NSNoBorder;
@@ -96,7 +101,6 @@
     _customView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [self addSubview:_customView];
-
 }
 
 - (void)setupLayout {
@@ -223,8 +227,6 @@
 
 - (void)drawBackground {
     NSColor* color = self.active ? self.style.activeBackgroundColor : self.style.inactiveBackgroundColor;
-
-    //_titleView.backgroundColor = color;
     [color setFill];
     NSRectFill(self.bounds);
 }
@@ -259,7 +261,6 @@
 - (void)mouseExited:(NSEvent *)theEvent {
     [_closeButton.animator setAlphaValue:0.0f];
 }
-
 
 - (void)updateTrackingAreas {
     if(_trackingArea != nil) {

@@ -17,6 +17,8 @@
 
 - (void)updateLayout;
 
+- (void)updateAddButtonConstraints;
+
 - (void)activateTabItem:(TMTTabItemView *)actionedItem;
 @end
 
@@ -57,7 +59,6 @@
     _style = [TMTTabBarStyle new];
 
     [self initAddButton];
-
 }
 
 - (void)initAddButton {
@@ -102,8 +103,6 @@
 
     [self.style.backgroundColor setFill];
     NSRectFill(self.bounds);
-
-    // Drawing code here.
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView {
