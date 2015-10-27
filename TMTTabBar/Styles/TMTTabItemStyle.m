@@ -12,8 +12,8 @@
 - (id)init {
     self = [super init];
     if(self) {
-        _inactiveBackgroundColor = [NSColor controlBackgroundColor];
-        _activeBackgroundColor = [NSColor secondarySelectedControlColor];
+        _inactiveBackgroundColor = [NSColor headerColor];
+        _activeBackgroundColor = [NSColor gridColor];
 
         _inactiveBorderColor = [NSColor controlDarkShadowColor];
         _activeBorderColor = [NSColor controlShadowColor];

@@ -5,9 +5,19 @@
 
 #import "TMTTabViewController.h"
 #import "TMTTabBarView.h"
+#import "TMTTabItem.h"
 
 
 @implementation TMTTabViewController {
 
 }
+- (void)addTabItem:(TMTTabItem *_Nonnull)item {
+    // TODO: implement test and method
+}
+
+- (void)removeTabItem:(TMTTabItem *_Nonnull)item {
+    // TODO: implement test and method
+}
+
+
 @end

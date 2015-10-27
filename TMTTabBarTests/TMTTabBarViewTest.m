@@ -39,20 +39,20 @@
 }
 
 - (void)testInitialSubviewCountIsZero {
-    XCTAssertEqual(tabBar1.subviews.count, 0);
+    XCTAssertEqual(tabBar1.subviews.count, 1);
 }
 
 - (void)testThatAddingTabsIncreasesSubviewCount {
     [tabBar1 addTabView:item1];
 
-    XCTAssertEqual(tabBar1.subviews.count, 1);
+    XCTAssertEqual(tabBar1.subviews.count, 2);
 }
 
 - (void)testRemovingItemDecreasesSubviewCount {
     [tabBar1 addTabView:item1];
     [tabBar1 removeTabView:item1];
 
-    XCTAssertEqual(tabBar1.subviews.count, 0);
+    XCTAssertEqual(tabBar1.subviews.count, 1);
 }
 
 - (void)testAddingItemAffectsItemSize {

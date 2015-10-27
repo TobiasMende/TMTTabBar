@@ -32,10 +32,4 @@
     [self.tabBar addTabView:view];
 }
 
-- (IBAction)removeTab:(id)sender {
-    TMTTabItemView *view = (TMTTabItemView *)self.tabBar.subviews.lastObject;
-    if(view) {
-        [self.tabBar removeTabView:view];
-    }
-}
 @end

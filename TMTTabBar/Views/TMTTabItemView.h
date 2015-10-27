@@ -15,6 +15,7 @@
 
 @property (nonatomic) BOOL active;
 @property (nonnull) NSString* title;
+@property (nonnull, readonly) NSBox *customView;
 
 @property (nonnull) TMTTabItemStyle *style;
 @property (weak) id<TMTTabItemDelegate> parent;

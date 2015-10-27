@@ -55,8 +55,15 @@
 
 - (void)initMember {
     _style = [TMTTabItemStyle new];
-    [self initCloseButton];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    [self initSubviews];
+    [self setupLayout];
+}
+
+- (void)initSubviews {
     [self initTitleView];
+    [self initCloseButton];
+    [self initCustomView];
 }
 
 - (void)initCloseButton {
@@ -66,21 +73,6 @@
     _closeButton.image = [NSImage imageNamed:NSImageNameStopProgressTemplate];
     _closeButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_closeButton];
-
-    [NSLayoutConstraint constraintWithItem:_closeButton
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeLeft
-                                multiplier:10
-                                  constant:5].active = YES;
-
-    [NSLayoutConstraint constraintWithItem:_closeButton
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.f constant:0.f].active = YES;
 
     _closeButton.alphaValue = 0.0f;
     _closeButton.target = self;
@@ -94,19 +86,95 @@
     [_titleView bind:@"value" toObject:self withKeyPath:@"title" options:@{NSValidatesImmediatelyBindingOption : @YES,
             NSContinuouslyUpdatesValueBindingOption : @YES}];
 
+}
 
+
+- (void)initCustomView {
+    _customView = [NSBox new];
+    _customView.borderType = NSNoBorder;
+    _customView.boxType = NSBoxCustom;
+    _customView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [self addSubview:_customView];
+
+}
+
+- (void)setupLayout {
+    [self setupCloseButtonLayout];
+    [self setupTitleViewLayout];
+    [self setupCustomViewLayout];
+}
+
+- (void)setupCloseButtonLayout {
+    [NSLayoutConstraint constraintWithItem:_closeButton
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1
+                                  constant:5].active = YES;
+
+    [NSLayoutConstraint constraintWithItem:_closeButton
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1
+                                  constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_closeButton
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:_closeButton
+                                 attribute:NSLayoutAttributeHeight
+                                multiplier:1
+                                  constant:0].active = YES;
+}
+
+- (void)setupCustomViewLayout {
+    [NSLayoutConstraint constraintWithItem:_customView
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1
+                                  constant:5].active = YES;
+
+    [NSLayoutConstraint constraintWithItem:_customView
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1
+                                  constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_customView
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1
+                                  constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_customView
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:_customView
+                                 attribute:NSLayoutAttributeHeight
+                                multiplier:1
+                                  constant:0].active = YES;
+}
+
+- (void)setupTitleViewLayout {
     [NSLayoutConstraint constraintWithItem:_titleView
                                  attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                 relatedBy:NSLayoutRelationEqual
                                     toItem:_closeButton
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1
                                   constant:0].active = YES;
     [NSLayoutConstraint constraintWithItem:_titleView
                                  attribute:NSLayoutAttributeRight
-                                 relatedBy:NSLayoutRelationLessThanOrEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:_customView
+                                 attribute:NSLayoutAttributeLeft
                                 multiplier:1
                                   constant:0].active = YES;
     [NSLayoutConstraint constraintWithItem:_titleView
@@ -123,8 +191,10 @@
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1
                                   constant:0].active = YES;
-
 }
+
+
+#pragma mark - Drawing
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];

@@ -15,7 +15,6 @@
 @property int tabCounter;
 @property (weak) IBOutlet TMTTabBarView *tabBar;
 - (IBAction)addTab:(id)sender;
-- (IBAction)removeTab:(id)sender;
 
 @end
 

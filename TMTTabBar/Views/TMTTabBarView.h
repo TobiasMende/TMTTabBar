@@ -10,8 +10,11 @@
 #import "TMTTabItemDelegate.h"
 
 @class TMTTabItemView;
+@class TMTTabBarStyle;
 
 @interface TMTTabBarView : NSView <TMTTabItemDelegate>
+
+@property (nonnull) TMTTabBarStyle *style;
 
 
 - (void) addTabView:(nonnull TMTTabItemView *)tabView;

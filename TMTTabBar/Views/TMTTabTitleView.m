@@ -23,8 +23,7 @@
     self.drawsBackground = NO;
     self.editable = NO;
     self.selectable = NO;
-    self.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable | NSViewMaxXMargin | NSViewMinXMargin;
-    self.translatesAutoresizingMaskIntoConstraints = YES;
+    self.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 @end
