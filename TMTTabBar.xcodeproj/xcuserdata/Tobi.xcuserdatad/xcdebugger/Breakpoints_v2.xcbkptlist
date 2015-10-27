@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TMTTabBarTests/TMTTabBarViewTest.m"
-            timestampString = "467579643.910695"
+            timestampString = "467676782.429241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-testClickingTabTrickersActiveState"
             landmarkType = "5">
          </BreakpointContent>

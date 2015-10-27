@@ -10,6 +10,6 @@
 
 - (nonnull instancetype)initForView:(NSView *_Nonnull)view;
 
-- (NSArray<NSLayoutConstraint *> *_Nonnull)updateLayoutConstraints:(NSArray<NSLayoutConstraint *> *_Nonnull)constraints forViews:(NSArray<NSView *> *)views;
+- (NSArray<NSLayoutConstraint *> *_Nonnull)updateLayoutConstraints:(NSArray<NSLayoutConstraint *> *_Nonnull)constraints forViews:(NSArray<NSView *> *_Nonnull)views;
 
 @end

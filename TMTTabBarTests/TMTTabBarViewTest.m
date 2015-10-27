@@ -55,23 +55,11 @@
     XCTAssertEqual(tabBar1.subviews.count, 1);
 }
 
-- (void)testAddingItemAffectsItemSize {
-    [tabBar1 addTabView:item1];
-
-    NSSize itemSize = item1.frame.size;
-    NSSize wanted = NSMakeSize(100, 10);
-
-    [self verifySize:itemSize equals:wanted];
-}
-
 - (void)testTwoAddedItemsHaveSameSize {
     [tabBar1 addTabView:item1];
     [tabBar1 addTabView:item2];
 
-    NSSize wanted = NSMakeSize(50,10);
-
-    [self verifySize:item1.frame.size equals:wanted];
-    [self verifySize:item2.frame.size equals:wanted];
+    [self verifySize:item1.frame.size equals:item2.frame.size];
 }
 
 - (void)testClickingTabTrickersActiveState {
