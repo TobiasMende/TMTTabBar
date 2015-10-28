@@ -13,11 +13,11 @@
 
 @interface TMTTabItemView : NSView
 
-@property (nonatomic) BOOL active;
 @property (nonnull) NSString* title;
 @property (nonnull, readonly) NSBox *customView;
 
 @property (nonnull) TMTTabItemStyle *style;
 @property (weak) id<TMTTabItemDelegate> parent;
 
+- (void)setActive:(BOOL)active;
 @end

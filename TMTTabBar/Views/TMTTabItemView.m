@@ -10,6 +10,7 @@
 #import "TMTTabItemStyle.h"
 #import "TMTTabItemDelegate.h"
 #import "TMTTabTitleView.h"
+#import "TMTRenderingHints.h"
 
 @interface TMTTabItemView ()
 - (void)initMember;
@@ -24,10 +25,6 @@
 - (void)setupCustomViewLayout;
 - (void)setupTitleViewLayout;
 
-- (void)drawBorders;
-- (void)drawBackground;
-- (void)drawLabel;
-
 - (void)closeTab;
 @end
 
@@ -35,6 +32,7 @@
     TMTTabTitleView *_titleView;
     NSButton* _closeButton;
     NSTrackingArea*_trackingArea;
+    TMTRenderingHints *_hints;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -61,6 +59,7 @@
 
 - (void)initMember {
     _style = [TMTTabItemStyle new];
+    _hints = [[TMTRenderingHints alloc] initForView:self];
     self.translatesAutoresizingMaskIntoConstraints = NO;
     [self initSubviews];
     [self setupLayout];
@@ -203,43 +202,15 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
 
-    [self drawBackground];
-    [self drawBorders];
-    [self drawLabel];
-}
-
-- (void)drawBorders {
-    if (self.active) {
-        [self.style.activeBorderColor setStroke];
-    } else {
-        [self.style.inactiveBorderColor setStroke];
-    }
-
-    CGPoint upperLeft = self.bounds.origin;
-    CGPoint upperRight = CGPointMake(upperLeft.x + self.bounds.size.width, upperLeft.y);
-    [self drawVerticalBorderForUpper:upperRight];
-}
-
-- (void)drawVerticalBorderForUpper:(CGPoint)upper {
-    CGPoint lower = CGPointMake(upper.x, upper.y + self.bounds.size.height);
-    [NSBezierPath strokeLineFromPoint:upper toPoint:lower];
-}
-
-- (void)drawBackground {
-    NSColor* color = self.active ? self.style.activeBackgroundColor : self.style.inactiveBackgroundColor;
-    [color setFill];
-    NSRectFill(self.bounds);
-}
-
-- (void)drawLabel {
-    _titleView.textColor = self.active ? self.style.activeTextColor : self.style.inactiveTextColor;
+    [_style styleBackgroundForRect:self.bounds withRenderingHints:_hints];
+    [_style styleBordersForRect:self.bounds withRenderingHinter:_hints];
+    [_style styleTitle:_titleView withRenderingHints:_hints];
 }
 
 #pragma mark - Setter and Getter
 
 - (void)setActive:(BOOL)active {
-    _active = active;
-    self.needsDisplay = YES;
+    _hints.active = active;
 }
 
 #pragma mark - Actions
@@ -255,10 +226,12 @@
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
+    _hints.highlight = YES;
     [_closeButton.animator setAlphaValue:1.0f];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
+    _hints.highlight = NO;
     [_closeButton.animator setAlphaValue:0.0f];
 }
 

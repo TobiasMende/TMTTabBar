@@ -20,8 +20,10 @@
 		27DC2474B5DF0F5284BE6BAE /* TMTTabTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2C26945D68AF9227DB84 /* TMTTabTitleView.m */; };
 		27DC25AE666D97C26D30151F /* TMTTabItemStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC242783BB4324C926398B /* TMTTabItemStack.m */; };
 		27DC25B03EF9F863DCCDA37D /* TMTTabViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC287F34D1D9163048E70A /* TMTTabViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27DC27C41B5F3588512DB305 /* TMTRenderingHints.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC24E65690ADB93464AB51 /* TMTRenderingHints.m */; };
 		27DC28047C3A78F9465B4AC7 /* TMTTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2BA988611CE8EC66844D /* TMTTabBarView.m */; };
 		27DC2921CE2FF544313F2B6A /* TMTTabViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC248D7A3853B8853AEB4B /* TMTTabViewContainer.m */; };
+		27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */; };
 		27DC2B5016ED4BF137675D07 /* TMTTabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2E64B8AF846A45C725B0 /* TMTTabItemView.m */; };
 		27DC2C42FAD0F06A1BF7A05A /* TMTTabItemStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2FCFDA7B56A79ACFBA08 /* TMTTabItemStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2CB1CE2691AB17A10A36 /* TMTTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC23C168EF9DC8259BC1B1 /* TMTTabItem.m */; };
@@ -60,10 +62,12 @@
 		27DC242783BB4324C926398B /* TMTTabItemStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabItemStack.m; sourceTree = "<group>"; };
 		27DC245EF03AA03B74C4C6F7 /* NSTextFieldCell+VerticalAlignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextFieldCell+VerticalAlignment.h"; sourceTree = "<group>"; };
 		27DC248D7A3853B8853AEB4B /* TMTTabViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewContainer.m; sourceTree = "<group>"; };
+		27DC24E65690ADB93464AB51 /* TMTRenderingHints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTRenderingHints.m; sourceTree = "<group>"; };
 		27DC2604D0D7C5F9166DC076 /* TMTTabTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabTitleView.h; sourceTree = "<group>"; };
 		27DC2638D8B59451514AB23C /* TMTTabItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabItemStyle.m; sourceTree = "<group>"; };
 		27DC26DCDE6CF4DAB2CE959F /* TMTTabBarLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarLayoutManager.h; sourceTree = "<group>"; };
 		27DC26FFA185062C92A6FC68 /* TMTTabItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemDelegate.h; sourceTree = "<group>"; };
+		27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTRenderingHints.h; sourceTree = "<group>"; };
 		27DC28650C0B939B48A41696 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewController.m; sourceTree = "<group>"; };
 		27DC287F34D1D9163048E70A /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewController.h; sourceTree = "<group>"; };
 		27DC28A4F2175D2AAFA58C39 /* TMTTabBarStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarStyle.m; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				27DC2638D8B59451514AB23C /* TMTTabItemStyle.m */,
 				27DC28A4F2175D2AAFA58C39 /* TMTTabBarStyle.m */,
 				27DC224E686BAB899674E034 /* TMTTabBarStyle.h */,
+				27DC24E65690ADB93464AB51 /* TMTRenderingHints.m */,
+				27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -248,6 +254,7 @@
 				27DC221B74E22DA14EFC26F4 /* NSTextFieldCell+VerticalAlignment.h in Headers */,
 				27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */,
 				27DC2196A91ABDDFE0E980A0 /* TMTTabBarStyle.h in Headers */,
+				27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +396,7 @@
 				27DC2921CE2FF544313F2B6A /* TMTTabViewContainer.m in Sources */,
 				27DC21A83CD8F04B274AF337 /* TMTTabBarLayoutManager.m in Sources */,
 				27DC2E4A913163FCB475630C /* TMTTabBarStyle.m in Sources */,
+				27DC27C41B5F3588512DB305 /* TMTRenderingHints.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

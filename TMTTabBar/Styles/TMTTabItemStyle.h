@@ -5,6 +5,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class TMTRenderingHints;
+
 
 @interface TMTTabItemStyle : NSObject
 
@@ -22,4 +24,9 @@
 
 - (id _Nonnull) init;
 
+- (void)styleBackgroundForRect:(NSRect)rect withRenderingHints:(TMTRenderingHints *_Nonnull)renderingHints;
+
+- (void)styleBordersForRect:(NSRect)rect withRenderingHinter:(TMTRenderingHints *_Nonnull)renderingHint;
+
+- (void)styleTitle:(NSTextField *_Nonnull)titleField withRenderingHints:(TMTRenderingHints *_Nonnull)renderingHints;
 @end
