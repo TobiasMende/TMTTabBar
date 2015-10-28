@@ -63,16 +63,15 @@
 }
 
 - (void)testClickingTabTrickersActiveState {
+    XCTFail(@"Mock style and test effects on style here!");
     [tabBar1 addTabView:item1];
     [tabBar1 addTabView:item2];
 
     [self clickOnTab:item1];
-    XCTAssertTrue(item1.active);
-    
+    // is item1 active?
     [self clickOnTab:item2];
-    XCTAssertTrue(item2.active);
-    XCTAssertFalse(item1.active);
-    
+    // is item2 active?
+    // is item1 inactive?
 }
 
 - (void)testTabBarSetsAsParentWhenAddingTab {
