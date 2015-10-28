@@ -11,5 +11,5 @@
 @property (nonatomic) BOOL active;
 @property (nonatomic) BOOL highlight;
 
-- (instancetype)initForView:(NSView * _Nonnull)view;
+- (nonnull instancetype)initForView:(NSView * _Nonnull)view;
 @end
