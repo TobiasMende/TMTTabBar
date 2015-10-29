@@ -25,3 +25,5 @@ DerivedData
 #
 #Pods/
 .idea
+Podfile.lock
+Pods
