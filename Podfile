@@ -15,3 +15,4 @@ target 'TMTTabBarTests', :exclusive => true do
   pod 'OCMock'
 end
 
+link_with 'TMTTabBar', 'TMTTabBarTests'
