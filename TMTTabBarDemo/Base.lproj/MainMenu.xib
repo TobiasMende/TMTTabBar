@@ -679,21 +679,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3Z-oi-1db">
-                        <rect key="frame" x="-6" y="332" width="492" height="32"/>
-                        <animations/>
-                        <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CHr-FJ-N7l">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="addTab:" target="Voe-Tx-rLC" id="bZy-JS-Lyo"/>
-                        </connections>
-                    </button>
                     <box fixedFrame="YES" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Pje-b4-v0U" customClass="TMTTabViewContainer">
-                        <rect key="frame" x="17" y="16" width="446" height="272"/>
+                        <rect key="frame" x="17" y="16" width="446" height="313"/>
                         <view key="contentView" id="UWf-Tu-hgc">
-                            <rect key="frame" x="1" y="1" width="444" height="256"/>
+                            <rect key="frame" x="1" y="1" width="444" height="297"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <animations/>
                         </view>
@@ -702,7 +691,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MIS-mB-BNN" customClass="TMTTabBarView">
-                        <rect key="frame" x="0.0" y="296" width="480" height="23"/>
+                        <rect key="frame" x="0.0" y="337" width="480" height="23"/>
                         <animations/>
                     </customView>
                 </subviews>

@@ -13,6 +13,7 @@
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
+@property NSUInteger counter;
 @end
 
 @implementation AppDelegate
@@ -25,14 +26,12 @@
     // Insert code here to tear down your application
 }
 
-- (IBAction)addTab:(id)sender {
-    NSLog(@"addTab");
-}
-
 - (TMTTabItem *)createTab:(TMTTabViewController *)sender {
     TMTTabItem *item = [TMTTabItem new];
-    item.label = @"Test";
-    item.view = [NSView new];
+    item.label = [NSString stringWithFormat:@"Tab %li", self.counter++];
+    NSTextField *label = [NSTextField new];
+    [label setStringValue:item.label];
+    item.view = label;
     return item;
 }
 
