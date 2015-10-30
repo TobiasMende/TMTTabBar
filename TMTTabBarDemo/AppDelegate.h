@@ -8,13 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <TMTTabBar/TMTTabItemDelegate.h>
 @class TMTTabBarView;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@interface AppDelegate : NSObject <NSApplicationDelegate, TMTTabViewDelegate>
 
 @property int tabCounter;
-@property (weak) IBOutlet TMTTabBarView *tabBar;
-- (IBAction)addTab:(id)sender;
+@property (nonnull) TMTTabViewController *controller;
+@property (nonnull) IBOutlet TMTTabBarView *tabBar;
+@property (nonnull) IBOutlet NSBox *tabContainer;
 
 @end
 

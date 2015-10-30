@@ -5,15 +5,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "TMTTabBarDelegate.h"
+#import "TMTTabItemDelegate.h"
+
 @class TMTTabBarView;
 @class TMTTabItem;
+@protocol TMTTabViewDelegate;
 
+@interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate>
 
-@interface TMTTabViewController : NSObject
+@property (nonnull) id<TMTTabViewDelegate>delegate;
 
-@property (nonnull) TMTTabBarView *tabBar;
-@property (nonnull) NSBox *tabContainer;
-
+- (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull NSBox *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
 
 - (void)addTabItem:(TMTTabItem* _Nonnull)item;
 - (void)removeTabItem:(TMTTabItem* _Nonnull)item;

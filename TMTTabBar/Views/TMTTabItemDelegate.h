@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class TMTTabItemView;
+@class TMTTabItem;
 
 @protocol TMTTabItemDelegate <NSObject>
-- (void)selectTab:(TMTTabItemView * _Nonnull)item;
-- (void)closeTab:(TMTTabItemView * _Nonnull)item;
+- (void)selectTab:(TMTTabItem * _Nonnull)item;
+- (void)closeTab:(TMTTabItem * _Nonnull)item;
 @end

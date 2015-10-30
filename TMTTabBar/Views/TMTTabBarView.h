@@ -11,14 +11,18 @@
 
 @class TMTTabItemView;
 @class TMTTabBarStyle;
+@protocol TMTTabBarDelegate;
 
-@interface TMTTabBarView : NSView <TMTTabItemDelegate>
+@interface TMTTabBarView : NSView
 
 @property (nonnull) TMTTabBarStyle *style;
+@property (nonnull) id<TMTTabBarDelegate> parent;
 
 
 - (void) addTabView:(nonnull TMTTabItemView *)tabView;
 - (void) removeTabView:(nonnull TMTTabItemView *)tabView;
+- (void)activateTabItem:(nonnull TMTTabItemView *)actionedItem;
+
 
 @end
 

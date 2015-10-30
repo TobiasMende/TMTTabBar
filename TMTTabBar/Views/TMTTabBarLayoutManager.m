@@ -9,27 +9,31 @@
 @implementation TMTTabBarLayoutManager {
 
     NSView *_view;
+    NSArray<NSLayoutConstraint *> *_constraints;
 }
 
 - (instancetype)initForView:(NSView *)view {
     self = [super init];
     if(self) {
         _view = view;
+        _constraints = [NSArray new];
     }
     return self;
 }
 
-- (NSArray<NSLayoutConstraint *> *_Nonnull)updateLayoutConstraints:(NSArray<NSLayoutConstraint *> *_Nonnull)constraints forViews:(NSArray<NSView *> *)views {
+- (void)updateLayout {
 
-    [NSLayoutConstraint deactivateConstraints:constraints];
+    [NSLayoutConstraint deactivateConstraints:_constraints];
     NSMutableArray<NSLayoutConstraint *> *newConstraints = [NSMutableArray new];
+
+    NSArray<NSView *> *views = _view.subviews;
 
     for(int i = 0; i < views.count; ++i) {
         if(i == 0) {
             [newConstraints addObject:[self attachLeft:views[i]]];
         }
         if(i == views.count-1) {
-            //[newConstraints addObject:[self attachRight:views[i]]];
+            [newConstraints addObject:[self attachRight:views[i]]];
         }
         if(i+1 < views.count) {
             [newConstraints addObject:[self connectMiddle:views[i] withNext:views[i + 1]]];
@@ -39,8 +43,9 @@
         [newConstraints addObject:[self attachBottom:views[i]]];
     }
 
-    [NSLayoutConstraint activateConstraints:newConstraints];
-    return newConstraints;
+    _constraints = newConstraints;
+
+    [NSLayoutConstraint activateConstraints:_constraints];
 }
 
 - (NSLayoutConstraint *)attachTop:(NSView *)view {

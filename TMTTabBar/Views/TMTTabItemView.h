@@ -10,14 +10,17 @@
 
 @class TMTTabItemStyle;
 @protocol TMTTabItemDelegate;
+@class TMTTabItem;
 
 @interface TMTTabItemView : NSView
 
-@property (nonnull) NSString* title;
+@property (nonnull) TMTTabItem* item;
 @property (nonnull, readonly) NSBox *customView;
 
 @property (nonnull) TMTTabItemStyle *style;
 @property (weak) id<TMTTabItemDelegate> parent;
+
+- (nonnull instancetype)initWithItem:(TMTTabItem *_Nonnull)item;
 
 - (void)setActive:(BOOL)active;
 @end

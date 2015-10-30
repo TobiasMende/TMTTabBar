@@ -6,7 +6,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TMTTabItem : NSObject
+@interface TMTTabItem : NSObject<NSCopying>
 @property NSString *label;
 @property NSView *view;
 @end

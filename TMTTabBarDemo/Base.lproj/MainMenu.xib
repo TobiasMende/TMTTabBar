@@ -16,6 +16,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="tabBar" destination="MIS-mB-BNN" id="KZU-3E-L6O"/>
+                <outlet property="tabContainer" destination="Pje-b4-v0U" id="6bu-Hp-hYu"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>

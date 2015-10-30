@@ -38,26 +38,15 @@
     [super tearDown];
 }
 
-- (void)testInitialSubviewCountIsZero {
-    XCTAssertEqual(tabBar1.subviews.count, 1);
-}
-
 - (void)testThatAddingTabsIncreasesSubviewCount {
     [tabBar1 addTabView:item1];
 
     XCTAssertEqual(tabBar1.subviews.count, 2);
 }
 
-- (void)testRemovingItemDecreasesSubviewCount {
-    [tabBar1 addTabView:item1];
-    [tabBar1 removeTabView:item1];
-
-    XCTAssertEqual(tabBar1.subviews.count, 1);
-}
-
 - (void)testTwoAddedItemsHaveSameSize {
     [tabBar1 addTabView:item1];
-    [tabBar1 addTabView:item2];
+    [tabBar1 addTabView:item2];≤
 
     [self verifySize:item1.frame.size equals:item2.frame.size];
 }

@@ -10,23 +10,19 @@
 #import "TMTTabItemView.h"
 #import "TMTTabBarLayoutManager.h"
 #import "TMTTabBarStyle.h"
+#import "TMTTabBarDelegate.h"
 
 
 @interface TMTTabBarView ()
 - (void)initMember;
 
-- (void)updateLayout;
-
-- (void)updateAddButtonConstraints;
-
-- (void)activateTabItem:(TMTTabItemView *)actionedItem;
+- (void)addTabItemClicked;
 @end
 
 @implementation TMTTabBarView {
-    NSMutableArray <TMTTabItemView *> *_tabViews;
     NSButton *_addButton;
-    NSArray <NSLayoutConstraint *> *_tabConstraints;
-    NSLayoutConstraint *_buttonLeftConstraint;
+    NSView *_tabArea;
+    TMTTabBarLayoutManager *_layoutManager;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
@@ -54,11 +50,37 @@
 }
 
 - (void)initMember {
-    _tabViews = [NSMutableArray new];
-    _tabConstraints = [NSArray new];
     _style = [TMTTabBarStyle new];
 
+    [self initTabArea];
     [self initAddButton];
+
+    _layoutManager = [[TMTTabBarLayoutManager alloc] initForView:_tabArea];
+}
+
+- (void)initTabArea {
+    _tabArea = [NSView new];
+    _tabArea.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_tabArea];
+
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1.f constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.f constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1.f constant:0].active = YES;
 }
 
 - (void)initAddButton {
@@ -94,8 +116,16 @@
                                  attribute:NSLayoutAttributeHeight
                                 multiplier:1
                                   constant:0].active = YES;
+    [NSLayoutConstraint constraintWithItem:_addButton
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:_tabArea
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1
+                                  constant:self.style.addButtonSpacing].active = YES;
 
-    // TODO: connect action to delegate (implement delegate)
+    _addButton.target = self;
+    _addButton.action = @selector(addTabItemClicked);
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -106,66 +136,29 @@
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView {
-    assert(!tabView.parent);
-    tabView.parent = self;
-    [_tabViews addObject:tabView];
-    [self addSubview:tabView];
-    [self updateLayout];
+    [_tabArea addSubview:tabView];
+    [_layoutManager updateLayout];
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
-    if (tabView.parent != self) {
-        return;
-    }
-    [_tabViews removeObject:tabView];
     [tabView removeFromSuperview];
-    tabView.parent = nil;
-    [self updateLayout];
+    [_layoutManager updateLayout];
 }
 
-- (void)updateLayout {
-
-    TMTTabBarLayoutManager *layoutManager = [[TMTTabBarLayoutManager alloc] initForView:self];
-
-    _tabConstraints = [layoutManager updateLayoutConstraints:_tabConstraints forViews:_tabViews];
-
-    [self updateAddButtonConstraints];
-
-    self.needsDisplay = YES;
+- (void)addTabItemClicked {
+    [self.parent createTabItem];
 }
 
-- (void)updateAddButtonConstraints {
-    _buttonLeftConstraint.active = NO;
-    if (_tabViews.count > 0) {
-        _buttonLeftConstraint = [NSLayoutConstraint constraintWithItem:_addButton
-                                                             attribute:NSLayoutAttributeLeft
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:_tabViews.lastObject
-                                                             attribute:NSLayoutAttributeRight
-                                                            multiplier:1
-                                                              constant:self.style.addButtonSpacing];
-        _buttonLeftConstraint.active = YES;
-    }
-}
 
 - (void)activateTabItem:(TMTTabItemView *)actionedItem {
     actionedItem.active = YES;
-    for (TMTTabItemView *item in _tabViews) {
+    for (TMTTabItemView *item in _tabArea.subviews) {
         if (item != actionedItem) {
             item.active = NO;
         }
     }
 }
 
-#pragma mark - TMTTabItemDelegate
-
-- (void)selectTab:(TMTTabItemView *_Nonnull)actionedItem {
-    [self activateTabItem:actionedItem];
-}
-
-- (void)closeTab:(TMTTabItemView *_Nonnull)item {
-    [self removeTabView:item];
-}
 
 
 @end

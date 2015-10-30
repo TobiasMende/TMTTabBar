@@ -1,7 +1,7 @@
 workspace 'TMTTabBar.xcworkspace'
 xcodeproj 'TMTTabBar.xcodeproj'
 
-platform :osx, '10.9'
+platform :osx, '10.10'
 
 target :TMTTabBar do
 

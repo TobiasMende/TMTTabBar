@@ -18,8 +18,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
-    
+    _controller = [[TMTTabViewController alloc] initWithTabBar:self.tabBar container:self.tabContainer andDelegate:self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -27,9 +26,14 @@
 }
 
 - (IBAction)addTab:(id)sender {
-    TMTTabItemView *view = [[TMTTabItemView alloc] initWithFrame:NSMakeRect(0,0,0,0)];
-    view.title = [NSString stringWithFormat:@"Tab %i", self.tabCounter++];
-    [self.tabBar addTabView:view];
+    NSLog(@"addTab");
+}
+
+- (TMTTabItem *)createTab:(TMTTabViewController *)sender {
+    TMTTabItem *item = [TMTTabItem new];
+    item.label = @"Test";
+    item.view = [NSView new];
+    return item;
 }
 
 @end

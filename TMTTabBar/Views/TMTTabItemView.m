@@ -9,6 +9,7 @@
 #import "TMTTabItemView.h"
 #import "TMTTabItemStyle.h"
 #import "TMTTabItemDelegate.h"
+#import "TMTTabItem.h"
 #import "TMTTabTitleView.h"
 #import "TMTRenderingHints.h"
 
@@ -16,13 +17,19 @@
 - (void)initMember;
 
 - (void)initSubviews;
+
 - (void)initCloseButton;
+
 - (void)initTitleView;
+
 - (void)initCustomView;
 
 - (void)setupLayout;
+
 - (void)setupCloseButtonLayout;
+
 - (void)setupCustomViewLayout;
+
 - (void)setupTitleViewLayout;
 
 - (void)closeTab;
@@ -30,26 +37,33 @@
 
 @implementation TMTTabItemView {
     TMTTabTitleView *_titleView;
-    NSButton* _closeButton;
-    NSTrackingArea*_trackingArea;
+    NSButton *_closeButton;
+    NSTrackingArea *_trackingArea;
     TMTRenderingHints *_hints;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
-    [self initMember];
+    if (self) {
+        [self initMember];
+    }
     return self;
 }
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
     self = [super initWithFrame:frameRect];
-    [self initMember];
+    if (self) {
+        [self initMember];
+    }
     return self;
 }
 
-- (instancetype)init {
+- (instancetype)initWithItem:(TMTTabItem *_Nonnull)item {
     self = [super init];
-    [self initMember];
+    if (self) {
+        _item = item;
+        [self initMember];
+    }
     return self;
 }
 
@@ -88,7 +102,7 @@
 - (void)initTitleView {
     _titleView = [TMTTabTitleView new];
     [self addSubview:_titleView];
-    [_titleView bind:@"value" toObject:self withKeyPath:@"title" options:@{NSValidatesImmediatelyBindingOption : @YES,
+    [_titleView bind:@"value" toObject:self withKeyPath:@"item.label" options:@{NSValidatesImmediatelyBindingOption : @YES,
             NSContinuouslyUpdatesValueBindingOption : @YES}];
 
 }
@@ -216,13 +230,13 @@
 #pragma mark - Actions
 
 - (void)closeTab {
-    [self.parent closeTab:self];
+    [self.parent closeTab:self.item];
 }
 
 #pragma mark - Mouse Actions
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    [self.parent selectTab:self];
+    [self.parent selectTab:self.item];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
@@ -236,15 +250,15 @@
 }
 
 - (void)updateTrackingAreas {
-    if(_trackingArea != nil) {
+    if (_trackingArea != nil) {
         [self removeTrackingArea:_trackingArea];
     }
 
     int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
-    _trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
-                                                  options:opts
-                                                    owner:self
-                                                 userInfo:nil];
+    _trackingArea = [[NSTrackingArea alloc] initWithRect:[self bounds]
+                                                 options:opts
+                                                   owner:self
+                                                userInfo:nil];
     [self addTrackingArea:_trackingArea];
 }
 
