@@ -46,26 +46,15 @@
 
 - (void)testTwoAddedItemsHaveSameSize {
     [tabBar1 addTabView:item1];
-    [tabBar1 addTabView:item2];≤
+    [tabBar1 addTabView:item2];
 
     [self verifySize:item1.frame.size equals:item2.frame.size];
-}
-
-- (void)testTabBarSetsAsParentWhenAddingTab {
-    [tabBar1 addTabView:item1];
-    XCTAssertEqualObjects(item1.parent, tabBar1);
 }
 
 - (void)testTabBarSetsParentToNilWhenRemovingTab {
     [tabBar1 addTabView:item1];
     [tabBar1 removeTabView:item1];
     XCTAssertNil(item1.parent);
-}
-
-- (void)testTabBarRemovesTabItemOnlyIfItIsParent {
-    [self testTabBarSetsAsParentWhenAddingTab];
-    [tabBar2 removeTabView:item1];
-    XCTAssertEqualObjects(item1.parent, tabBar1);
 }
 
 - (void)verifySize:(NSSize)actual equals:(NSSize)wanted {

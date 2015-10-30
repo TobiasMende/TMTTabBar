@@ -35,8 +35,7 @@
 		27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */; };
 		27DC2F085E8BB958F8C4345E /* TMTTabItemStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC28F06A52D38BA0E2B2EE /* TMTTabItemStyle.h */; };
 		27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC26DCDE6CF4DAB2CE959F /* TMTTabBarLayoutManager.h */; };
-		BBB56B9663CF4B93C4567F35 /* libPods-TMTTabBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB89892152491EE55A109117 /* libPods-TMTTabBarTests.a */; };
-		C0C972D24C599272B31A9D9D /* libPods-TMTTabBarDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8823240EE834870B2FF0A5F1 /* libPods-TMTTabBarDemo.a */; };
+		BDF22483229C7D78E56CF6E4 /* libPods-TMTTabBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB89892152491EE55A109117 /* libPods-TMTTabBarTests.a */; };
 		D21E43EF1BE4175700B941CD /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
 		D22108BC1BDD680000852E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108BB1BDD680000852E6B /* AppDelegate.m */; };
 		D22108BF1BDD680000852E6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108BE1BDD680000852E6B /* main.m */; };
@@ -45,6 +44,7 @@
 		D22108E11BDD738800852E6B /* TMTTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = D22108E01BDD738800852E6B /* TMTTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D228D6A51BDDE4BD00A88303 /* TMTTabBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */; };
 		D228D6A71BDDE4BD00A88303 /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
+		D271F3701BE41D8000F0974F /* TMTTabViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D271F36F1BE41D8000F0974F /* TMTTabViewControllerTest.m */; };
 		D2C57DDC1BE3D01B0056CF91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C57DDB1BE3D01B0056CF91 /* TMTTabViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1BDC045FDE51EAB41CD25E0B /* Pods-TMTTabBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTTabBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMTTabBarTests/Pods-TMTTabBarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		27DC21B650BF44C5135BC3D8 /* TMTTabBarLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarLayoutManager.m; sourceTree = "<group>"; };
 		27DC224E686BAB899674E034 /* TMTTabBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarStyle.h; sourceTree = "<group>"; };
 		27DC23C168EF9DC8259BC1B1 /* TMTTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabItem.m; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		27DC2FCFDA7B56A79ACFBA08 /* TMTTabItemStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemStack.h; sourceTree = "<group>"; };
 		27DC2FE1013D225BD6CB157D /* TMTTabViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewContainer.h; sourceTree = "<group>"; };
 		8823240EE834870B2FF0A5F1 /* libPods-TMTTabBarDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTTabBarDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B67028061A64395118FB361 /* Pods-TMTTabBarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTTabBarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TMTTabBarTests/Pods-TMTTabBarTests.release.xcconfig"; sourceTree = "<group>"; };
 		A7FA46987ACC60A579372A91 /* libPods-TMTTabBar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTTabBar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB89892152491EE55A109117 /* libPods-TMTTabBarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TMTTabBarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21E43EC1BE415EC00B941CD /* libTMTTabBar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTMTTabBar.a; path = Build/Products/Debug/libTMTTabBar.a; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		D228D6A21BDDE4BD00A88303 /* TMTTabBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMTTabBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarTests.m; sourceTree = "<group>"; };
 		D228D6A61BDDE4BD00A88303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D271F36F1BE41D8000F0974F /* TMTTabViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewControllerTest.m; sourceTree = "<group>"; };
 		D2C57DDB1BE3D01B0056CF91 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +123,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21E43EF1BE4175700B941CD /* TMTTabBar.framework in Frameworks */,
-				C0C972D24C599272B31A9D9D /* libPods-TMTTabBarDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D228D6A71BDDE4BD00A88303 /* TMTTabBar.framework in Frameworks */,
-				BBB56B9663CF4B93C4567F35 /* libPods-TMTTabBarTests.a in Frameworks */,
+				BDF22483229C7D78E56CF6E4 /* libPods-TMTTabBarTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,7 @@
 				D228D6A31BDDE4BD00A88303 /* TMTTabBarTests */,
 				D221089B1BDD67E400852E6B /* Products */,
 				56028DE1E5DE393F7B7A047A /* Frameworks */,
+				D4F80326D316D54DDF09FE9C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,8 +259,18 @@
 				D228D6A61BDDE4BD00A88303 /* Info.plist */,
 				27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */,
 				27DC2B6AA3C5C56BA0D9123A /* TMTTabItemStackTest.m */,
+				D271F36F1BE41D8000F0974F /* TMTTabViewControllerTest.m */,
 			);
 			path = TMTTabBarTests;
+			sourceTree = "<group>";
+		};
+		D4F80326D316D54DDF09FE9C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1BDC045FDE51EAB41CD25E0B /* Pods-TMTTabBarTests.debug.xcconfig */,
+				8B67028061A64395118FB361 /* Pods-TMTTabBarTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,9 +341,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D228D6AA1BDDE4BD00A88303 /* Build configuration list for PBXNativeTarget "TMTTabBarTests" */;
 			buildPhases = (
+				D02145AF725383F02EA22A24 /* Check Pods Manifest.lock */,
 				D228D69E1BDDE4BD00A88303 /* Sources */,
 				D228D69F1BDDE4BD00A88303 /* Frameworks */,
 				D228D6A01BDDE4BD00A88303 /* Resources */,
+				3EC61B0B6320AA2E3F0A17C7 /* Embed Pods Frameworks */,
+				A535B1D9DF5134C9BFE4C55F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -409,6 +425,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3EC61B0B6320AA2E3F0A17C7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMTTabBarTests/Pods-TMTTabBarTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A535B1D9DF5134C9BFE4C55F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TMTTabBarTests/Pods-TMTTabBarTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D02145AF725383F02EA22A24 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D22108951BDD67E400852E6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -442,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D271F3701BE41D8000F0974F /* TMTTabViewControllerTest.m in Sources */,
 				D228D6A51BDDE4BD00A88303 /* TMTTabBarTests.m in Sources */,
 				27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */,
 				27DC221E5C0FCC19872C7292 /* TMTTabItemStackTest.m in Sources */,
@@ -625,6 +690,7 @@
 		};
 		D228D6AB1BDDE4BD00A88303 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1BDC045FDE51EAB41CD25E0B /* Pods-TMTTabBarTests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TMTTabBarTests/Info.plist;
@@ -636,6 +702,7 @@
 		};
 		D228D6AC1BDDE4BD00A88303 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B67028061A64395118FB361 /* Pods-TMTTabBarTests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = TMTTabBarTests/Info.plist;
