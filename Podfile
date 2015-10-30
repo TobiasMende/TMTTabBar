@@ -9,9 +9,10 @@ end
 
 target :TMTTabBarDemo do
 	pod 'TMTTabBar', :path => './TMTTabBar'
+  link_with 'TMTTabBar'
 end
 
 target :TMTTabBarTests do
-    pod 'TMTTabBar', :path => './TMTTabBar'
-    pod 'OCMock'
+  pod 'TMTTabBar', :path => './TMTTabBar'
+  pod 'OCMock'
 end
