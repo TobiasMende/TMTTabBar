@@ -2,3 +2,5 @@ language: objective-c
 osx_image: xcode7.1
 xcode_project: TMTTabBar.xcodeproj
 xcode_scheme: TMTTabBar
+script:
+  - xctool -project TMTTabBar.xcodeproj -scheme TMTTabBar build test
