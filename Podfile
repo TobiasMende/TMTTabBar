@@ -15,4 +15,8 @@ end
 target :TMTTabBarTests do
   pod 'TMTTabBar', :path => './TMTTabBar'
   pod 'OCMock'
+<<<<<<< HEAD
+=======
+  link_with 'TMTTabBar'
+>>>>>>> 0f9c2272b8c7a20377cf900ebca98066f465bbde
 end
