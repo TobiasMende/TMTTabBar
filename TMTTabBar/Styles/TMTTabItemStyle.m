@@ -31,12 +31,10 @@
     NSColor* color = renderingHints.active || renderingHints.highlight ? self.activeBackgroundColor : self.inactiveBackgroundColor;
     [color setFill];
     NSRectFill(rect);
-};
+}
 
 - (void)styleBordersForRect:(NSRect)rect withRenderingHinter:(TMTRenderingHints * _Nonnull) renderingHint {
     NSColor* color = renderingHint.active ? self.activeBorderColor : self.inactiveBorderColor;
-
-
     [color setStroke];
     CGPoint upperLeft = rect.origin;
     CGPoint upperRight = CGPointMake(upperLeft.x + rect.size.width, upperLeft.y);
@@ -46,6 +44,6 @@
 
 - (void)styleTitle:(NSTextField *_Nonnull)titleField withRenderingHints:(TMTRenderingHints* _Nonnull) renderingHints {
     titleField.textColor = renderingHints.active ? self.activeTextColor : self.inactiveTextColor;
-};
+}
 
 @end
