@@ -12,7 +12,7 @@
 @protocol TMTTabItemDelegate;
 @class TMTTabItem;
 
-@interface TMTTabItemView : NSView<NSDraggingSource>
+@interface TMTTabItemView : NSView<NSDraggingSource, NSPasteboardItemDataProvider>
 
 @property (nonnull) TMTTabItem* item;
 @property (nonnull) TMTTabItemStyle *style;
@@ -21,4 +21,5 @@
 - (nonnull instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(nonnull TMTTabItemStyle *)style;
 
 - (void)setActive:(BOOL)active;
+
 @end

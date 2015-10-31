@@ -39,6 +39,5 @@
 }
 
 - (void)tabChanged:(TMTTabItem *)item from:(TMTTabViewController *)sender {
-    [item.view becomeFirstResponder];
 }
 @end

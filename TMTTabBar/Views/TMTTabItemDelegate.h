@@ -10,4 +10,6 @@
 @protocol TMTTabItemDelegate <NSObject>
 - (void)selectTab:(nonnull TMTTabItem *)item;
 - (void)closeTab:(nonnull TMTTabItem *)item;
+- (void)draggingSession:(nullable NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(nonnull TMTTabItem *)item;
+- (BOOL)removeTabItem:(nonnull TMTTabItem*)item;
 @end

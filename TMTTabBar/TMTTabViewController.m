@@ -14,6 +14,12 @@
 #import "TMTTabBarStyle.h"
 #import "TMTTabViewContainerView.h"
 
+@interface TMTTabViewController ()
+- (void)addTabItem:(TMTTabItem *)item atPoint:(NSPoint)point;
+
+- (TMTTabItemView *)insertTabForItem:(TMTTabItem *)item;
+@end
+
 @implementation TMTTabViewController {
     TMTTabBarView *_tabBar;
     TMTTabViewContainerView *_tabContainer;
@@ -37,13 +43,24 @@
 }
 
 - (void)addTabItem:(TMTTabItem *_Nonnull)item {
+    TMTTabItemView *tab = [self insertTabForItem:item];
+    [_tabBar addTabView:tab];
+    [self activateItem:item];
+}
+
+- (void)addTabItem:(TMTTabItem *)item atPoint:(NSPoint)point {
+    TMTTabItemView *tab = [self insertTabForItem:item];
+    [_tabBar addTabView:tab atPoint:point];
+    [self activateItem:item];
+}
+
+- (TMTTabItemView *)insertTabForItem:(TMTTabItem *)item {
     [_tabOrder push:item];
     TMTTabItemStyle *tabStyle = [self styleForItem:item];
     TMTTabItemView *tab = [[TMTTabItemView alloc] initWithItem:item andStyle:tabStyle];
     tab.parent = self;
     _tabs[item] = tab;
-    [_tabBar addTabView:tab];
-    [self activateItem:item];
+    return tab;
 }
 
 - (BOOL)removeTabItem:(TMTTabItem *_Nonnull)item {
@@ -83,6 +100,10 @@
     }
 }
 
+- (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(TMTTabItem *)item {
+    NSLog(@"ended with operation %li", operation);
+}
+
 #pragma mark - TMTTabBarDelegate
 
 - (void)createTab {
@@ -92,6 +113,23 @@
     }
     TMTTabItem *item = [self.delegate createTab:self];
     [self addTabItem:item];
+}
+
+- (bool)performDrop:(id <NSDraggingInfo>)sender {
+    TMTTabItemView *itemView = sender.draggingSource;
+    TMTTabItem *item = itemView.item;
+    NSPoint windowLocation = sender.draggingLocation;
+    if(itemView.parent == self) {
+        [_tabBar removeTabView:itemView];
+        [_tabBar addTabView:itemView atPoint:windowLocation];
+        return YES;
+    }
+    if([itemView.parent removeTabItem:item]) {
+        [self addTabItem:item atPoint:windowLocation];
+        return YES;
+    }
+
+    return NO;
 }
 
 #pragma mark - TMTTabContainerDelegate
@@ -150,5 +188,7 @@
     }
     return [TMTTabBarStyle new];
 }
+
+
 
 @end

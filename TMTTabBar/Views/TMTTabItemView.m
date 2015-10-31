@@ -12,6 +12,7 @@
 #import "TMTTabItem.h"
 #import "TMTTabTitleView.h"
 #import "TMTRenderingHints.h"
+#import "NSView+ImageRepresentation.h"
 
 @interface TMTTabItemView ()
 - (void)initMember;
@@ -42,6 +43,8 @@
     TMTRenderingHints *_hints;
     NSBox *_customViewContainer;
 }
+
+NSString *kPrivateDragUTI = @"de.tobias-men.TMTTabBarItem";
 
 - (instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(TMTTabItemStyle*)style {
     self = [super init];
@@ -250,22 +253,52 @@
     [self addTrackingArea:_trackingArea];
 }
 
+#pragma mark - Dragging
+
 - (void)mouseDragged:(NSEvent *)theEvent {
-    NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:@"Test"];
-    [self beginDraggingSessionWithItems:@[item] event:theEvent source:self];
-    NSLog(@"mouseDragged");
+    NSPasteboardItem  *pbItem = [NSPasteboardItem new];
+    [pbItem setDataProvider:self forTypes:@[kPrivateDragUTI]];
+
+    NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
+
+    [draggingItem setImageComponentsProvider:^NSArray * {
+        NSRect itemBounds = self.bounds;
+        NSRect scaledContentBounds = self.item.view.bounds;
+
+        scaledContentBounds.size.height *= itemBounds.size.width / scaledContentBounds.size.width;
+        scaledContentBounds.size.width = itemBounds.size.width;
+        itemBounds.origin.y += scaledContentBounds.size.height;
+
+        NSDraggingImageComponent *item = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
+        item.contents = self.imageRepresentation;
+        item.frame = itemBounds;
+
+        NSDraggingImageComponent *contentView = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
+        contentView.frame = scaledContentBounds;
+        contentView.contents = self.item.view.imageRepresentation;
+
+        return @[item, contentView];
+    }];
+
+    [self beginDraggingSessionWithItems:@[draggingItem] event:theEvent source:self];
 }
+
 
 #pragma mark - NSDraggingSource
 
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
-    if (context == NSDraggingContextWithinApplication) {
-        return NSDragOperationMove;
-    }
-    return NSDragOperationNone;
+    return NSDragOperationMove;
 }
 
-- (void)draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint {
+- (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+    [self.parent draggingSession:session endedAtPoint:screenPoint operation:operation forItem:self.item];
 }
+
+#pragma mark - NSPasteboardItemDataProvider
+
+- (void)pasteboard:(NSPasteboard *)pasteboard item:(NSPasteboardItem *)item provideDataForType:(NSString *)type {
+    
+}
+
 
 @end

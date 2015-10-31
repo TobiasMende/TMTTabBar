@@ -11,6 +11,7 @@
 #import "TMTTabBarLayoutManager.h"
 #import "TMTTabBarStyle.h"
 #import "TMTTabBarDelegate.h"
+#import "NSView+TMTCoordinateHelpers.h"
 
 
 @interface TMTTabBarView ()
@@ -28,6 +29,7 @@
 
     NSLayoutConstraint *_addButtonInvisible;
 }
+
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -55,6 +57,7 @@
 
 - (void)initMember {
     _style = [TMTTabBarStyle new];
+    [self registerForDraggedTypes:@[@"de.tobias-men.TMTTabBarItem"]];
     [_style addObserver:self forKeyPath:@"shouldShowAddButton" options:NSKeyValueObservingOptionNew context:NULL];
 
     [self initTabArea];
@@ -166,6 +169,23 @@
     [_layoutManager updateLayout];
 }
 
+- (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation {
+    NSView* viewForLocation = [_tabArea viewForPoint:windowLocation];
+
+    if(viewForLocation) {
+        NSPoint locationInView = [viewForLocation convertPoint:windowLocation fromView:nil];
+
+        if(locationInView.x < viewForLocation.center.x) {
+            [_tabArea addSubview:tabView positioned:NSWindowBelow relativeTo:viewForLocation];
+        } else {
+            [_tabArea addSubview:tabView positioned:NSWindowAbove relativeTo:viewForLocation];
+        }
+    [_layoutManager updateLayout];
+    } else {
+        [self addTabView:tabView];
+    }
+}
+
 - (void)removeTabView:(TMTTabItemView *)tabView {
     [tabView removeFromSuperview];
     [_layoutManager updateLayout];
@@ -206,4 +226,17 @@
     }
 }
 
+#pragma  mark - NSDraggingDestination
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+    return NSDragOperationMove;
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+    return [self.parent performDrop:sender];
+}
 @end
