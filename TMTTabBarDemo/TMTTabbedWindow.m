@@ -37,4 +37,8 @@
     item.customView = customView;
     return item;
 }
+
+- (void)tabChanged:(TMTTabItem *)item from:(TMTTabViewController *)sender {
+    [item.view becomeFirstResponder];
+}
 @end

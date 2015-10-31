@@ -172,7 +172,7 @@
 }
 
 - (void)addTabItemClicked {
-    [self.parent createTabItem];
+    [self.parent createTab];
 }
 
 

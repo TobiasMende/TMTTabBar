@@ -92,6 +92,25 @@
                                     <action selector="performClose:" target="-1" id="HmO-Ls-i7Q"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Close All" keyEquivalent="w" id="jSb-pw-wlr">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="performCloseAll:" target="-1" id="A96-eq-qAv"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Close Others" keyEquivalent="w" id="X44-HS-7VY">
+                                <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                <connections>
+                                    <action selector="performCloseAllButActive:" target="-1" id="sqS-iC-FSn"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="UBM-0K-AFk"/>
+                            <menuItem title="New Tab" keyEquivalent="t" id="Gqi-w7-nH4">
+                                <connections>
+                                    <action selector="performAddNewTab:" target="-1" id="Cug-p8-XpX"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="jBz-ZU-pCX"/>
                             <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
                                     <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>

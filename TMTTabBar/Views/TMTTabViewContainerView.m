@@ -4,6 +4,7 @@
 //
 
 #import "TMTTabViewContainerView.h"
+#import "TMTTabContainerDelegate.h"
 
 
 @implementation TMTTabViewContainerView {
@@ -30,4 +31,22 @@
     self.boxType = NSBoxCustom;
     self.borderType = NSNoBorder;
 }
+
+- (void)performClose:(id)sender {
+    [self.parent closeActiveTab];
+}
+
+- (void)performCloseAll:(id)sender {
+    [self.parent closeAllTabs];
+}
+
+- (void)performCloseAllButActive:(id)sender {
+    [self.parent closeAllButActive];
+
+}
+
+- (void)performAddNewTab:(id)sender {
+    [self.parent createTab];
+}
+
 @end

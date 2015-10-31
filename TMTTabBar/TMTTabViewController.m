@@ -16,7 +16,7 @@
 
 @implementation TMTTabViewController {
     TMTTabBarView *_tabBar;
-    NSBox *_tabContainer;
+    TMTTabViewContainerView *_tabContainer;
     NSMutableDictionary<TMTTabItem *, TMTTabItemView *> *_tabs;
     TMTTabItemStack<TMTTabItem *> *_tabOrder;
 }
@@ -29,6 +29,7 @@
         _tabBar.parent = self;
         _tabBar.style = [self styleForBar];
         _tabContainer = container;
+        _tabContainer.parent = self;
         _tabs = [NSMutableDictionary new];
         _tabOrder = [TMTTabItemStack new];
     }
@@ -45,9 +46,9 @@
     [self activateItem:item];
 }
 
-- (void)removeTabItem:(TMTTabItem *_Nonnull)item {
+- (BOOL)removeTabItem:(TMTTabItem *_Nonnull)item {
     if (![self shouldRemoveItem:item]) {
-        return;
+        return NO;
     }
 
     [_tabOrder remove:item];
@@ -59,12 +60,13 @@
 
     TMTTabItem *activeItem = _tabOrder.peek;
     [self activateItem:activeItem];
+    return YES;
 }
 
 - (void)activateItem:(TMTTabItem *)item {
-        [_tabContainer setContentView:item.view];
-        [_tabBar activateTabItem:_tabs[item]];
-        [self informItemChanged:item];
+    [_tabContainer setContentView:item.view];
+    [_tabBar activateTabItem:_tabs[item]];
+    [self informItemChanged:item];
 }
 
 
@@ -76,14 +78,41 @@
 }
 
 - (void)closeTab:(TMTTabItem *_Nonnull)item {
-    [self removeTabItem:item];
+    if (![self removeTabItem:item]) {
+        NSBeep();
+    }
 }
 
 #pragma mark - TMTTabBarDelegate
 
-- (void)createTabItem {
+- (void)createTab {
+    if (!_tabBar.style.shouldShowAddButton) {
+        NSBeep();
+        return;
+    }
     TMTTabItem *item = [self.delegate createTab:self];
     [self addTabItem:item];
+}
+
+#pragma mark - TMTTabContainerDelegate
+
+- (void)closeActiveTab {
+    TMTTabItem *item = _tabOrder.peek;
+    [self closeTab:item];
+}
+
+- (void)closeAllTabs {
+    for (TMTTabItem *item in _tabs.allKeys) {
+        [self removeTabItem:item];
+    }
+}
+
+- (void)closeAllButActive {
+    for (TMTTabItem *item in _tabs.allKeys) {
+        if (item != _tabOrder.peek) {
+            [self removeTabItem:item];
+        }
+    }
 }
 
 #pragma mark - TMTTabViewDelegate comfort methods
@@ -107,7 +136,7 @@
     }
 }
 
-- (TMTTabItemStyle *)styleForItem:(TMTTabItem*)item {
+- (TMTTabItemStyle *)styleForItem:(TMTTabItem *)item {
     if ([self.delegate respondsToSelector:@selector(tabItemStyle:from:)]) {
         return [self.delegate tabItemStyle:item from:self];
     }

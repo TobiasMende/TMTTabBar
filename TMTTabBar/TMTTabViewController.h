@@ -7,18 +7,19 @@
 
 #import "TMTTabBarDelegate.h"
 #import "TMTTabItemDelegate.h"
+#import "TMTTabContainerDelegate.h"
 
 @class TMTTabBarView;
 @class TMTTabItem;
 @class TMTTabViewContainerView;
 @protocol TMTTabViewDelegate;
 
-@interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate>
+@interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate, TMTTabContainerDelegate>
 
 @property (weak) id<TMTTabViewDelegate>delegate;
 
 - (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull TMTTabViewContainerView *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
 
 - (void)addTabItem:(nonnull TMTTabItem*)item;
-- (void)removeTabItem:(nonnull TMTTabItem*)item;
+- (BOOL)removeTabItem:(nonnull TMTTabItem*)item;
 @end

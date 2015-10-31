@@ -6,5 +6,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol TMTTabBarDelegate <NSObject>
-- (void)createTabItem;
+- (void)createTab;
 @end

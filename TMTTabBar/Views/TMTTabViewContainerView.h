@@ -5,6 +5,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol TMTTabContainerDelegate;
+
 
 @interface TMTTabViewContainerView : NSBox
+
+@property (weak) id<TMTTabContainerDelegate> parent;
+
+- (IBAction)performClose:(id)sender;
+- (IBAction)performCloseAll:(id)sender;
+- (IBAction)performCloseAllButActive:(id)sender;
+
+- (IBAction)performAddNewTab:(id)sender;
 @end

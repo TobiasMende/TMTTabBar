@@ -31,7 +31,7 @@
 - (void)setUp {
     [super setUp];
     tabBar = [OCMockObject niceMockForClass:[TMTTabBarView class]];
-    tabContainer = [OCMockObject niceMockForClass:[NSBox class]];
+    tabContainer = [OCMockObject niceMockForClass:[TMTTabViewContainerView class]];
     delegate = [OCMockObject niceMockForProtocol:@protocol(TMTTabViewDelegate)];
     controller = [[TMTTabViewController alloc] initWithTabBar:tabBar container:tabContainer andDelegate:delegate];
 
