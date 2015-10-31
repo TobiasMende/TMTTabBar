@@ -12,6 +12,7 @@
 #import "TMTTabViewDelegate.h"
 #import "TMTTabItemStyle.h"
 #import "TMTTabBarStyle.h"
+#import "TMTTabViewContainerView.h"
 
 @implementation TMTTabViewController {
     TMTTabBarView *_tabBar;
@@ -20,7 +21,7 @@
     TMTTabItemStack<TMTTabItem *> *_tabOrder;
 }
 
-- (instancetype)initWithTabBar:(TMTTabBarView *)tabBar container:(NSBox *)container andDelegate:(id <TMTTabViewDelegate>)delegate {
+- (instancetype)initWithTabBar:(TMTTabBarView *)tabBar container:(TMTTabViewContainerView *)container andDelegate:(id <TMTTabViewDelegate>)delegate {
     self = [super init];
     if (self) {
         _delegate = delegate;

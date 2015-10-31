@@ -10,13 +10,14 @@
 
 @class TMTTabBarView;
 @class TMTTabItem;
+@class TMTTabViewContainerView;
 @protocol TMTTabViewDelegate;
 
 @interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate>
 
 @property (weak) id<TMTTabViewDelegate>delegate;
 
-- (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull NSBox *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
+- (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull TMTTabViewContainerView *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
 
 - (void)addTabItem:(nonnull TMTTabItem*)item;
 - (void)removeTabItem:(nonnull TMTTabItem*)item;

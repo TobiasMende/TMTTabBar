@@ -19,7 +19,7 @@
 @property (nonnull) TMTTabBarStyle *style;
 @property (nonnull) TMTTabViewController *controller;
 @property (nonnull) IBOutlet TMTTabBarView *tabBar;
-@property (nonnull) IBOutlet NSBox *tabContainer;
+@property (nonnull) IBOutlet TMTTabViewContainerView *tabContainer;
 
 @end
 
