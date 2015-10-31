@@ -9,4 +9,5 @@
 @interface TMTTabItem : NSObject<NSCopying>
 @property NSString *label;
 @property NSView *view;
+@property NSView *customView;
 @end

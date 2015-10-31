@@ -40,28 +40,14 @@
     NSButton *_closeButton;
     NSTrackingArea *_trackingArea;
     TMTRenderingHints *_hints;
+    NSBox *_customViewContainer;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self initMember];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(NSRect)frameRect {
-    self = [super initWithFrame:frameRect];
-    if (self) {
-        [self initMember];
-    }
-    return self;
-}
-
-- (instancetype)initWithItem:(TMTTabItem *_Nonnull)item {
+- (instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(TMTTabItemStyle*)style {
     self = [super init];
     if (self) {
         _item = item;
+        _style = style;
         [self initMember];
     }
     return self;
@@ -69,10 +55,10 @@
 
 - (void)dealloc {
     [_titleView unbind:@"value"];
+
 }
 
 - (void)initMember {
-    _style = [TMTTabItemStyle new];
     _hints = [[TMTRenderingHints alloc] initForView:self];
     self.translatesAutoresizingMaskIntoConstraints = NO;
     [self initSubviews];
@@ -108,12 +94,15 @@
 }
 
 - (void)initCustomView {
-    _customView = [NSBox new];
-    _customView.borderType = NSNoBorder;
-    _customView.boxType = NSBoxCustom;
-    _customView.translatesAutoresizingMaskIntoConstraints = NO;
+    _customViewContainer = [NSBox new];
+    _customViewContainer.borderType = NSNoBorder;
+    _customViewContainer.boxType = NSBoxCustom;
+    _customViewContainer.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [self addSubview:_customView];
+    [self addSubview:_customViewContainer];
+
+    [_customViewContainer bind:@"contentView" toObject:self withKeyPath:@"item.customView" options:@{NSValidatesImmediatelyBindingOption : @YES,
+            NSContinuouslyUpdatesValueBindingOption : @YES}];
 }
 
 - (void)setupLayout {
@@ -148,7 +137,7 @@
 }
 
 - (void)setupCustomViewLayout {
-    [NSLayoutConstraint constraintWithItem:_customView
+    [NSLayoutConstraint constraintWithItem:_customViewContainer
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
@@ -156,24 +145,24 @@
                                 multiplier:1
                                   constant:-self.style.rightMargin].active = YES;
 
-    [NSLayoutConstraint constraintWithItem:_customView
+    [NSLayoutConstraint constraintWithItem:_customViewContainer
                                  attribute:NSLayoutAttributeTop
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
                                  attribute:NSLayoutAttributeTop
                                 multiplier:1
                                   constant:0.f].active = YES;
-    [NSLayoutConstraint constraintWithItem:_customView
+    [NSLayoutConstraint constraintWithItem:_customViewContainer
                                  attribute:NSLayoutAttributeBottom
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1
                                   constant:0.f].active = YES;
-    [NSLayoutConstraint constraintWithItem:_customView
+    [NSLayoutConstraint constraintWithItem:_customViewContainer
                                  attribute:NSLayoutAttributeWidth
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:_customView
+                                    toItem:_customViewContainer
                                  attribute:NSLayoutAttributeHeight
                                 multiplier:1
                                   constant:0].active = YES;
@@ -190,7 +179,7 @@
     [NSLayoutConstraint constraintWithItem:_titleView
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:_customView
+                                    toItem:_customViewContainer
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1
                                   constant:0].active = YES;
@@ -209,7 +198,6 @@
                                 multiplier:1
                                   constant:0].active = YES;
 }
-
 
 #pragma mark - Drawing
 
@@ -260,6 +248,24 @@
                                                    owner:self
                                                 userInfo:nil];
     [self addTrackingArea:_trackingArea];
+}
+
+- (void)mouseDragged:(NSEvent *)theEvent {
+    NSDraggingItem *item = [[NSDraggingItem alloc] initWithPasteboardWriter:@"Test"];
+    [self beginDraggingSessionWithItems:@[item] event:theEvent source:self];
+    NSLog(@"mouseDragged");
+}
+
+#pragma mark - NSDraggingSource
+
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context {
+    if (context == NSDraggingContextWithinApplication) {
+        return NSDragOperationMove;
+    }
+    return NSDragOperationNone;
+}
+
+- (void)draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint {
 }
 
 @end

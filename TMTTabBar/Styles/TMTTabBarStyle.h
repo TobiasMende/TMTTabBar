@@ -10,6 +10,7 @@
 
 @property NSColor* backgroundColor;
 @property CGFloat addButtonSpacing;
+@property BOOL shouldShowAddButton;
 
 - (instancetype)init;
 

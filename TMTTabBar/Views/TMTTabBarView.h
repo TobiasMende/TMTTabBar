@@ -15,12 +15,11 @@
 
 @interface TMTTabBarView : NSView
 
-@property (nonnull) TMTTabBarStyle *style;
+@property (nonnull, nonatomic) TMTTabBarStyle *style;
 @property (weak) id<TMTTabBarDelegate> parent;
 
-
-- (void) addTabView:(nonnull TMTTabItemView *)tabView;
-- (void) removeTabView:(nonnull TMTTabItemView *)tabView;
+- (void)addTabView:(nonnull TMTTabItemView *)tabView;
+- (void)removeTabView:(nonnull TMTTabItemView *)tabView;
 - (void)activateTabItem:(nonnull TMTTabItemView *)actionedItem;
 
 

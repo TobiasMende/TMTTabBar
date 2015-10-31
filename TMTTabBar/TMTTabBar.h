@@ -10,6 +10,8 @@
 
 #include "TMTTabItemView.h"
 #include "TMTTabBarView.h"
+#include "TMTTabBarStyle.h"
+#include "TMTTabItemStyle.h"
 #include "TMTTabItemStack.h"
 #include "TMTTabItem.h"
 #include "TMTTabViewController.h"

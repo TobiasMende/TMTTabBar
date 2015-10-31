@@ -14,7 +14,15 @@
 
 @optional
 
+#pragma mark - Permissions
 - (BOOL) shouldRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
+
+#pragma mark - State Change
 - (void) didRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
 - (void) tabChanged:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
+
+#pragma mark - Styling
+- (nonnull TMTTabItemStyle *)tabItemStyle:(nonnull  TMTTabItem*)item from:(nonnull  TMTTabViewController *)sender;
+- (nonnull TMTTabBarStyle *)tabBarStyle:(nonnull  TMTTabViewController *)sender;
+
 @end

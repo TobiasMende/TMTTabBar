@@ -14,7 +14,9 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, TMTTabViewDelegate>
 
+- (IBAction)toggleAddButton:(nullable id)sender;
 @property int tabCounter;
+@property (nonnull) TMTTabBarStyle *style;
 @property (nonnull) TMTTabViewController *controller;
 @property (nonnull) IBOutlet TMTTabBarView *tabBar;
 @property (nonnull) IBOutlet NSBox *tabContainer;

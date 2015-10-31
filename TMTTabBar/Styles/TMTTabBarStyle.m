@@ -14,6 +14,7 @@
     if(self) {
         _backgroundColor = [NSColor windowFrameColor];
         _addButtonSpacing = 0.5;
+        _shouldShowAddButton = YES;
     }
     return self;
 }

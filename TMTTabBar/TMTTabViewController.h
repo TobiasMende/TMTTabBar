@@ -18,6 +18,6 @@
 
 - (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull NSBox *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
 
-- (void)addTabItem:(TMTTabItem* _Nonnull)item;
-- (void)removeTabItem:(TMTTabItem* _Nonnull)item;
+- (void)addTabItem:(nonnull TMTTabItem*)item;
+- (void)removeTabItem:(nonnull TMTTabItem*)item;
 @end

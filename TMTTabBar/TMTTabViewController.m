@@ -10,6 +10,8 @@
 #import "TMTTabItemView.h"
 #import "TMTTabItem.h"
 #import "TMTTabViewDelegate.h"
+#import "TMTTabItemStyle.h"
+#import "TMTTabBarStyle.h"
 
 @implementation TMTTabViewController {
     TMTTabBarView *_tabBar;
@@ -24,6 +26,7 @@
         _delegate = delegate;
         _tabBar = tabBar;
         _tabBar.parent = self;
+        _tabBar.style = [self styleForBar];
         _tabContainer = container;
         _tabs = [NSMutableDictionary new];
         _tabOrder = [TMTTabItemStack new];
@@ -33,7 +36,8 @@
 
 - (void)addTabItem:(TMTTabItem *_Nonnull)item {
     [_tabOrder push:item];
-    TMTTabItemView *tab = [[TMTTabItemView alloc] initWithItem:item];
+    TMTTabItemStyle *tabStyle = [self styleForItem:item];
+    TMTTabItemView *tab = [[TMTTabItemView alloc] initWithItem:item andStyle:tabStyle];
     tab.parent = self;
     _tabs[item] = tab;
     [_tabBar addTabView:tab];
@@ -100,6 +104,21 @@
     if ([self.delegate respondsToSelector:@selector(tabChanged:from:)]) {
         [self.delegate tabChanged:item from:self];
     }
+}
+
+- (TMTTabItemStyle *)styleForItem:(TMTTabItem*)item {
+    if ([self.delegate respondsToSelector:@selector(tabItemStyle:from:)]) {
+        return [self.delegate tabItemStyle:item from:self];
+    }
+    return [TMTTabItemStyle new];
+}
+
+
+- (TMTTabBarStyle *)styleForBar {
+    if ([self.delegate respondsToSelector:@selector(tabBarStyle:)]) {
+        return [self.delegate tabBarStyle:self];
+    }
+    return [TMTTabBarStyle new];
 }
 
 @end

@@ -8,6 +8,6 @@
 @class TMTTabItem;
 
 @protocol TMTTabItemDelegate <NSObject>
-- (void)selectTab:(TMTTabItem * _Nonnull)item;
-- (void)closeTab:(TMTTabItem * _Nonnull)item;
+- (void)selectTab:(nonnull TMTTabItem *)item;
+- (void)closeTab:(nonnull TMTTabItem *)item;
 @end

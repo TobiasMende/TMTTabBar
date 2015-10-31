@@ -12,15 +12,13 @@
 @protocol TMTTabItemDelegate;
 @class TMTTabItem;
 
-@interface TMTTabItemView : NSView
+@interface TMTTabItemView : NSView<NSDraggingSource>
 
 @property (nonnull) TMTTabItem* item;
-@property (nonnull, readonly) NSBox *customView;
-
 @property (nonnull) TMTTabItemStyle *style;
 @property (weak) id<TMTTabItemDelegate> parent;
 
-- (nonnull instancetype)initWithItem:(TMTTabItem *_Nonnull)item;
+- (nonnull instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(nonnull TMTTabItemStyle *)style;
 
 - (void)setActive:(BOOL)active;
 @end

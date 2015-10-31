@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		27DC2010F63560A80868E860 /* TMTTabItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2F6B49D398FB6179270D /* TMTTabItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2042C88D46BCD42115EE /* NSTextFieldCell+VerticalAlignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2A4099205B00D16B9487 /* NSTextFieldCell+VerticalAlignment.m */; };
-		27DC2196A91ABDDFE0E980A0 /* TMTTabBarStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC224E686BAB899674E034 /* TMTTabBarStyle.h */; };
+		27DC2196A91ABDDFE0E980A0 /* TMTTabBarStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC224E686BAB899674E034 /* TMTTabBarStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC21A83CD8F04B274AF337 /* TMTTabBarLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC21B650BF44C5135BC3D8 /* TMTTabBarLayoutManager.m */; };
 		27DC221B74E22DA14EFC26F4 /* NSTextFieldCell+VerticalAlignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC245EF03AA03B74C4C6F7 /* NSTextFieldCell+VerticalAlignment.h */; };
 		27DC221E5C0FCC19872C7292 /* TMTTabItemStackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2B6AA3C5C56BA0D9123A /* TMTTabItemStackTest.m */; };
@@ -33,7 +33,7 @@
 		27DC2E25CDEE45CC0D8D4FF7 /* TMTTabBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2F3171ACB960485D5965 /* TMTTabBarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2E4A913163FCB475630C /* TMTTabBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC28A4F2175D2AAFA58C39 /* TMTTabBarStyle.m */; };
 		27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */; };
-		27DC2F085E8BB958F8C4345E /* TMTTabItemStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC28F06A52D38BA0E2B2EE /* TMTTabItemStyle.h */; };
+		27DC2F085E8BB958F8C4345E /* TMTTabItemStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC28F06A52D38BA0E2B2EE /* TMTTabItemStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC26DCDE6CF4DAB2CE959F /* TMTTabBarLayoutManager.h */; };
 		BDF22483229C7D78E56CF6E4 /* libPods-TMTTabBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB89892152491EE55A109117 /* libPods-TMTTabBarTests.a */; };
 		D21E43EF1BE4175700B941CD /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
@@ -288,10 +288,10 @@
 				27DC22322218F5F6361AA47D /* TMTTabViewContainerView.h in Headers */,
 				27DC25B03EF9F863DCCDA37D /* TMTTabViewController.h in Headers */,
 				27DC2F085E8BB958F8C4345E /* TMTTabItemStyle.h in Headers */,
+				27DC2196A91ABDDFE0E980A0 /* TMTTabBarStyle.h in Headers */,
 				27DC246E6BB6CAD332AAB0B2 /* TMTTabTitleView.h in Headers */,
 				27DC221B74E22DA14EFC26F4 /* NSTextFieldCell+VerticalAlignment.h in Headers */,
 				27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */,
-				27DC2196A91ABDDFE0E980A0 /* TMTTabBarStyle.h in Headers */,
 				27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */,
 				27DC2AE08D1DAF3B7684D79E /* TMTTabBarDelegate.h in Headers */,
 				27DC280050081CD1FB0781CE /* TMTTabItemDelegate.h in Headers */,
