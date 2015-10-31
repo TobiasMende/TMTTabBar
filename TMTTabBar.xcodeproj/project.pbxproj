@@ -45,6 +45,8 @@
 		D228D6A51BDDE4BD00A88303 /* TMTTabBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */; };
 		D228D6A71BDDE4BD00A88303 /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
 		D271F3701BE41D8000F0974F /* TMTTabViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D271F36F1BE41D8000F0974F /* TMTTabViewControllerTest.m */; };
+		D27778041BE4CCAE0029E1C8 /* TMTTabbedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D27778021BE4CCAE0029E1C8 /* TMTTabbedWindow.m */; };
+		D27778051BE4CCAE0029E1C8 /* TMTTabbedWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D27778031BE4CCAE0029E1C8 /* TMTTabbedWindow.xib */; };
 		D2C57DDC1BE3D01B0056CF91 /* TMTTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C57DDB1BE3D01B0056CF91 /* TMTTabViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +109,9 @@
 		D228D6A41BDDE4BD00A88303 /* TMTTabBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarTests.m; sourceTree = "<group>"; };
 		D228D6A61BDDE4BD00A88303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D271F36F1BE41D8000F0974F /* TMTTabViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewControllerTest.m; sourceTree = "<group>"; };
+		D27778011BE4CCAE0029E1C8 /* TMTTabbedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabbedWindow.h; sourceTree = "<group>"; };
+		D27778021BE4CCAE0029E1C8 /* TMTTabbedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabbedWindow.m; sourceTree = "<group>"; };
+		D27778031BE4CCAE0029E1C8 /* TMTTabbedWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TMTTabbedWindow.xib; sourceTree = "<group>"; };
 		D2C57DDB1BE3D01B0056CF91 /* TMTTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,6 +230,9 @@
 				D22108C21BDD680000852E6B /* MainMenu.xib */,
 				D22108C51BDD680000852E6B /* Info.plist */,
 				D22108BD1BDD680000852E6B /* Supporting Files */,
+				D27778011BE4CCAE0029E1C8 /* TMTTabbedWindow.h */,
+				D27778021BE4CCAE0029E1C8 /* TMTTabbedWindow.m */,
+				D27778031BE4CCAE0029E1C8 /* TMTTabbedWindow.xib */,
 			);
 			path = TMTTabBarDemo;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 			files = (
 				D22108C11BDD680000852E6B /* Assets.xcassets in Resources */,
 				D22108C41BDD680000852E6B /* MainMenu.xib in Resources */,
+				D27778051BE4CCAE0029E1C8 /* TMTTabbedWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +508,7 @@
 			files = (
 				D22108BF1BDD680000852E6B /* main.m in Sources */,
 				D22108BC1BDD680000852E6B /* AppDelegate.m in Sources */,
+				D27778041BE4CCAE0029E1C8 /* TMTTabbedWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

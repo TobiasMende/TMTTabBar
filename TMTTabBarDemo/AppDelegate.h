@@ -10,16 +10,11 @@
 
 #import <TMTTabBar/TMTTabItemDelegate.h>
 @class TMTTabBarView;
+@class TMTTabbedWindow;
 
-
-@interface AppDelegate : NSObject <NSApplicationDelegate, TMTTabViewDelegate>
-
-- (IBAction)toggleAddButton:(nullable id)sender;
-@property int tabCounter;
-@property (nonnull) TMTTabBarStyle *style;
-@property (nonnull) TMTTabViewController *controller;
-@property (nonnull) IBOutlet TMTTabBarView *tabBar;
-@property (nonnull) IBOutlet TMTTabViewContainerView *tabContainer;
+@interface AppDelegate : NSObject <NSApplicationDelegate>
+@property (strong) TMTTabbedWindow *windowController1;
+@property (strong) TMTTabbedWindow *windowController2;
 
 @end
 
