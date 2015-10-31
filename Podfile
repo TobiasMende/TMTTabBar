@@ -11,7 +11,7 @@ target 'TMTTabBarDemo' do
 
 end
 
-target 'TMTTabBarTests', :exclusive => true do
+target 'TMTTabBarTests' do
   pod 'OCMock'
 end
 
