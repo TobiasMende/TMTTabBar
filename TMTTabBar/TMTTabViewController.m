@@ -9,17 +9,16 @@
 #import "TMTTabItemStack.h"
 #import "TMTTabItemView.h"
 #import "TMTTabItem.h"
-#import "TMTTabItem.h"
 #import "TMTTabViewDelegate.h"
 
 @implementation TMTTabViewController {
     TMTTabBarView *_tabBar;
     NSBox *_tabContainer;
-    NSMutableDictionary<TMTTabItem*, TMTTabItemView*> *_tabs;
+    NSMutableDictionary<TMTTabItem *, TMTTabItemView *> *_tabs;
     TMTTabItemStack<TMTTabItem *> *_tabOrder;
 }
 
-- (instancetype)initWithTabBar:(TMTTabBarView *)tabBar container:(NSBox *)container andDelegate:(id<TMTTabViewDelegate>)delegate {
+- (instancetype)initWithTabBar:(TMTTabBarView *)tabBar container:(NSBox *)container andDelegate:(id <TMTTabViewDelegate>)delegate {
     self = [super init];
     if (self) {
         _delegate = delegate;
@@ -42,12 +41,12 @@
 }
 
 - (void)removeTabItem:(TMTTabItem *_Nonnull)item {
-    if(![self shouldRemoveItem:item]) {
+    if (![self shouldRemoveItem:item]) {
         return;
     }
 
     [_tabOrder remove:item];
-    TMTTabItemView  *tab = _tabs[item];
+    TMTTabItemView *tab = _tabs[item];
     tab.parent = nil;
     [_tabs removeObjectForKey:item];
     [_tabBar removeTabView:tab];
@@ -58,9 +57,9 @@
 }
 
 - (void)activateItem:(TMTTabItem *)item {
-    [_tabContainer setContentView:item.view];
-    [_tabBar activateTabItem:_tabs[item]];
-    [self informItemChanged:item];
+        [_tabContainer setContentView:item.view];
+        [_tabBar activateTabItem:_tabs[item]];
+        [self informItemChanged:item];
 }
 
 
@@ -84,18 +83,21 @@
 
 #pragma mark - TMTTabViewDelegate comfort methods
 
-- (BOOL) shouldRemoveItem:(TMTTabItem*)item {
+- (BOOL)shouldRemoveItem:(TMTTabItem *)item {
     return ![self.delegate respondsToSelector:@selector(shouldRemoveTab:from:)] || [self.delegate shouldRemoveTab:item from:self];
 }
 
-- (void)informItemRemoved:(TMTTabItem*)item {
-    if([self.delegate respondsToSelector:@selector(didRemoveTab:from:)]) {
+- (void)informItemRemoved:(TMTTabItem *)item {
+    if ([self.delegate respondsToSelector:@selector(didRemoveTab:from:)]) {
         [self.delegate didRemoveTab:item from:self];
     }
 }
 
-- (void)informItemChanged:(TMTTabItem*)item {
-    if([self.delegate respondsToSelector:@selector(tabChanged:from:)]) {
+- (void)informItemChanged:(TMTTabItem *)item {
+    if (!item) {
+        return;
+    }
+    if ([self.delegate respondsToSelector:@selector(tabChanged:from:)]) {
         [self.delegate tabChanged:item from:self];
     }
 }

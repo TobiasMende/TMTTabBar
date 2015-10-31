@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
+#import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabViewController.h"
 #import "TMTTabBarView.h"
 #import "TMTTabItemView.h"
@@ -43,7 +44,7 @@
     
 }
 
-- (void)testAddingItemUpdatesTabBarAndContainer {
+- (void)testAddingItemUpdatesTabBar{
     [[tabBar expect] addTabView:[OCMArg checkWithBlock:^BOOL(id obj) {
         if(![obj isKindOfClass:[TMTTabItemView class]]) {
             return NO;
@@ -54,25 +55,34 @@
         isValid &= view.item == item;
         return isValid;
     }]];
-    [[delegate expect] tabChanged:item from:controller];
-    
-    [[tabContainer expect] setContentView:item.view];
+
     
     [controller addTabItem:item];
     
     [tabBar verify];
+}
+
+- (void)testAddingItemUpdatesTabContainer {
+    [[tabContainer expect] setContentView:item.view];
+
+    [controller addTabItem:item];
+
     [tabContainer verify];
 }
 
-- (void)testRemovingItemUpdatesTabBarAndContainer {
+- (void)testAddingItemInformsDelegateAboutTabChange {
+    [[delegate expect] tabChanged:item from:controller];
+
+    [controller addTabItem:item];
+
+    [delegate verify];
+}
+
+- (void)testRemovingItemUpdatesTabBar {
     [controller addTabItem:item];
     [controller addTabItem:item2];
-    
-    
     [[[delegate stub] andReturnValue:@YES]shouldRemoveTab:item2 from:controller];
-    [[delegate expect] tabChanged:item from:controller];
-    [[delegate expect] didRemoveTab:item2 from:controller];
-    
+
     [[tabBar expect] removeTabView:[OCMArg checkWithBlock:^BOOL(id obj) {
         if(![obj isKindOfClass:[TMTTabItemView class]]) {
             return NO;
@@ -83,13 +93,68 @@
         isValid &= view.item == item2;
         return isValid;
     }]];
-    
-    [[tabContainer expect] setContentView:item.view];
-    
+
     [controller removeTabItem:item2];
     
     [tabBar verify];
+}
+
+- (void)testRemovingItemUpdatesTabContainer {
+    [controller addTabItem:item];
+    [controller addTabItem:item2];
+    [[[delegate stub] andReturnValue:@YES]shouldRemoveTab:item2 from:controller];
+
+    [[tabContainer expect] setContentView:item.view];
+
+    [controller removeTabItem:item2];
+
     [tabContainer verify];
+}
+
+- (void)testRemovingItemAsksForPermission {
+    [controller addTabItem:item];
+    [controller addTabItem:item2];
+
+    [[delegate expect] shouldRemoveTab:item2 from:controller];
+
+    [controller removeTabItem:item2];
+
+    [delegate verify];
+}
+
+- (void)testRemovingItemInformesAboutRemoval {
+    [controller addTabItem:item];
+    [controller addTabItem:item2];
+    [[[delegate stub] andReturnValue:@YES]shouldRemoveTab:item2 from:controller];
+
+    [[delegate expect] didRemoveTab:item2 from:controller];
+
+    [controller removeTabItem:item2];
+
+    [delegate verify];
+}
+
+- (void)testRemovingItemInformesAboutTabChangedIfTabLeft {
+    [controller addTabItem:item];
+    [controller addTabItem:item2];
+    [[[delegate stub] andReturnValue:@YES]shouldRemoveTab:item2 from:controller];
+
+    [[delegate expect] tabChanged:item from:controller];
+
+    [controller removeTabItem:item2];
+
+    [delegate verify];
+}
+
+- (void)testRemovingItemDoesNotInformAboutTabChangeIfNoItemsLeft {
+    [controller addTabItem:item2];
+    [[[delegate stub] andReturnValue:@YES]shouldRemoveTab:item2 from:controller];
+
+    [[delegate reject] tabChanged:[OCMArg any] from:[OCMArg any]];
+
+    [controller removeTabItem:item2];
+
+    [delegate verify];
 }
 
 
