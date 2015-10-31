@@ -16,7 +16,7 @@
 @interface TMTTabBarView : NSView
 
 @property (nonnull) TMTTabBarStyle *style;
-@property (nonnull) id<TMTTabBarDelegate> parent;
+@property (weak) id<TMTTabBarDelegate> parent;
 
 
 - (void) addTabView:(nonnull TMTTabItemView *)tabView;

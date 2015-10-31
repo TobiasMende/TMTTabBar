@@ -13,7 +13,7 @@
 #include "TMTTabItemStack.h"
 #include "TMTTabItem.h"
 #include "TMTTabViewController.h"
-#include "TMTTabViewContainer.h"
+#include "TMTTabViewContainerView.h"
 #include "TMTTabViewDelegate.h"
 
 //! Project version number for TMTTabBarView.

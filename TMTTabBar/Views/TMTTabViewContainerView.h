@@ -6,5 +6,5 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TMTTabViewContainer : NSBox
+@interface TMTTabViewContainerView : NSBox
 @end

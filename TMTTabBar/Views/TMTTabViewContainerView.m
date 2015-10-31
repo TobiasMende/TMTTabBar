@@ -3,10 +3,10 @@
 // Copyright (c) 2015 Tobias Mende. All rights reserved.
 //
 
-#import "TMTTabViewContainer.h"
+#import "TMTTabViewContainerView.h"
 
 
-@implementation TMTTabViewContainer {
+@implementation TMTTabViewContainerView {
 
 }
 

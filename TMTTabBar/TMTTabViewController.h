@@ -14,7 +14,7 @@
 
 @interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate>
 
-@property (nonnull) id<TMTTabViewDelegate>delegate;
+@property (weak) id<TMTTabViewDelegate>delegate;
 
 - (nonnull instancetype)initWithTabBar:(nonnull TMTTabBarView *)tabBar container:(nonnull NSBox *)container andDelegate:(nonnull id<TMTTabViewDelegate>)delegate;
 
