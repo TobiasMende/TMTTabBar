@@ -679,7 +679,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <box fixedFrame="YES" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Pje-b4-v0U" customClass="TMTTabViewContainer">
+                    <box fixedFrame="YES" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Pje-b4-v0U" customClass="TMTTabViewContainerView">
                         <rect key="frame" x="17" y="16" width="446" height="313"/>
                         <view key="contentView" id="UWf-Tu-hgc">
                             <rect key="frame" x="1" y="1" width="444" height="297"/>
