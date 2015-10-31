@@ -109,39 +109,39 @@
     _addButton.action = @selector(addTabItemClicked);
 
     _addButtonVisible = @[
-    [NSLayoutConstraint constraintWithItem:_addButton
-                                 attribute:NSLayoutAttributeTop
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeTop
-                                multiplier:1.f constant:0.f],
-    [NSLayoutConstraint constraintWithItem:_addButton
-                                 attribute:NSLayoutAttributeBottom
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeBottom
-                                multiplier:1.f constant:0.f],
-    [NSLayoutConstraint constraintWithItem:_addButton
-                                 attribute:NSLayoutAttributeRight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeRight
-                                multiplier:1.f
-                                  constant:-self.style.addButtonSpacing],
-    [NSLayoutConstraint constraintWithItem:_addButton
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_addButton
-                                 attribute:NSLayoutAttributeHeight
-                                multiplier:1
-                                  constant:0],
-    [NSLayoutConstraint constraintWithItem:_addButton
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_tabArea
-                                 attribute:NSLayoutAttributeRight
-                                multiplier:1
-                                  constant:self.style.addButtonSpacing]
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeTop
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1.f constant:0.f],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeBottom
+                                        multiplier:1.f constant:0.f],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeRight
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeRight
+                                        multiplier:1.f
+                                          constant:-self.style.addButtonSpacing],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeWidth
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:_addButton
+                                         attribute:NSLayoutAttributeHeight
+                                        multiplier:1
+                                          constant:0],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeLeft
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:_tabArea
+                                         attribute:NSLayoutAttributeRight
+                                        multiplier:1
+                                          constant:self.style.addButtonSpacing]
     ];
     [self updateAddButtonVisibility];
 }
@@ -164,26 +164,33 @@
 
 }
 
+#pragma mark - Adding and Removing Tab Views
+
 - (void)addTabView:(TMTTabItemView *)tabView {
     [_tabArea addSubview:tabView];
     [_layoutManager updateLayout];
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation {
-    NSView* viewForLocation = [_tabArea viewForPoint:windowLocation];
+    NSView *viewForLocation = [_tabArea viewForPoint:windowLocation];
 
-    if(viewForLocation) {
-        NSPoint locationInView = [viewForLocation convertPoint:windowLocation fromView:nil];
-
-        if(locationInView.x < viewForLocation.center.x) {
-            [_tabArea addSubview:tabView positioned:NSWindowBelow relativeTo:viewForLocation];
-        } else {
-            [_tabArea addSubview:tabView positioned:NSWindowAbove relativeTo:viewForLocation];
-        }
-    [_layoutManager updateLayout];
+    if (viewForLocation) {
+        [self insertTabView:tabView relativeTo:viewForLocation atLocation:windowLocation];
     } else {
         [self addTabView:tabView];
     }
+}
+
+- (void)insertTabView:(TMTTabItemView *)tabView relativeTo:(NSView *)viewForLocation atLocation:(NSPoint)windowLocation {
+    NSPoint locationInView = [viewForLocation convertPoint:windowLocation fromView:nil];
+
+    if (locationInView.x < viewForLocation.center.x) {
+        [_tabArea addSubview:tabView positioned:NSWindowBelow relativeTo:viewForLocation];
+    } else {
+        [_tabArea addSubview:tabView positioned:NSWindowAbove relativeTo:viewForLocation];
+    }
+
+    [_layoutManager updateLayout];
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
@@ -194,7 +201,6 @@
 - (void)addTabItemClicked {
     [self.parent createTab];
 }
-
 
 - (void)activateTabItem:(TMTTabItemView *)actionedItem {
     actionedItem.active = YES;
@@ -214,7 +220,7 @@
 }
 
 - (void)updateAddButtonVisibility {
-    if(self.style.shouldShowAddButton) {
+    if (self.style.shouldShowAddButton) {
         _addButtonInvisible.active = NO;
         [self addSubview:_addButton];
         [NSLayoutConstraint activateConstraints:_addButtonVisible];

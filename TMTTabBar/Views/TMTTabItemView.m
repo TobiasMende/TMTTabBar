@@ -34,6 +34,8 @@
 - (void)setupTitleViewLayout;
 
 - (void)closeTab;
+
+- (NSArray<NSDraggingImageComponent *> *)draggingImages;
 @end
 
 @implementation TMTTabItemView {
@@ -262,25 +264,29 @@ NSString *kPrivateDragUTI = @"de.tobias-men.TMTTabBarItem";
     NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
 
     [draggingItem setImageComponentsProvider:^NSArray * {
-        NSRect itemBounds = self.bounds;
-        NSRect scaledContentBounds = self.item.view.bounds;
-
-        scaledContentBounds.size.height *= itemBounds.size.width / scaledContentBounds.size.width;
-        scaledContentBounds.size.width = itemBounds.size.width;
-        itemBounds.origin.y += scaledContentBounds.size.height;
-
-        NSDraggingImageComponent *item = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-        item.contents = self.imageRepresentation;
-        item.frame = itemBounds;
-
-        NSDraggingImageComponent *contentView = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
-        contentView.frame = scaledContentBounds;
-        contentView.contents = self.item.view.imageRepresentation;
-
-        return @[item, contentView];
+        return [self draggingImages];
     }];
 
     [self beginDraggingSessionWithItems:@[draggingItem] event:theEvent source:self];
+}
+
+- (NSArray<NSDraggingImageComponent *>*)draggingImages {
+    NSRect itemBounds = self.bounds;
+    NSRect scaledContentBounds = self.item.view.bounds;
+
+    scaledContentBounds.size.height *= itemBounds.size.width / scaledContentBounds.size.width;
+    scaledContentBounds.size.width = itemBounds.size.width;
+    scaledContentBounds.origin.y -= scaledContentBounds.size.height;
+
+    NSDraggingImageComponent *item = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
+    item.contents = self.imageRepresentation;
+    item.frame = itemBounds;
+
+    NSDraggingImageComponent *contentView = [NSDraggingImageComponent draggingImageComponentWithKey:NSDraggingImageComponentIconKey];
+    contentView.frame = scaledContentBounds;
+    contentView.contents = self.item.view.imageRepresentation;
+
+    return @[item, contentView];
 }
 
 

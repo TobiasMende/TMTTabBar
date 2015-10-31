@@ -20,7 +20,7 @@
 
 - (void)addTabView:(nonnull TMTTabItemView *)tabView;
 
-- (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation;
+- (void)addTabView:(nonnull TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation;
 
 - (void)removeTabView:(nonnull TMTTabItemView *)tabView;
 - (void)activateTabItem:(nonnull TMTTabItemView *)actionedItem;

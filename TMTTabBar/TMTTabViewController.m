@@ -120,7 +120,6 @@
     TMTTabItem *item = itemView.item;
     NSPoint windowLocation = sender.draggingLocation;
     if(itemView.parent == self) {
-        [_tabBar removeTabView:itemView];
         [_tabBar addTabView:itemView atPoint:windowLocation];
         return YES;
     }

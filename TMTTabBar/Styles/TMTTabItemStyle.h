@@ -21,6 +21,7 @@
 
 @property CGFloat rightMargin;
 @property CGFloat leftMargin;
+@property CGFloat dragItemMaxWidth;
 
 - (id _Nonnull) init;
 

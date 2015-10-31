@@ -23,6 +23,7 @@
         _activeTextColor = [NSColor controlTextColor];
         _rightMargin = 1;
         _leftMargin = 4;
+        _dragItemMaxWidth = 150;
     }
     return self;
 }
