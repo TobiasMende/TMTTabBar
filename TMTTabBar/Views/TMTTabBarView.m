@@ -12,6 +12,7 @@
 #import "TMTTabBarStyle.h"
 #import "TMTTabBarDelegate.h"
 #import "NSView+TMTCoordinateHelpers.h"
+#import "TMTTabBar.h"
 
 
 @interface TMTTabBarView ()
@@ -57,7 +58,7 @@
 
 - (void)initMember {
     _style = [TMTTabBarStyle new];
-    [self registerForDraggedTypes:@[@"de.tobias-men.TMTTabBarItem"]];
+    [self registerForDraggedTypes:@[TMTTabItemDragType]];
     [_style addObserver:self forKeyPath:@"shouldShowAddButton" options:NSKeyValueObservingOptionNew context:NULL];
 
     [self initTabArea];
@@ -234,7 +235,10 @@
 
 #pragma  mark - NSDraggingDestination
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
+    NSView *view = [_tabArea viewForPoint:sender.draggingLocation];
+    NSLog(@"%@", view.constraints);
+
     return NSDragOperationMove;
 }
 

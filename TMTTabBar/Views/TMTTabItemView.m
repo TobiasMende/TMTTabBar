@@ -13,6 +13,7 @@
 #import "TMTTabTitleView.h"
 #import "TMTRenderingHints.h"
 #import "NSView+ImageRepresentation.h"
+#import "TMTTabBar.h"
 
 @interface TMTTabItemView ()
 - (void)initMember;
@@ -45,8 +46,6 @@
     TMTRenderingHints *_hints;
     NSBox *_customViewContainer;
 }
-
-NSString *kPrivateDragUTI = @"de.tobias-men.TMTTabBarItem";
 
 - (instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(TMTTabItemStyle*)style {
     self = [super init];
@@ -259,7 +258,7 @@ NSString *kPrivateDragUTI = @"de.tobias-men.TMTTabBarItem";
 
 - (void)mouseDragged:(NSEvent *)theEvent {
     NSPasteboardItem  *pbItem = [NSPasteboardItem new];
-    [pbItem setDataProvider:self forTypes:@[kPrivateDragUTI]];
+    [pbItem setDataProvider:self forTypes:@[TMTTabItemDragType]];
 
     NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
 
