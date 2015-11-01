@@ -23,7 +23,6 @@
     self.drawsBackground = NO;
     self.editable = NO;
     self.selectable = NO;
-    self.autoresizingMask =  NSViewWidthSizable | NSViewHeightSizable;
     [self setContentCompressionResistancePriority:NSLayoutPriorityDragThatCannotResizeWindow forOrientation:NSLayoutConstraintOrientationHorizontal];
 }
 

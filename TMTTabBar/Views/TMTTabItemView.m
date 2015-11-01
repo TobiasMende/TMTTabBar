@@ -26,14 +26,6 @@
 
 - (void)initCustomView;
 
-- (void)setupLayout;
-
-- (void)setupCloseButtonLayout;
-
-- (void)setupCustomViewLayout;
-
-- (void)setupTitleViewLayout;
-
 - (void)closeTab;
 
 - (NSArray<NSDraggingImageComponent *> *)draggingImages;
@@ -53,6 +45,7 @@
         _item = item;
         _style = style;
         [self initMember];
+        self.edgeInsets = NSEdgeInsetsMake(0, 5, 0, 0);
     }
     return self;
 }
@@ -60,19 +53,6 @@
 - (void)dealloc {
     [_titleView unbind:@"value"];
 
-}
-
-- (void)viewDidMoveToSuperview {
-    if (!self.superview) {
-        return;
-    }
-    NSLayoutPriority horizontalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationHorizontal];
-    NSLayoutPriority verticalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationVertical];
-    [self setHuggingPriority:horizontalPrio - 20 forOrientation:NSLayoutConstraintOrientationHorizontal];
-    [self setHuggingPriority:verticalPrio - 20 forOrientation:NSLayoutConstraintOrientationVertical];
-    [_customViewContainer setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
-    [_closeButton setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
-    [_titleView setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
 }
 
 - (void)initMember {
@@ -125,99 +105,7 @@
             NSContinuouslyUpdatesValueBindingOption : @YES}];
 }
 
-- (void)setupLayout {
-    [self setupCloseButtonLayout];
-    [self setupTitleViewLayout];
-    [self setupCustomViewLayout];
-}
 
-- (void)setupCloseButtonLayout {
-    [NSLayoutConstraint constraintWithItem:_closeButton
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeLeft
-                                multiplier:1
-                                  constant:self.style.leftMargin].active = YES;
-
-    [NSLayoutConstraint constraintWithItem:_closeButton
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1
-                                  constant:0.f].active = YES;
-    [NSLayoutConstraint constraintWithItem:_closeButton
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_closeButton
-                                 attribute:NSLayoutAttributeHeight
-                                multiplier:1
-                                  constant:0].active = YES;
-}
-
-- (void)setupCustomViewLayout {
-    [NSLayoutConstraint constraintWithItem:_customViewContainer
-                                 attribute:NSLayoutAttributeRight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeRight
-                                multiplier:1
-                                  constant:-self.style.rightMargin].active = YES;
-
-    [NSLayoutConstraint constraintWithItem:_customViewContainer
-                                 attribute:NSLayoutAttributeTop
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeTop
-                                multiplier:1
-                                  constant:0.f].active = YES;
-    [NSLayoutConstraint constraintWithItem:_customViewContainer
-                                 attribute:NSLayoutAttributeBottom
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeBottom
-                                multiplier:1
-                                  constant:0.f].active = YES;
-    [NSLayoutConstraint constraintWithItem:_customViewContainer
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_customViewContainer
-                                 attribute:NSLayoutAttributeHeight
-                                multiplier:1
-                                  constant:0].active = YES;
-}
-
-- (void)setupTitleViewLayout {
-    [NSLayoutConstraint constraintWithItem:_titleView
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_closeButton
-                                 attribute:NSLayoutAttributeRight
-                                multiplier:1
-                                  constant:0].active = YES;
-    [NSLayoutConstraint constraintWithItem:_titleView
-                                 attribute:NSLayoutAttributeRight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:_customViewContainer
-                                 attribute:NSLayoutAttributeLeft
-                                multiplier:1
-                                  constant:0].active = YES;
-    [NSLayoutConstraint constraintWithItem:_titleView
-                                 attribute:NSLayoutAttributeTop
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeTop
-                                multiplier:1
-                                  constant:0].active = YES;
-    [NSLayoutConstraint constraintWithItem:_titleView
-                                 attribute:NSLayoutAttributeBottom
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self
-                                 attribute:NSLayoutAttributeBottom
-                                multiplier:1
-                                  constant:0].active = YES;
-}
 
 #pragma mark - Drawing
 
@@ -322,6 +210,5 @@
 - (void)pasteboard:(NSPasteboard *)pasteboard item:(NSPasteboardItem *)item provideDataForType:(NSString *)type {
 
 }
-
 
 @end

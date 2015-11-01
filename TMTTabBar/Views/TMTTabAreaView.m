@@ -23,9 +23,7 @@
 }
 
 - (void)viewDidMoveToSuperview {
-    NSLayoutPriority horizontalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationHorizontal];
     NSLayoutPriority verticalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationVertical];
-    [self setHuggingPriority:horizontalPrio - 10 forOrientation:NSLayoutConstraintOrientationHorizontal];
     [self setHuggingPriority:verticalPrio - 10 forOrientation:NSLayoutConstraintOrientationVertical];
 }
 
