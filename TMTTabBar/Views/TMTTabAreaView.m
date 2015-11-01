@@ -65,7 +65,7 @@
 #pragma  mark - NSDraggingDestination
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
-    
+    return NSDragOperationMove;
 }
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
