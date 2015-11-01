@@ -9,7 +9,7 @@
 @class TMTTabViewController;
 
 
-@interface TMTTabAreaView : NSView<NSDraggingDestination>
+@interface TMTTabAreaView : NSStackView<NSDraggingDestination>
 @property (weak)TMTTabViewController *parent;
 
 - (nonnull instancetype)init;

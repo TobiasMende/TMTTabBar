@@ -47,7 +47,7 @@
     NSBox *_customViewContainer;
 }
 
-- (instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(TMTTabItemStyle*)style {
+- (instancetype)initWithItem:(TMTTabItem *_Nonnull)item andStyle:(TMTTabItemStyle *)style {
     self = [super init];
     if (self) {
         _item = item;
@@ -62,17 +62,31 @@
 
 }
 
+- (void)viewDidMoveToSuperview {
+    if (!self.superview) {
+        return;
+    }
+    NSLayoutPriority horizontalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationHorizontal];
+    NSLayoutPriority verticalPrio = [(NSStackView *) self.superview huggingPriorityForOrientation:NSLayoutConstraintOrientationVertical];
+    [self setHuggingPriority:horizontalPrio - 20 forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [self setHuggingPriority:verticalPrio - 20 forOrientation:NSLayoutConstraintOrientationVertical];
+    [_customViewContainer setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [_closeButton setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [_titleView setContentHuggingPriority:horizontalPrio - 5 forOrientation:NSLayoutConstraintOrientationHorizontal];
+}
+
 - (void)initMember {
     _hints = [[TMTRenderingHints alloc] initForView:self];
-    self.translatesAutoresizingMaskIntoConstraints = NO;
     [self initSubviews];
-    [self setupLayout];
+    self.spacing = 0;
 }
 
 - (void)initSubviews {
     [self initTitleView];
     [self initCloseButton];
     [self initCustomView];
+
+    self.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
 }
 
 - (void)initCloseButton {
@@ -80,9 +94,7 @@
     _closeButton.bezelStyle = NSRegularSquareBezelStyle;
     _closeButton.bordered = NO;
     _closeButton.image = [NSImage imageNamed:NSImageNameStopProgressTemplate];
-    _closeButton.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [self addSubview:_closeButton];
+    [self addView:_closeButton inGravity:NSStackViewGravityLeading];
 
     _closeButton.alphaValue = 0.0f;
     _closeButton.target = self;
@@ -92,7 +104,7 @@
 
 - (void)initTitleView {
     _titleView = [TMTTabTitleView new];
-    [self addSubview:_titleView];
+    [self addView:_titleView inGravity:NSStackViewGravityCenter];
     [_titleView bind:@"value" toObject:self withKeyPath:@"item.label" options:@{NSValidatesImmediatelyBindingOption : @YES,
             NSContinuouslyUpdatesValueBindingOption : @YES}];
 
@@ -102,9 +114,12 @@
     _customViewContainer = [NSBox new];
     _customViewContainer.borderType = NSNoBorder;
     _customViewContainer.boxType = NSBoxCustom;
-    _customViewContainer.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [self addSubview:_customViewContainer];
+    [NSLayoutConstraint constraintWithItem:_customViewContainer
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:_customViewContainer attribute:NSLayoutAttributeHeight
+                                multiplier:1 constant:0].active = YES;
+    [self addView:_customViewContainer inGravity:NSStackViewGravityTrailing];
 
     [_customViewContainer bind:@"contentView" toObject:self withKeyPath:@"item.customView" options:@{NSValidatesImmediatelyBindingOption : @YES,
             NSContinuouslyUpdatesValueBindingOption : @YES}];
@@ -259,7 +274,7 @@
 
 - (void)mouseDragged:(NSEvent *)theEvent {
 
-    NSPasteboardItem  *pbItem = [NSPasteboardItem new];
+    NSPasteboardItem *pbItem = [NSPasteboardItem new];
     [pbItem setDataProvider:self forTypes:@[TMTTabItemDragType]];
 
     NSDraggingItem *draggingItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pbItem];
@@ -272,7 +287,7 @@
     [self removeFromSuperview];
 }
 
-- (NSArray<NSDraggingImageComponent *>*)draggingImages {
+- (NSArray<NSDraggingImageComponent *> *)draggingImages {
     NSRect itemBounds = self.bounds;
     NSRect scaledContentBounds = self.item.view.bounds;
 
@@ -305,7 +320,7 @@
 #pragma mark - NSPasteboardItemDataProvider
 
 - (void)pasteboard:(NSPasteboard *)pasteboard item:(NSPasteboardItem *)item provideDataForType:(NSString *)type {
-    
+
 }
 
 

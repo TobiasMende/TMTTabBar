@@ -57,7 +57,7 @@
     self.autoresizingMask = NSViewHeightSizable;
     _style = [TMTTabBarStyle new];
     [_style addObserver:self forKeyPath:@"shouldShowAddButton" options:NSKeyValueObservingOptionNew context:NULL];
-    [self setHuggingPriority:NSLayoutPriorityDragThatCannotResizeWindow forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [self setHuggingPriority:NSLayoutPriorityWindowSizeStayPut forOrientation:NSLayoutConstraintOrientationHorizontal];
     [self setHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationVertical];
     self.edgeInsets = NSEdgeInsetsMake(0, 0, 0, 5);
     [self initTabArea];
@@ -78,7 +78,7 @@
     _addButton.target = self;
     _addButton.action = @selector(addTabItemClicked);
     [self updateAddButtonVisibility];
-    [_addButton setContentHuggingPriority:NSLayoutPriorityDragThatCannotResizeWindow forOrientation:NSLayoutConstraintOrientationHorizontal];
+    [_addButton setContentHuggingPriority:NSLayoutPriorityDragThatCannotResizeWindow+1 forOrientation:NSLayoutConstraintOrientationHorizontal];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
