@@ -65,6 +65,9 @@
 #pragma  mark - NSDraggingDestination
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+    NSSize imageSize = sender.draggedImage.size;
+
+
     return NSDragOperationMove;
 }
 
@@ -85,6 +88,27 @@
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
     return [self.parent performDrop:sender];
+}
+
+- (void)updateDraggingItemsForDrag:(id <NSDraggingInfo>)sender {
+    [sender enumerateDraggingItemsWithOptions:nil forView:self classes:@[[NSImage class], [NSPasteboardItem class]] searchOptions:nil usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
+        if(![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
+            *stop = YES;
+        } else {
+            [draggingItem setDraggingFrame:self.boundsForDraggingItem contents:[[draggingItem.imageComponents firstObject] contents]];
+        }
+    }];
+}
+
+- (NSRect)boundsForDraggingItem {
+    NSSize size = [self sizeForDraggingItem];
+    return NSMakeRect(0, 0, size.width, size.height);
+}
+
+- (NSSize)sizeForDraggingItem {
+    NSSize size = self.bounds.size;
+    size.width /= (CGFloat )(self.subviews.count + 1);
+    return size;
 }
 
 

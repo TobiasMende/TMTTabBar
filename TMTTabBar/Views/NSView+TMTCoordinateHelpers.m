@@ -42,10 +42,8 @@
         if([current contains:windowLocation]) {
             NSPoint viewLocation = [current convertPoint:windowLocation fromView:nil];
             if(current.center.x >= viewLocation.x) {
-                NSLog(@"a = %li", i);
                 return i;
             } else {
-                NSLog(@"b = %li", i+1);
                 return i + 1;
             }
         }
@@ -54,7 +52,6 @@
     NSView *view = [self subviewBeforeLocationX:windowLocation];
     if(view) {
         NSUInteger index = [self.subviews indexOfObject:view] + 1;
-        NSLog(@"c = %li", index);
         return index;
     } else {
         return 0;
