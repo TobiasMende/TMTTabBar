@@ -13,7 +13,7 @@
 @class TMTTabBarStyle;
 @protocol TMTTabBarDelegate;
 
-@interface TMTTabBarView : NSStackView
+@interface TMTTabBarView : NSView
 
 @property (nonnull, nonatomic) TMTTabBarStyle *style;
 @property (weak, nonatomic) id<TMTTabBarDelegate> parent;

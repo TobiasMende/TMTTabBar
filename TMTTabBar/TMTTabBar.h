@@ -24,6 +24,6 @@ FOUNDATION_EXPORT double TMTTabBarVersionNumber;
 //! Project version string for TMTTabBarView.
 FOUNDATION_EXPORT const unsigned char TMTTabBarVersionString[];
 
-static NSString* TMTTabItemDragType = @"de.tobias-men.TMTTabBarItem";
+static const NSString* TMTTabItemDragType = @"de.tobias-men.TMTTabBarItem";
 
 // In this header, you should import all the public headers of your framework using statements like #import <TMTTabBarView/PublicHeader.h>

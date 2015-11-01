@@ -8,8 +8,10 @@
 
 #import "TMTTabBarView.h"
 #import "TMTTabItemView.h"
+#import "TMTTabBarLayoutManager.h"
 #import "TMTTabBarStyle.h"
 #import "TMTTabBarDelegate.h"
+#import "NSView+TMTCoordinateHelpers.h"
 #import "TMTTabBar.h"
 #import "TMTTabAreaView.h"
 
@@ -23,6 +25,10 @@
 @implementation TMTTabBarView {
     NSButton *_addButton;
     TMTTabAreaView *_tabArea;
+
+    NSArray <NSLayoutConstraint *> *_addButtonVisible;
+
+    NSLayoutConstraint *_addButtonInvisible;
 }
 
 
@@ -56,13 +62,39 @@
 
     [self initTabArea];
     [self initAddButton];
-    self.translatesAutoresizingMaskIntoConstraints = YES;
 
 }
 
 - (void)initTabArea {
     _tabArea = [TMTTabAreaView new];
-    [self addView:_tabArea inGravity:NSStackViewGravityCenter];
+    [self addSubview:_tabArea];
+
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1.f constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.f constant:0.f].active = YES;
+    [NSLayoutConstraint constraintWithItem:_tabArea
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1.f constant:0].active = YES;
+
+    _addButtonInvisible = [NSLayoutConstraint
+            constraintWithItem:_tabArea
+                     attribute:NSLayoutAttributeRight
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:self
+                     attribute:NSLayoutAttributeRight
+                    multiplier:1 constant:0];
 }
 
 - (void)initAddButton {
@@ -70,10 +102,45 @@
     _addButton.bezelStyle = NSRegularSquareBezelStyle;
     _addButton.bordered = NO;
     _addButton.image = [NSImage imageNamed:NSImageNameAddTemplate];
-    _addButton.translatesAutoresizingMaskIntoConstraints = YES;
+    _addButton.translatesAutoresizingMaskIntoConstraints = NO;
     _addButton.target = self;
     _addButton.action = @selector(addTabItemClicked);
-    [_addButton setContentHuggingPriority:NSLayoutPriorityDefaultHigh forOrientation:NSLayoutConstraintOrientationHorizontal];
+
+    _addButtonVisible = @[
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeTop
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeTop
+                                        multiplier:1.f constant:0.f],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeBottom
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeBottom
+                                        multiplier:1.f constant:0.f],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeRight
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:self
+                                         attribute:NSLayoutAttributeRight
+                                        multiplier:1.f
+                                          constant:-self.style.addButtonSpacing],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeWidth
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:_addButton
+                                         attribute:NSLayoutAttributeHeight
+                                        multiplier:1
+                                          constant:0],
+            [NSLayoutConstraint constraintWithItem:_addButton
+                                         attribute:NSLayoutAttributeLeft
+                                         relatedBy:NSLayoutRelationEqual
+                                            toItem:_tabArea
+                                         attribute:NSLayoutAttributeRight
+                                        multiplier:1
+                                          constant:self.style.addButtonSpacing]
+    ];
     [self updateAddButtonVisibility];
 }
 
@@ -137,9 +204,14 @@
 
 - (void)updateAddButtonVisibility {
     if (self.style.shouldShowAddButton) {
-        [self addView:_addButton inGravity:NSStackViewGravityLeading];
+        _addButtonInvisible.active = NO;
+        [self addSubview:_addButton];
+        [NSLayoutConstraint activateConstraints:_addButtonVisible];
+
     } else {
-        [self removeView:_addButton];
+        [NSLayoutConstraint deactivateConstraints:_addButtonVisible];
+        [_addButton removeFromSuperview];
+        _addButtonInvisible.active = YES;
     }
 }
 @end
