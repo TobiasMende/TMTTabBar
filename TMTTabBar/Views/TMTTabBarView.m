@@ -25,10 +25,6 @@
 @implementation TMTTabBarView {
     NSButton *_addButton;
     TMTTabAreaView *_tabArea;
-
-    NSArray <NSLayoutConstraint *> *_addButtonVisible;
-
-    NSLayoutConstraint *_addButtonInvisible;
 }
 
 
@@ -72,8 +68,6 @@
 - (void)initTabArea {
     _tabArea = [TMTTabAreaView new];
     [self addView:_tabArea inGravity:NSStackViewGravityLeading];
-
-
 }
 
 - (void)initAddButton {
