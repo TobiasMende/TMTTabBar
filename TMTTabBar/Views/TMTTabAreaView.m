@@ -35,14 +35,14 @@
     NSUInteger index = [self dropPositionFor:windowLocation];
 
     if (index < self.subviews.count) {
-        [self insertView:tabView atIndex:index inGravity:NSStackViewGravityCenter];
+        [self insertArrangedSubview:tabView atIndex:index];
     } else {
         [self addTabView:tabView];
     }
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
-    [self removeView:tabView];
+    [self removeArrangedSubview:tabView];
 }
 
 
@@ -55,15 +55,29 @@
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
     NSPoint position = sender.draggingLocation;
     NSUInteger insertionIndex = [self dropPositionFor:position];
-    // TODO
+    [self updateDropSpace:insertionIndex];
     return NSDragOperationMove;
 }
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender {
     // TODO
+    [self updateDropSpace:NSNotFound];
+}
+
+- (void)updateDropSpace:(NSUInteger)dropPosition {
+    self.wantsLayer = YES;
+    for(NSUInteger i = 0; i < self.arrangedSubviews.count; ++i) {
+        CGFloat spacing = (i+1 == dropPosition) ? self.sizeForDraggingItem.width : 0;
+        [self.animator setCustomSpacing:spacing afterView:self.arrangedSubviews[i]];
+    }
+
+    CGFloat spacing = (dropPosition == 0) ? self.sizeForDraggingItem.width : 0;
+    NSEdgeInsets p = self.edgeInsets;
+    self.animator.edgeInsets = NSEdgeInsetsMake(p.top, spacing, p.bottom, p.right);
 }
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
+    [self updateDropSpace:NSNotFound];
     return YES;
 }
 
