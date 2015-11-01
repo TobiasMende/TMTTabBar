@@ -39,11 +39,14 @@
     } else {
         [self addTabView:tabView];
     }
-
+    self.needsDisplay = YES;
+    self.needsLayout = YES;
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
     [tabView removeFromSuperview];
+    self.needsDisplay = YES;
+    self.needsLayout = YES;
 }
 
 
@@ -66,6 +69,9 @@
 }
 
 - (void)updateDropSpace:(NSUInteger)dropPosition {
+    if (self.arrangedSubviews.count == 0) {
+        return;
+    }
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.duration = 0.25;
         for (NSUInteger i = 0; i < self.arrangedSubviews.count-1; ++i) {
