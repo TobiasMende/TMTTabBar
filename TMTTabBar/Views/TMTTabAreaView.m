@@ -34,18 +34,16 @@
 - (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation {
     NSUInteger index = [self dropPositionFor:windowLocation];
 
-    if (index < self.subviews.count) {
+    if (index < self.arrangedSubviews.count) {
         [self insertArrangedSubview:tabView atIndex:index];
     } else {
         [self addTabView:tabView];
     }
 
-    self.needsDisplay = YES;
-    self.needsLayout = YES;
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
-    [self removeArrangedSubview:tabView];
+    [tabView removeFromSuperview];
 }
 
 
@@ -78,7 +76,7 @@
         }
 
         CGFloat left = (dropPosition == 0) ? self.sizeForDraggingItem.width : 0;
-        CGFloat right = (dropPosition == self.subviews.count) ? self.sizeForDraggingItem.width : 0;
+        CGFloat right = (dropPosition == self.arrangedSubviews.count) ? self.sizeForDraggingItem.width : 0;
 
         if (self.edgeInsets.left != left || self.edgeInsets.right != right) {
             NSEdgeInsets p = self.edgeInsets;
