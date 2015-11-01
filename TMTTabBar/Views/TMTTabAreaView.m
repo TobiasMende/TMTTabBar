@@ -16,6 +16,8 @@
         [self registerForDraggedTypes:@[TMTTabItemDragType]];
         self.spacing = 0;
         self.distribution = NSStackViewDistributionFillEqually;
+        self.wantsLayer = YES;
+        self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
     }
     return self;
 }
@@ -39,6 +41,9 @@
     } else {
         [self addTabView:tabView];
     }
+
+    self.needsDisplay = YES;
+    self.needsLayout = YES;
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
@@ -65,15 +70,25 @@
 }
 
 - (void)updateDropSpace:(NSUInteger)dropPosition {
-    self.wantsLayer = YES;
-    for(NSUInteger i = 0; i < self.arrangedSubviews.count; ++i) {
-        CGFloat spacing = (i+1 == dropPosition) ? self.sizeForDraggingItem.width : 0;
-        [self.animator setCustomSpacing:spacing afterView:self.arrangedSubviews[i]];
-    }
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.25;
+        for (NSUInteger i = 0; i < self.arrangedSubviews.count-1; ++i) {
+            CGFloat spacing = (i + 1 == dropPosition) ? self.sizeForDraggingItem.width : 0;
+            if ([self customSpacingAfterView:self.arrangedSubviews[i]] != spacing) {
+                [self.animator setCustomSpacing:spacing afterView:self.arrangedSubviews[i]];
+            }
+        }
 
-    CGFloat spacing = (dropPosition == 0) ? self.sizeForDraggingItem.width : 0;
-    NSEdgeInsets p = self.edgeInsets;
-    self.animator.edgeInsets = NSEdgeInsetsMake(p.top, spacing, p.bottom, p.right);
+        CGFloat left = (dropPosition == 0) ? self.sizeForDraggingItem.width : 0;
+        CGFloat right = (dropPosition == self.subviews.count) ? self.sizeForDraggingItem.width : 0;
+
+        if (self.edgeInsets.left != left || self.edgeInsets.right != right) {
+            NSEdgeInsets p = self.edgeInsets;
+            self.animator.edgeInsets = NSEdgeInsetsMake(p.top, left, p.bottom, right);
+        }
+
+    }                   completionHandler:nil];
+
 }
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
@@ -102,7 +117,7 @@
 
 - (NSSize)sizeForDraggingItem {
     NSSize size = self.bounds.size;
-    size.width /= (CGFloat) (self.subviews.count + 1);
+    size.width /= (CGFloat) (self.arrangedSubviews.count + 1);
     return size;
 }
 
