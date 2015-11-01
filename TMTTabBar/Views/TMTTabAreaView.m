@@ -20,7 +20,8 @@
     self = [super init];
     if (self) {
         _layoutManager = [[TMTTabBarLayoutManager alloc] initForView:self];
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        self.translatesAutoresizingMaskIntoConstraints = YES;
+        self.autoresizingMask = NSViewHeightSizable | NSViewWidthSizable;
         [self registerForDraggedTypes:@[TMTTabItemDragType]];
     }
     return self;

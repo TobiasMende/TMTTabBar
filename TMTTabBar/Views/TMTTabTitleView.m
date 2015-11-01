@@ -24,6 +24,7 @@
     self.editable = NO;
     self.selectable = NO;
     self.translatesAutoresizingMaskIntoConstraints = NO;
+    [self setContentCompressionResistancePriority:NSLayoutPriorityDragThatCannotResizeWindow forOrientation:NSLayoutConstraintOrientationHorizontal];
 }
 
 

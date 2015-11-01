@@ -81,6 +81,7 @@
     _closeButton.bordered = NO;
     _closeButton.image = [NSImage imageNamed:NSImageNameStopProgressTemplate];
     _closeButton.translatesAutoresizingMaskIntoConstraints = NO;
+
     [self addSubview:_closeButton];
 
     _closeButton.alphaValue = 0.0f;
