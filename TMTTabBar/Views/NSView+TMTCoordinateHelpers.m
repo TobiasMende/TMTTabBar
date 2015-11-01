@@ -7,18 +7,58 @@
 
 
 @implementation NSView (TMTCoordinateHelpers)
+
 - (bool)contains:(NSPoint)windowLocation {
     NSPoint location = [self convertPoint:windowLocation fromView:nil];
     return NSPointInRect(location, self.bounds);
 }
 
-- (NSView *)viewForPoint:(NSPoint)windowLocation {
+- (NSView *)subviewAtLocation:(NSPoint)windowLocation {
     for(NSView *view in self.subviews) {
         if ([view contains:windowLocation]) {
             return view;
         }
     }
     return nil;
+}
+
+- (NSView *)subviewBeforeLocationX:(NSPoint)windowLocation {
+    NSView *found = nil;
+    NSPoint location = [self convertPoint:windowLocation fromView:nil];
+    for(NSView *view in self.subviews) {
+        CGFloat maxX = NSMaxX(view.frame);
+        if(maxX < location.x) {
+            found = view;
+        } else {
+            break;
+        }
+    }
+    return found;
+}
+
+- (NSUInteger)dropPositionFor:(NSPoint)windowLocation {
+    for(NSUInteger i = 0; i < self.subviews.count; ++i) {
+        NSView* current = self.subviews[i];
+        if([current contains:windowLocation]) {
+            NSPoint viewLocation = [current convertPoint:windowLocation fromView:nil];
+            if(current.center.x >= viewLocation.x) {
+                NSLog(@"a = %li", i);
+                return i;
+            } else {
+                NSLog(@"b = %li", i+1);
+                return i + 1;
+            }
+        }
+    }
+
+    NSView *view = [self subviewBeforeLocationX:windowLocation];
+    if(view) {
+        NSUInteger index = [self.subviews indexOfObject:view] + 1;
+        NSLog(@"c = %li", index);
+        return index;
+    } else {
+        return 0;
+    }
 }
 
 - (NSPoint)center {

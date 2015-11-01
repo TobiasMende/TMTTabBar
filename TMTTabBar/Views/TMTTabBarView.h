@@ -13,10 +13,10 @@
 @class TMTTabBarStyle;
 @protocol TMTTabBarDelegate;
 
-@interface TMTTabBarView : NSView<NSDraggingDestination>
+@interface TMTTabBarView : NSView
 
 @property (nonnull, nonatomic) TMTTabBarStyle *style;
-@property (weak) id<TMTTabBarDelegate> parent;
+@property (weak, nonatomic) id<TMTTabBarDelegate> parent;
 
 - (void)addTabView:(nonnull TMTTabItemView *)tabView;
 

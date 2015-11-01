@@ -13,6 +13,7 @@
 #import "TMTTabBarDelegate.h"
 #import "NSView+TMTCoordinateHelpers.h"
 #import "TMTTabBar.h"
+#import "TMTTabAreaView.h"
 
 
 @interface TMTTabBarView ()
@@ -23,8 +24,7 @@
 
 @implementation TMTTabBarView {
     NSButton *_addButton;
-    NSView *_tabArea;
-    TMTTabBarLayoutManager *_layoutManager;
+    TMTTabAreaView *_tabArea;
 
     NSArray <NSLayoutConstraint *> *_addButtonVisible;
 
@@ -58,18 +58,15 @@
 
 - (void)initMember {
     _style = [TMTTabBarStyle new];
-    [self registerForDraggedTypes:@[TMTTabItemDragType]];
     [_style addObserver:self forKeyPath:@"shouldShowAddButton" options:NSKeyValueObservingOptionNew context:NULL];
 
     [self initTabArea];
     [self initAddButton];
 
-    _layoutManager = [[TMTTabBarLayoutManager alloc] initForView:_tabArea];
 }
 
 - (void)initTabArea {
-    _tabArea = [NSView new];
-    _tabArea.translatesAutoresizingMaskIntoConstraints = NO;
+    _tabArea = [TMTTabAreaView new];
     [self addSubview:_tabArea];
 
     [NSLayoutConstraint constraintWithItem:_tabArea
@@ -167,36 +164,21 @@
 
 #pragma mark - Adding and Removing Tab Views
 
+- (void)setParent:(nullable id <TMTTabBarDelegate>)parent {
+    _parent = parent;
+    _tabArea.parent = _parent;
+}
+
 - (void)addTabView:(TMTTabItemView *)tabView {
-    [_tabArea addSubview:tabView];
-    [_layoutManager updateLayout];
+    [_tabArea addTabView:tabView];
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation {
-    NSView *viewForLocation = [_tabArea viewForPoint:windowLocation];
-
-    if (viewForLocation) {
-        [self insertTabView:tabView relativeTo:viewForLocation atLocation:windowLocation];
-    } else {
-        [self addTabView:tabView];
-    }
-}
-
-- (void)insertTabView:(TMTTabItemView *)tabView relativeTo:(NSView *)viewForLocation atLocation:(NSPoint)windowLocation {
-    NSPoint locationInView = [viewForLocation convertPoint:windowLocation fromView:nil];
-
-    if (locationInView.x < viewForLocation.center.x) {
-        [_tabArea addSubview:tabView positioned:NSWindowBelow relativeTo:viewForLocation];
-    } else {
-        [_tabArea addSubview:tabView positioned:NSWindowAbove relativeTo:viewForLocation];
-    }
-
-    [_layoutManager updateLayout];
+    [_tabArea addTabView:tabView atPoint:windowLocation];
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
-    [tabView removeFromSuperview];
-    [_layoutManager updateLayout];
+    [_tabArea removeTabView:tabView];
 }
 
 - (void)addTabItemClicked {
@@ -231,22 +213,5 @@
         [_addButton removeFromSuperview];
         _addButtonInvisible.active = YES;
     }
-}
-
-#pragma  mark - NSDraggingDestination
-
-- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
-    NSView *view = [_tabArea viewForPoint:sender.draggingLocation];
-    NSLog(@"%@", view.constraints);
-
-    return NSDragOperationMove;
-}
-
-- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
-    return YES;
-}
-
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
-    return [self.parent performDrop:sender];
 }
 @end

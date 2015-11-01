@@ -257,6 +257,7 @@
 #pragma mark - Dragging
 
 - (void)mouseDragged:(NSEvent *)theEvent {
+
     NSPasteboardItem  *pbItem = [NSPasteboardItem new];
     [pbItem setDataProvider:self forTypes:@[TMTTabItemDragType]];
 
@@ -267,6 +268,7 @@
     }];
 
     [self beginDraggingSessionWithItems:@[draggingItem] event:theEvent source:self];
+    [self removeFromSuperview];
 }
 
 - (NSArray<NSDraggingImageComponent *>*)draggingImages {

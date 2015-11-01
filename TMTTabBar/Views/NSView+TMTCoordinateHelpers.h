@@ -8,6 +8,10 @@
 @interface NSView (TMTCoordinateHelpers)
 
 - (bool)contains:(NSPoint)windowLocation;
-- (nullable NSView*)viewForPoint:(NSPoint)windowLocation;
+- (nullable NSView*)subviewAtLocation:(NSPoint)windowLocation;
+- (nullable NSView *)subviewBeforeLocationX:(NSPoint)windowLocation;
+
+- (NSUInteger)dropPositionFor:(NSPoint)windowLocation;
+
 - (NSPoint)center;
 @end

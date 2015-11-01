@@ -10,6 +10,8 @@
 
     NSView *_view;
     NSArray<NSLayoutConstraint *> *_constraints;
+    NSUInteger _lastDropPosition;
+
 }
 
 - (instancetype)initForView:(NSView *)view {
@@ -17,35 +19,59 @@
     if(self) {
         _view = view;
         _constraints = [NSArray new];
+        _lastDropPosition = NSNotFound;
     }
     return self;
 }
 
 - (void)updateLayout {
+    [self updateLayoutWithDropSpaceAt:NSNotFound];
+}
 
-    [NSLayoutConstraint deactivateConstraints:_constraints];
+- (void)updateLayoutWithDropSpaceAt:(NSUInteger)dropPosition {
+    if(dropPosition != NSNotFound && dropPosition == _lastDropPosition) {
+        return;
+    }
+
+    NSLog(@"drop pos = %li", dropPosition);
+    _lastDropPosition = dropPosition;
+
     NSMutableArray<NSLayoutConstraint *> *newConstraints = [NSMutableArray new];
 
     NSArray<NSView *> *views = _view.subviews;
 
     for(int i = 0; i < views.count; ++i) {
-        if(i == 0) {
-            [newConstraints addObject:[self attachLeft:views[i]]];
-        }
-        if(i == views.count-1) {
-            [newConstraints addObject:[self attachRight:views[i]]];
-        }
-        if(i+1 < views.count) {
-            [newConstraints addObject:[self connectMiddle:views[i] withNext:views[i + 1]]];
-            [newConstraints addObject:[self equalWidth:views[i] withNext:views[i + 1]]];
-        }
         [newConstraints addObject:[self attachTop:views[i]]];
         [newConstraints addObject:[self attachBottom:views[i]]];
+        [newConstraints addObject:[self connectLeft:i withDropPostion:dropPosition]];
+
+        if(i == views.count-1) {
+            CGFloat distance = (dropPosition == views.count) ? self.dropSpace : 0;
+            [newConstraints addObject:[self attachRight:views[i] withDistance:distance]];
+        }
+        if(i+1 < views.count) {
+            [newConstraints addObject:[self equalWidth:views[i] withNext:views[i + 1]]];
+        }
     }
 
+    [_view.animator removeConstraints:_constraints];
     _constraints = newConstraints;
+    [_view.animator addConstraints:_constraints];
+}
 
-    [NSLayoutConstraint activateConstraints:_constraints];
+- (CGFloat)dropSpace {
+    return _view.bounds.size.width/(CGFloat)(_view.subviews.count+1);
+}
+
+- (NSLayoutConstraint *)connectLeft:(NSUInteger)viewIndex withDropPostion:(NSUInteger)dropPosition {
+    CGFloat distance = (viewIndex == dropPosition) ? self.dropSpace : 0;
+    NSView *view = _view.subviews[viewIndex];
+    if(viewIndex == 0) {
+        return [self attachLeft:view withDistance:distance];
+    } else {
+        NSView *predecessor = _view.subviews[viewIndex-1];
+        return [self connect:view withPrevious:predecessor havingDistance:distance];
+    }
 }
 
 - (NSLayoutConstraint *)attachTop:(NSView *)view {
@@ -78,34 +104,33 @@
                                          constant:0];
 }
 
-- (NSLayoutConstraint *)attachLeft:(NSView *)view {
+- (NSLayoutConstraint *)attachLeft:(NSView *)view withDistance:(CGFloat)constant {
     return [NSLayoutConstraint constraintWithItem:view
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:_view
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1
-                                  constant:0];
+                                  constant:constant];
 }
 
-
-- (NSLayoutConstraint *)attachRight:(NSView *)view {
+- (NSLayoutConstraint *)attachRight:(NSView *)view withDistance:(CGFloat)constant {
     return [NSLayoutConstraint constraintWithItem:view
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:_view
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1
-                                  constant:0];
+                                  constant:constant];
 }
 
-- (NSLayoutConstraint *) connectMiddle:(NSView *)view withNext:(NSView *)nextView {
-    return [NSLayoutConstraint constraintWithItem:nextView
+- (NSLayoutConstraint *)connect:(NSView *)view withPrevious:(NSView *)previous havingDistance:(CGFloat)constant {
+    return [NSLayoutConstraint constraintWithItem:view
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:view
+                                    toItem:previous
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1
-                                  constant:0];
+                                  constant:constant];
 }
 @end

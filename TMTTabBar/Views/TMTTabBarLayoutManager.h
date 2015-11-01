@@ -12,4 +12,5 @@
 
 - (void)updateLayout;
 
+- (void)updateLayoutWithDropSpaceAt:(NSUInteger)dropPosition;
 @end
