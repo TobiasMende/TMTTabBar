@@ -24,6 +24,17 @@
     return self;
 }
 
+- (void)addView:(NSView *)view {
+    view.translatesAutoresizingMaskIntoConstraints = YES;
+    view.autoresizingMask = NSViewMaxXMargin | NSViewMinXMargin | NSViewWidthSizable;
+
+    if(_view.subviews.count > 0) {
+        NSView *last = _view.subviews.lastObject;
+        NSLog(@"constraints = %@", last.constraints);
+    }
+}
+
+
 - (void)updateLayout {
     [self updateLayoutWithDropSpaceAt:NSNotFound];
 }
@@ -33,7 +44,7 @@
         return;
     }
 
-    NSLog(@"drop pos = %li", dropPosition);
+    /*NSLog(@"drop pos = %li", dropPosition);
     _lastDropPosition = dropPosition;
 
     NSMutableArray<NSLayoutConstraint *> *newConstraints = [NSMutableArray new];
@@ -54,9 +65,19 @@
         }
     }
 
-    [_view.animator removeConstraints:_constraints];
+    [NSLayoutConstraint deactivateConstraints:_constraints];
     _constraints = newConstraints;
-    [_view.animator addConstraints:_constraints];
+    [NSLayoutConstraint activateConstraints:_constraints];
+    [self animate];*/
+}
+
+- (void)animate {
+    _view.wantsLayer = YES;
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext* context) {
+        context.duration = 0.5;
+        context.allowsImplicitAnimation = YES;
+        [_view layoutSubtreeIfNeeded];
+    } completionHandler:nil];
 }
 
 - (CGFloat)dropSpace {

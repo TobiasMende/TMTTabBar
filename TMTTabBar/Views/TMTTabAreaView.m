@@ -19,67 +19,42 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _layoutManager = [[TMTTabBarLayoutManager alloc] initForView:self];
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        //_layoutManager = [[TMTTabBarLayoutManager alloc] initForView:self];
         [self registerForDraggedTypes:@[TMTTabItemDragType]];
+
     }
     return self;
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView {
-    [self addSubview:tabView];
-    [_layoutManager updateLayout];
+    [self addView:tabView inGravity:NSStackViewGravityLeading];
 }
 
 - (void)addTabView:(TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation {
     NSUInteger index = [self dropPositionFor:windowLocation];
 
     if (index < self.subviews.count) {
-        NSView *viewForLocation = self.subviews[index];
-        [self insertTabView:tabView relativeTo:viewForLocation atLocation:windowLocation];
+        [self insertView:tabView atIndex:index inGravity:NSStackViewGravityLeading];
     } else {
         [self addTabView:tabView];
     }
 }
 
 - (void)removeTabView:(TMTTabItemView *)tabView {
-    [tabView removeFromSuperview];
-    [_layoutManager updateLayout];
+    [self removeView:tabView];
 }
-
-
-- (void)insertTabView:(TMTTabItemView *)tabView relativeTo:(NSView *)viewForLocation atLocation:(NSPoint)windowLocation {
-    NSPoint locationInView = [viewForLocation convertPoint:windowLocation fromView:nil];
-
-
-    if (locationInView.x < viewForLocation.center.x) {
-        [self addSubview:tabView positioned:NSWindowBelow relativeTo:viewForLocation];
-    } else {
-        [self addSubview:tabView positioned:NSWindowAbove relativeTo:viewForLocation];
-    }
-
-    [_layoutManager updateLayout];
-}
-
 
 #pragma  mark - NSDraggingDestination
-
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
-    NSSize imageSize = sender.draggedImage.size;
-
-
-    return NSDragOperationMove;
-}
 
 - (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
     NSPoint position = sender.draggingLocation;
     NSUInteger insertionIndex = [self dropPositionFor:position];
-    [_layoutManager updateLayoutWithDropSpaceAt:insertionIndex];
+    // TODO implement
     return NSDragOperationMove;
 }
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender {
-    [_layoutManager updateLayout];
+    // TODO implement
 }
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
@@ -91,7 +66,8 @@
 }
 
 - (void)updateDraggingItemsForDrag:(id <NSDraggingInfo>)sender {
-    [sender enumerateDraggingItemsWithOptions:nil forView:self classes:@[[NSImage class], [NSPasteboardItem class]] searchOptions:nil usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
+        NSLog(@"Drag");
+    [sender enumerateDraggingItemsWithOptions:0 forView:self classes:@[[NSImage class], [NSPasteboardItem class]] searchOptions:@{} usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
         if(![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
             *stop = YES;
         } else {

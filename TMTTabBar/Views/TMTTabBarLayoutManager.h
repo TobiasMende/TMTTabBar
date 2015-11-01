@@ -10,7 +10,11 @@
 
 - (nonnull instancetype)initForView:(NSView *_Nonnull)view;
 
-- (void)updateLayout;
 
+- (void)removeView:(NSView *)view;
+- (void)addView:(NSView *)view;
+- (void)insertView:(NSView *)view at:(NSUInteger)index;
+
+- (void)updateLayout;
 - (void)updateLayoutWithDropSpaceAt:(NSUInteger)dropPosition;
 @end

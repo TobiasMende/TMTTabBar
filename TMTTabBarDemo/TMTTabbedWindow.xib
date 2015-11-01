@@ -23,10 +23,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box title="Box" borderType="line" id="qBO-et-8rK" customClass="TMTTabViewContainerView">
-                        <rect key="frame" x="17" y="16" width="446" height="313"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="-3" y="16" width="486" height="313"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="kkf-Zu-LB0">
-                            <rect key="frame" x="1" y="1" width="444" height="297"/>
+                            <rect key="frame" x="1" y="1" width="484" height="297"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <animations/>
                         </view>
@@ -36,7 +36,7 @@
                     </box>
                     <customView id="OOa-TS-3Lx" customClass="TMTTabBarView">
                         <rect key="frame" x="0.0" y="337" width="480" height="23"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <animations/>
                     </customView>
                 </subviews>
