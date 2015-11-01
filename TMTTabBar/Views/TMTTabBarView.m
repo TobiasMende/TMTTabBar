@@ -14,6 +14,7 @@
 #import "NSView+TMTCoordinateHelpers.h"
 #import "TMTTabBar.h"
 #import "TMTTabAreaView.h"
+#import "TMTTabDraggingDelegate.h"
 
 
 @interface TMTTabBarView ()
@@ -101,7 +102,7 @@
 
 #pragma mark - Adding and Removing Tab Views
 
-- (void)setParent:(nullable id <TMTTabBarDelegate>)parent {
+- (void)setParent:(nullable id <TMTTabBarDelegate,TMTTabDraggingDelegate>)parent {
     _parent = parent;
     _tabArea.parent = _parent;
 }
@@ -145,5 +146,9 @@
     } else {
         [self removeView:_addButton];
     }
+}
+
+- (NSRect)boundsForDraggingItem {
+    return _tabArea.boundsForDraggingItem;
 }
 @end

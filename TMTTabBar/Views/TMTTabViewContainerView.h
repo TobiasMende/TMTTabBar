@@ -6,11 +6,12 @@
 #import <Cocoa/Cocoa.h>
 
 @protocol TMTTabContainerDelegate;
+@protocol TMTTabDraggingDelegate;
 
 
-@interface TMTTabViewContainerView : NSBox
+@interface TMTTabViewContainerView : NSBox<NSDraggingDestination>
 
-@property (weak) id<TMTTabContainerDelegate> parent;
+@property (weak) id<TMTTabContainerDelegate,TMTTabDraggingDelegate> parent;
 
 - (IBAction)performClose:(id)sender;
 - (IBAction)performCloseAll:(id)sender;

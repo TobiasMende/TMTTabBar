@@ -5,6 +5,8 @@
 
 #import "TMTTabViewContainerView.h"
 #import "TMTTabContainerDelegate.h"
+#import "TMTTabBar.h"
+#import "TMTTabDraggingDelegate.h"
 
 
 @implementation TMTTabViewContainerView {
@@ -30,6 +32,7 @@
 - (void)initMember {
     self.boxType = NSBoxCustom;
     self.borderType = NSNoBorder;
+    [self registerForDraggedTypes:@[TMTTabItemDragType]];
 }
 
 - (void)performClose:(id)sender {
@@ -49,4 +52,24 @@
     [self.parent createTab];
 }
 
+
+#pragma  mark - NSDraggingDestination
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+    // TODO ask controller, what to do
+    return NSDragOperationMove;
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
+    // TODO ask controller, what to do
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+    return [self.parent performDrop:sender onView:self];
+}
+
+- (void)updateDraggingItemsForDrag:(id <NSDraggingInfo>)sender {
+    [self.parent updateDraggingItemsForDrag:sender forView:self];
+}
 @end

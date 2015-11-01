@@ -12,11 +12,12 @@
 @class TMTTabItemView;
 @class TMTTabBarStyle;
 @protocol TMTTabBarDelegate;
+@protocol TMTTabDraggingDelegate;
 
 @interface TMTTabBarView : NSStackView
 
 @property (nonnull, nonatomic) TMTTabBarStyle *style;
-@property (weak, nonatomic) id<TMTTabBarDelegate> parent;
+@property (weak, nonatomic) id<TMTTabBarDelegate, TMTTabDraggingDelegate> parent;
 
 - (void)addTabView:(nonnull TMTTabItemView *)tabView;
 
@@ -26,5 +27,6 @@
 - (void)activateTabItem:(nonnull TMTTabItemView *)actionedItem;
 
 
+- (NSRect)boundsForDraggingItem;
 @end
 

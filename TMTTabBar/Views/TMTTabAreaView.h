@@ -10,10 +10,12 @@
 
 
 @interface TMTTabAreaView : NSStackView<NSDraggingDestination>
-@property (weak)TMTTabViewController *parent;
+@property (weak) id<TMTTabDraggingDelegate, TMTTabBarDelegate> parent;
 
 - (nonnull instancetype)init;
 - (void)addTabView:(nonnull TMTTabItemView *)tabView;
 - (void)addTabView:(nonnull TMTTabItemView *)tabView atPoint:(NSPoint)windowLocation;
 - (void)removeTabView:(nonnull TMTTabItemView *)tabView;
+
+- (NSRect)boundsForDraggingItem;
 @end

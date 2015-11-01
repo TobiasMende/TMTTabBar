@@ -4,6 +4,7 @@
 //
 
 
+#import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabBarView.h"
 #import "TMTTabViewController.h"
 #import "TMTTabItemStack.h"
@@ -101,7 +102,10 @@
 }
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(TMTTabItem *)item {
-    NSLog(@"ended with operation %li", operation);
+    if (operation == NSDragOperationNone) {
+        // TODO create new window
+        NSLog(@"ended with operation %li", operation);
+    }
 }
 
 #pragma mark - TMTTabBarDelegate
@@ -115,20 +119,48 @@
     [self addTabItem:item];
 }
 
-- (bool)performDrop:(id <NSDraggingInfo>)sender {
-    TMTTabItemView *itemView = sender.draggingSource;
+#pragma mark - TMTTabDraggingDelegate
+
+- (bool)performDrop:(id <NSDraggingInfo>)info onView:(id)sender {
+    TMTTabItemView *itemView = info.draggingSource;
     TMTTabItem *item = itemView.item;
-    NSPoint windowLocation = sender.draggingLocation;
-    if(itemView.parent == self) {
+    NSPoint windowLocation = info.draggingLocation;
+
+    if (sender == _tabContainer) {
+        if (itemView.parent == self) {
+            return NO;
+        }
+        [self addTabItem:item];
+        return YES;
+    }
+
+    if (itemView.parent == self) {
         [_tabBar addTabView:itemView atPoint:windowLocation];
         return YES;
     }
-    if([itemView.parent removeTabItem:item]) {
+    if ([itemView.parent removeTabItem:item]) {
         [self addTabItem:item atPoint:windowLocation];
         return YES;
     }
 
     return NO;
+}
+
+- (void)updateDraggingItemsForDrag:(id <NSDraggingInfo>)info forView:(id)sender {
+    [info enumerateDraggingItemsWithOptions:0 forView:sender classes:@[[NSImage class], [NSPasteboardItem class]] searchOptions:@{} usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
+        if (![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
+            *stop = YES;
+        } else {
+            if(sender == _tabContainer) {
+                TMTTabItemView *itemView = info.draggingSource;
+                TMTTabItem *item = itemView.item;
+                if([_tabs.allKeys containsObject:item]) {
+                    return;
+                }
+            }
+            [draggingItem setDraggingFrame:_tabBar.boundsForDraggingItem contents:[[draggingItem.imageComponents firstObject] contents]];
+        }
+    }];
 }
 
 #pragma mark - TMTTabContainerDelegate
@@ -187,7 +219,5 @@
     }
     return [TMTTabBarStyle new];
 }
-
-
 
 @end

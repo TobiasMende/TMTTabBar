@@ -29,6 +29,7 @@
 		27DC280050081CD1FB0781CE /* TMTTabItemDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2778B965411D2CEABE2E /* TMTTabItemDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC28047C3A78F9465B4AC7 /* TMTTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2BA988611CE8EC66844D /* TMTTabBarView.m */; };
 		27DC2921CE2FF544313F2B6A /* TMTTabViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC248D7A3853B8853AEB4B /* TMTTabViewContainerView.m */; };
+		27DC29860173C8E7FAB5E979 /* TMTTabDraggingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC27CD54D0040E604C1665 /* TMTTabDraggingDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC29B674A388B7E7701BE1 /* NSView+TMTCoordinateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2CCA914167F2225194AE /* NSView+TMTCoordinateHelpers.h */; };
 		27DC2A1EB4CC5B4978E9CEEE /* TMTTabViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC241A4BE5F9BBA1F1AB0F /* TMTTabViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */; };
@@ -88,6 +89,7 @@
 		27DC26DCDE6CF4DAB2CE959F /* TMTTabBarLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarLayoutManager.h; sourceTree = "<group>"; };
 		27DC2778B965411D2CEABE2E /* TMTTabItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemDelegate.h; sourceTree = "<group>"; };
 		27DC278F2394A6C4CDF85A29 /* NSView+ImageRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+ImageRepresentation.m"; sourceTree = "<group>"; };
+		27DC27CD54D0040E604C1665 /* TMTTabDraggingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabDraggingDelegate.h; sourceTree = "<group>"; };
 		27DC284C3A3284D91E21901D /* NSImage+TMTTransformations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+TMTTransformations.h"; sourceTree = "<group>"; };
 		27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTRenderingHints.h; sourceTree = "<group>"; };
 		27DC287F34D1D9163048E70A /* TMTTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewController.h; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				27DC287F34D1D9163048E70A /* TMTTabViewController.h */,
 				27DC25669B26E54523DD6128 /* Container */,
 				27DC241A4BE5F9BBA1F1AB0F /* TMTTabViewDelegate.h */,
+				27DC27CD54D0040E604C1665 /* TMTTabDraggingDelegate.h */,
 			);
 			path = TMTTabBar;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				27DC246E6BB6CAD332AAB0B2 /* TMTTabTitleView.h in Headers */,
 				27DC221B74E22DA14EFC26F4 /* NSTextFieldCell+VerticalAlignment.h in Headers */,
 				27DC2F4E5175EAAB5D55B286 /* TMTTabContainerDelegate.h in Headers */,
+				27DC29860173C8E7FAB5E979 /* TMTTabDraggingDelegate.h in Headers */,
 				27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */,
 				27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */,
 				27DC2AE08D1DAF3B7684D79E /* TMTTabBarDelegate.h in Headers */,

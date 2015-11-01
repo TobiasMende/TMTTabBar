@@ -8,13 +8,14 @@
 #import "TMTTabBarDelegate.h"
 #import "TMTTabItemDelegate.h"
 #import "TMTTabContainerDelegate.h"
+#import "TMTTabDraggingDelegate.h"
 
 @class TMTTabBarView;
 @class TMTTabItem;
 @class TMTTabViewContainerView;
 @protocol TMTTabViewDelegate;
 
-@interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate, TMTTabContainerDelegate>
+@interface TMTTabViewController : NSObject<TMTTabItemDelegate, TMTTabBarDelegate, TMTTabContainerDelegate, TMTTabDraggingDelegate>
 
 @property (weak) id<TMTTabViewDelegate>delegate;
 

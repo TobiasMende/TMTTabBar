@@ -37,10 +37,15 @@
 - (void)styleBordersForRect:(NSRect)rect withRenderingHinter:(TMTRenderingHints * _Nonnull) renderingHint {
     NSColor* color = renderingHint.active ? self.activeBorderColor : self.inactiveBorderColor;
     [color setStroke];
+
     CGPoint upperLeft = rect.origin;
+    CGPoint lowerLeft = CGPointMake(upperLeft.x, upperLeft.y + rect.size.height);
     CGPoint upperRight = CGPointMake(upperLeft.x + rect.size.width, upperLeft.y);
-    CGPoint lower = CGPointMake(upperRight.x, upperRight.y + rect.size.height);
-    [NSBezierPath strokeLineFromPoint:upperRight toPoint:lower];
+    CGPoint lowerRight = CGPointMake(upperRight.x, upperRight.y + rect.size.height);
+
+    [NSBezierPath setDefaultLineWidth:0.5];
+    [NSBezierPath strokeLineFromPoint:upperRight toPoint:lowerRight];
+    [NSBezierPath strokeLineFromPoint:upperLeft toPoint:lowerLeft];
 }
 
 - (void)styleTitle:(NSTextField *_Nonnull)titleField withRenderingHints:(TMTRenderingHints* _Nonnull) renderingHints {

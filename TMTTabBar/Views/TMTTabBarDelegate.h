@@ -7,5 +7,4 @@
 
 @protocol TMTTabBarDelegate <NSObject>
 - (void)createTab;
-- (bool)performDrop:(id<NSDraggingInfo>)sender;
 @end

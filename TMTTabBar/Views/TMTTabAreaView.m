@@ -10,11 +10,14 @@
 
 @implementation TMTTabAreaView {
 }
+
+static const CGFloat DEFAULT_SPACING = -0.5;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self registerForDraggedTypes:@[TMTTabItemDragType]];
-        self.spacing = 0;
+        self.spacing = DEFAULT_SPACING;
         self.distribution = NSStackViewDistributionFillEqually;
         self.wantsLayer = YES;
         self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
@@ -64,7 +67,6 @@
 }
 
 - (void)draggingExited:(id <NSDraggingInfo>)sender {
-    // TODO
     [self updateDropSpace:NSNotFound];
 }
 
@@ -75,7 +77,7 @@
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.duration = 0.25;
         for (NSUInteger i = 0; i < self.arrangedSubviews.count-1; ++i) {
-            CGFloat spacing = (i + 1 == dropPosition) ? self.sizeForDraggingItem.width : 0;
+            CGFloat spacing = (i + 1 == dropPosition) ? self.sizeForDraggingItem.width : DEFAULT_SPACING;
             if ([self customSpacingAfterView:self.arrangedSubviews[i]] != spacing) {
                 [self.animator setCustomSpacing:spacing afterView:self.arrangedSubviews[i]];
             }
@@ -89,7 +91,9 @@
             self.animator.edgeInsets = NSEdgeInsetsMake(p.top, left, p.bottom, right);
         }
 
-    }                   completionHandler:nil];
+    }                   completionHandler:^{
+        self.needsLayout = YES;
+    }];
 
 }
 
@@ -99,17 +103,11 @@
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
-    return [self.parent performDrop:sender];
+    return [self.parent performDrop:sender onView:self];
 }
 
 - (void)updateDraggingItemsForDrag:(id <NSDraggingInfo>)sender {
-    [sender enumerateDraggingItemsWithOptions:0 forView:self classes:@[[NSImage class], [NSPasteboardItem class]] searchOptions:@{} usingBlock:^(NSDraggingItem *draggingItem, NSInteger idx, BOOL *stop) {
-        if (![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
-            *stop = YES;
-        } else {
-            [draggingItem setDraggingFrame:self.boundsForDraggingItem contents:[[draggingItem.imageComponents firstObject] contents]];
-        }
-    }];
+    [self.parent updateDraggingItemsForDrag:sender forView:self];
 }
 
 - (NSRect)boundsForDraggingItem {
