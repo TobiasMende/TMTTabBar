@@ -22,7 +22,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     _windowController1 = [[TMTTabbedWindow alloc] initWithWindowNibName:@"TMTTabbedWindow"];
     _windowController2 = [[TMTTabbedWindow alloc] initWithWindowNibName:@"TMTTabbedWindow"];
-
+    
     [self.windowController1 showWindow:self];
     [self.windowController2 showWindow:self];
 }

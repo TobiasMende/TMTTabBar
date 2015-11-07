@@ -102,10 +102,15 @@
 }
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(TMTTabItem *)item {
-    if (operation == NSDragOperationNone) {
+    if (operation == NSDragOperationNone && [self shouldDragToNewWindow:item]) {
         // TODO create new window
         NSLog(@"ended with operation %li", operation);
     }
+}
+
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context forItem:(TMTTabItem *)item {
+    session.animatesToStartingPositionsOnCancelOrFail = ![self shouldDragToNewWindow:item];
+    return NSDragOperationMove;
 }
 
 #pragma mark - TMTTabBarDelegate
@@ -186,7 +191,7 @@
 
 #pragma mark - TMTTabViewDelegate comfort methods
 
-- (BOOL)shouldRemoveItem:(TMTTabItem *)item {
+- (bool)shouldRemoveItem:(TMTTabItem *)item {
     return ![self.delegate respondsToSelector:@selector(shouldRemoveTab:from:)] || [self.delegate shouldRemoveTab:item from:self];
 }
 
@@ -210,6 +215,13 @@
         return [self.delegate tabItemStyle:item from:self];
     }
     return [TMTTabItemStyle new];
+}
+
+- (bool)shouldDragToNewWindow:(TMTTabItem *)item {
+    if([self.delegate respondsToSelector:@selector(shouldDragToNewWindow:from:)]) {
+        return [self.delegate shouldDragToNewWindow:item from:self];
+    }
+    return YES;
 }
 
 

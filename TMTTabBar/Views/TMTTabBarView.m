@@ -53,6 +53,10 @@
     return self;
 }
 
+- (void)dealloc {
+    [_style removeObserver:self forKeyPath:@"shouldShowAddButton"];
+}
+
 - (void)initMember {
     self.translatesAutoresizingMaskIntoConstraints = YES;
     self.autoresizingMask = NSViewHeightSizable;

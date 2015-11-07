@@ -12,4 +12,5 @@
 - (void)closeTab:(nonnull TMTTabItem *)item;
 - (void)draggingSession:(nullable NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(nonnull TMTTabItem *)item;
 - (BOOL)removeTabItem:(nonnull TMTTabItem*)item;
+- (NSDragOperation)draggingSession:(nullable NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context forItem:(nonnull TMTTabItem *)item;
 @end
