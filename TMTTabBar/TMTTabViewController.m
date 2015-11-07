@@ -236,7 +236,6 @@
     return YES;
 }
 
-
 - (TMTTabBarStyle *)styleForBar {
     if ([self.delegate respondsToSelector:@selector(tabBarStyle:)]) {
         return [self.delegate tabBarStyle:self];
