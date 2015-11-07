@@ -17,6 +17,7 @@
 #pragma mark - Permissions
 - (bool) shouldRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
 - (bool) shouldDragToNewWindow:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController *)sender;
+- (bool) shouldBecomeFirstResponder:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController *)sender;
 
 #pragma mark - State Change
 - (void) didRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;

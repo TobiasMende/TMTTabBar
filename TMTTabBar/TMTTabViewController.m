@@ -84,6 +84,11 @@
 - (void)activateItem:(TMTTabItem *)item {
     [_tabContainer setContentView:item.view];
     [_tabBar activateTabItem:_tabs[item]];
+    if([self shouldBecomeFirstResponder:item]) {
+        if([_tabContainer.window isKeyWindow]) {
+            [_tabContainer.window makeFirstResponder:_tabContainer.contentView];
+        }
+    }
     [self informItemChanged:item];
 }
 
@@ -220,6 +225,13 @@
 - (bool)shouldDragToNewWindow:(TMTTabItem *)item {
     if([self.delegate respondsToSelector:@selector(shouldDragToNewWindow:from:)]) {
         return [self.delegate shouldDragToNewWindow:item from:self];
+    }
+    return YES;
+}
+
+- (bool)shouldBecomeFirstResponder:(TMTTabItem*)item {
+    if([self.delegate respondsToSelector:@selector(shouldBecomeFirstResponder:from:)]) {
+        return [self.delegate shouldBecomeFirstResponder:item from:self];
     }
     return YES;
 }
