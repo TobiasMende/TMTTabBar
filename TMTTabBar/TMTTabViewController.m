@@ -6,6 +6,7 @@
 #import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabWindowFactory.h"
 #import "TMTTabViewDelegateProxy.h"
+#import "NSView+ImageRepresentation.h"
 
 @interface TMTTabViewController ()
 - (void)addTabItem:(TMTTabItem *)item atPoint:(NSPoint)point;
@@ -190,14 +191,18 @@
         if (![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
             *stop = YES;
         } else {
+            TMTTabItemView *itemView = info.draggingSource;
             if (sender == _tabContainer) {
-                TMTTabItemView *itemView = info.draggingSource;
                 TMTTabItem *item = itemView.item;
                 if ([_tabs.allKeys containsObject:item]) {
                     return;
                 }
             }
-            [draggingItem setDraggingFrame:_tabBar.boundsForDraggingItem contents:[[draggingItem.imageComponents firstObject] contents]];
+            [itemView setBounds:_tabBar.boundsForDraggingItem];
+            [itemView layoutSubtreeIfNeeded];
+            NSImage *image = [itemView imageRepresentation];
+
+            [draggingItem setDraggingFrame:_tabBar.boundsForDraggingItem contents:image];
         }
     }];
 }
