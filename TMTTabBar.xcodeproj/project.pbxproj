@@ -18,6 +18,7 @@
 		27DC221E5C0FCC19872C7292 /* TMTTabItemStackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2B6AA3C5C56BA0D9123A /* TMTTabItemStackTest.m */; };
 		27DC22322218F5F6361AA47D /* TMTTabViewContainerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2FE1013D225BD6CB157D /* TMTTabViewContainerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2255DAE24C45DBF0DC10 /* TMTTabWindowFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC25F12A9ABD9BD0721153 /* TMTTabWindowFactory.h */; };
+		27DC227422FB2E599301A230 /* TMTTabViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2A43E32CE14A300EF527 /* TMTTabViewDelegateProxy.m */; };
 		27DC22E6B2597A09EB7FA09C /* TMTTabItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2638D8B59451514AB23C /* TMTTabItemStyle.m */; };
 		27DC246E6BB6CAD332AAB0B2 /* TMTTabTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2604D0D7C5F9166DC076 /* TMTTabTitleView.h */; };
 		27DC2474B5DF0F5284BE6BAE /* TMTTabTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2C26945D68AF9227DB84 /* TMTTabTitleView.m */; };
@@ -43,6 +44,7 @@
 		27DC2C42FAD0F06A1BF7A05A /* TMTTabItemStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2FCFDA7B56A79ACFBA08 /* TMTTabItemStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2CB1CE2691AB17A10A36 /* TMTTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC23C168EF9DC8259BC1B1 /* TMTTabItem.m */; };
 		27DC2CD367030FA7F4BC4448 /* TMTTabItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC23FA017A5937FBCE40C4 /* TMTTabItemView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27DC2E0E53E07D3E9DBEB24F /* TMTTabViewDelegateProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC211C3A5B489C4DD06BEE /* TMTTabViewDelegateProxy.h */; };
 		27DC2E25CDEE45CC0D8D4FF7 /* TMTTabBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2F3171ACB960485D5965 /* TMTTabBarView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2E4A913163FCB475630C /* TMTTabBarStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC28A4F2175D2AAFA58C39 /* TMTTabBarStyle.m */; };
 		27DC2F008BB6C3FBF07F1399 /* TMTTabBarViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2CE068C12A83456C596D /* TMTTabBarViewTest.m */; };
@@ -77,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		1BDC045FDE51EAB41CD25E0B /* Pods-TMTTabBarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TMTTabBarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TMTTabBarTests/Pods-TMTTabBarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		27DC211C3A5B489C4DD06BEE /* TMTTabViewDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewDelegateProxy.h; sourceTree = "<group>"; };
 		27DC21B650BF44C5135BC3D8 /* TMTTabBarLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarLayoutManager.m; sourceTree = "<group>"; };
 		27DC220052CE8A4D0E8316CB /* TMTTabbedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabbedWindow.h; sourceTree = "<group>"; };
 		27DC22111AA713B3BE82DAB7 /* NSView+TMTCoordinateHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+TMTCoordinateHelpers.m"; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 		27DC28F06A52D38BA0E2B2EE /* TMTTabItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemStyle.h; sourceTree = "<group>"; };
 		27DC28F19891B250D60E5EDF /* TMTTabbedWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabbedWindow.m; sourceTree = "<group>"; };
 		27DC2A4099205B00D16B9487 /* NSTextFieldCell+VerticalAlignment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextFieldCell+VerticalAlignment.m"; sourceTree = "<group>"; };
+		27DC2A43E32CE14A300EF527 /* TMTTabViewDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabViewDelegateProxy.m; sourceTree = "<group>"; };
 		27DC2A5B0B693B9E934DABC2 /* TMTTabAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabAreaView.m; sourceTree = "<group>"; };
 		27DC2B6AA3C5C56BA0D9123A /* TMTTabItemStackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabItemStackTest.m; sourceTree = "<group>"; };
 		27DC2BA988611CE8EC66844D /* TMTTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabBarView.m; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 				27DC25669B26E54523DD6128 /* Container */,
 				27DC241A4BE5F9BBA1F1AB0F /* TMTTabViewDelegate.h */,
 				27DC27CD54D0040E604C1665 /* TMTTabDraggingDelegate.h */,
+				27DC2A43E32CE14A300EF527 /* TMTTabViewDelegateProxy.m */,
+				27DC211C3A5B489C4DD06BEE /* TMTTabViewDelegateProxy.h */,
 			);
 			path = TMTTabBar;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				27DC29B674A388B7E7701BE1 /* NSView+TMTCoordinateHelpers.h in Headers */,
 				27DC24AD6AAC0D469EE0343C /* TMTTabAreaView.h in Headers */,
 				27DC2255DAE24C45DBF0DC10 /* TMTTabWindowFactory.h in Headers */,
+				27DC2E0E53E07D3E9DBEB24F /* TMTTabViewDelegateProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +560,7 @@
 				27DC2776C748971603F29B6C /* NSView+TMTCoordinateHelpers.m in Sources */,
 				27DC2000CDE1E12950904D55 /* TMTTabAreaView.m in Sources */,
 				27DC21AA4E2CDF0F1515C641 /* TMTTabWindowFactory.m in Sources */,
+				27DC227422FB2E599301A230 /* TMTTabViewDelegateProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 
 @class TMTTabViewController;
 @class TMTTabItem;
+@class TMTTabItemStyle;
+@class TMTTabBarStyle;
 
 @protocol TMTTabViewDelegate <NSObject>
 
@@ -18,13 +20,14 @@
 - (bool) shouldRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
 - (bool) shouldDragToNewWindow:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController *)sender;
 - (bool) shouldBecomeFirstResponder:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController *)sender;
+- (bool) shouldCloseWindowIfLastTabIsRemoved:(nonnull TMTTabViewController *)controller;
 
 #pragma mark - State Change
 - (void) didRemoveTab:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
 - (void) tabChanged:(nonnull TMTTabItem*)item from:(nonnull TMTTabViewController*)sender;
 
 #pragma mark - Styling
-- (nonnull TMTTabItemStyle *)tabItemStyle:(nonnull  TMTTabItem*)item from:(nonnull  TMTTabViewController *)sender;
-- (nonnull TMTTabBarStyle *)tabBarStyle:(nonnull  TMTTabViewController *)sender;
+- (nonnull TMTTabItemStyle *) tabItemStyle:(nonnull  TMTTabItem*)item from:(nonnull  TMTTabViewController *)sender;
+- (nonnull TMTTabBarStyle *) tabBarStyle:(nonnull  TMTTabViewController *)sender;
 
 @end

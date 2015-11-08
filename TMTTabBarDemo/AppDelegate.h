@@ -12,9 +12,8 @@
 @class TMTTabBarView;
 @class TMTTabbedWindow;
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, TMTTabViewDelegate>
 @property (strong) TMTTabbedWindow *windowController1;
-@property (strong) TMTTabbedWindow *windowController2;
 
 @end
 

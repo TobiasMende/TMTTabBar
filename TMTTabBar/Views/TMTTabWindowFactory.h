@@ -7,11 +7,14 @@
 
 @class TMTTabViewController;
 @class TMTTabbedWindow;
+@protocol TMTTabViewDelegate;
 
 
 @interface TMTTabWindowFactory : NSObject
 
-+ (nonnull TMTTabViewController*)createTabWindow;
+
++ (nonnull TMTTabViewController *)createTabWindow:(nonnull id <TMTTabViewDelegate>)delegate;
+
 + (void)unregister:(nonnull TMTTabbedWindow *)window;
 
 @end

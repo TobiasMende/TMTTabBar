@@ -10,34 +10,29 @@
 #import "TMTTabbedWindow.h"
 #import "TMTTabBarView.h"
 #import "TMTTabViewContainerView.h"
+#import "TMTTabWindowFactory.h"
 
 @interface TMTTabbedWindow ()
 
 @end
 
 @implementation TMTTabbedWindow {
-    NSUInteger _counter;
+}
+
+- (id)initWithTabDelegate:(id <TMTTabViewDelegate>)delegate {
+    self = [super initWithWindowNibName:@"TMTTabbedWindow"];
+    if(self) {
+        _delegate = delegate;
+    }
+    return self;
 }
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    _counter = 0;
-    _controller = [[TMTTabViewController alloc] initWithTabBar:self.tabBar container:self.tabContainer andDelegate:self];
+    _controller = [[TMTTabViewController alloc] initWithTabBar:self.tabBar container:self.tabContainer andDelegate:self.delegate];
 }
 
-- (TMTTabItem *)createTab:(TMTTabViewController *)sender {
-    TMTTabItem *item = [TMTTabItem new];
-    item.label = [NSString stringWithFormat:@"Tab %li", _counter++];
-    NSTextField *label = [NSTextField new];
-    [label setStringValue:item.label];
-    item.view = label;
-
-    NSImageView *customView = [NSImageView new];
-    customView.image = [NSImage imageNamed:NSImageNameTrashFull];
-    item.customView = customView;
-    return item;
-}
-
-- (void)tabChanged:(TMTTabItem *)item from:(TMTTabViewController *)sender {
+- (void)windowWillClose:(NSNotification *)notification {
+    [TMTTabWindowFactory unregister:self];
 }
 @end

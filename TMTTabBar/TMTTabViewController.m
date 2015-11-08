@@ -14,6 +14,8 @@
 #import "TMTTabItemStyle.h"
 #import "TMTTabBarStyle.h"
 #import "TMTTabViewContainerView.h"
+#import "TMTTabWindowFactory.h"
+#import "TMTTabViewDelegateProxy.h"
 
 @interface TMTTabViewController ()
 - (void)addTabItem:(TMTTabItem *)item atPoint:(NSPoint)point;
@@ -26,15 +28,16 @@
     TMTTabViewContainerView *_tabContainer;
     NSMutableDictionary<TMTTabItem *, TMTTabItemView *> *_tabs;
     TMTTabItemStack<TMTTabItem *> *_tabOrder;
+    TMTTabViewDelegateProxy *_delegate;
 }
 
 - (instancetype)initWithTabBar:(TMTTabBarView *)tabBar container:(TMTTabViewContainerView *)container andDelegate:(id <TMTTabViewDelegate>)delegate {
     self = [super init];
     if (self) {
-        _delegate = delegate;
+        _delegate = [[TMTTabViewDelegateProxy alloc] initWithController:self andDelegate:delegate];
         _tabBar = tabBar;
         _tabBar.parent = self;
-        _tabBar.style = [self styleForBar];
+        _tabBar.style = [_delegate styleForBar];
         _tabContainer = container;
         _tabContainer.parent = self;
         _tabs = [NSMutableDictionary new];
@@ -57,7 +60,7 @@
 
 - (TMTTabItemView *)insertTabForItem:(TMTTabItem *)item {
     [_tabOrder push:item];
-    TMTTabItemStyle *tabStyle = [self styleForItem:item];
+    TMTTabItemStyle *tabStyle = [_delegate styleForItem:item];
     TMTTabItemView *tab = [[TMTTabItemView alloc] initWithItem:item andStyle:tabStyle];
     tab.parent = self;
     _tabs[item] = tab;
@@ -65,7 +68,7 @@
 }
 
 - (BOOL)removeTabItem:(TMTTabItem *_Nonnull)item {
-    if (![self shouldRemoveItem:item]) {
+    if (![_delegate shouldRemoveItem:item]) {
         return NO;
     }
 
@@ -74,22 +77,26 @@
     tab.parent = nil;
     [_tabs removeObjectForKey:item];
     [_tabBar removeTabView:tab];
-    [self informItemRemoved:item];
+    [_delegate informItemRemoved:item];
 
     TMTTabItem *activeItem = _tabOrder.peek;
-    [self activateItem:activeItem];
+    if(activeItem) {
+        [self activateItem:activeItem];
+    } else if(_delegate.shouldCloseWindowIfLastTabIsRemoved) {
+        [_tabBar.window performClose:self];
+    }
     return YES;
 }
 
 - (void)activateItem:(TMTTabItem *)item {
     [_tabContainer setContentView:item.view];
     [_tabBar activateTabItem:_tabs[item]];
-    if([self shouldBecomeFirstResponder:item]) {
+    if([_delegate shouldBecomeFirstResponder:item]) {
         if([_tabContainer.window isKeyWindow]) {
             [_tabContainer.window makeFirstResponder:_tabContainer.contentView];
         }
     }
-    [self informItemChanged:item];
+    [_delegate informItemChanged:item];
 }
 
 
@@ -107,14 +114,23 @@
 }
 
 - (void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation forItem:(TMTTabItem *)item {
-    if (operation == NSDragOperationNone && [self shouldDragToNewWindow:item]) {
-        // TODO create new window
-        NSLog(@"ended with operation %li", operation);
+    if (operation == NSDragOperationNone && [_delegate shouldDragToNewWindow:item]) {
+        [self removeTabItem:item];
+        [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+        TMTTabViewController *newController = [TMTTabWindowFactory createTabWindow:_delegate.delegate];
+        [newController beginWithItem:item];
     }
 }
 
+- (void)beginWithItem:(TMTTabItem *)tabItem {
+    [self addTabItem:tabItem];
+    [_tabContainer.window makeKeyAndOrderFront:self];
+    [self activateItem:tabItem];
+
+}
+
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context forItem:(TMTTabItem *)item {
-    session.animatesToStartingPositionsOnCancelOrFail = ![self shouldDragToNewWindow:item];
+    session.animatesToStartingPositionsOnCancelOrFail = ![_delegate shouldDragToNewWindow:item];
     return NSDragOperationMove;
 }
 
@@ -125,7 +141,7 @@
         NSBeep();
         return;
     }
-    TMTTabItem *item = [self.delegate createTab:self];
+    TMTTabItem *item = [_delegate createTab];
     [self addTabItem:item];
 }
 
@@ -192,55 +208,6 @@
             [self removeTabItem:item];
         }
     }
-}
-
-#pragma mark - TMTTabViewDelegate comfort methods
-
-- (bool)shouldRemoveItem:(TMTTabItem *)item {
-    return ![self.delegate respondsToSelector:@selector(shouldRemoveTab:from:)] || [self.delegate shouldRemoveTab:item from:self];
-}
-
-- (void)informItemRemoved:(TMTTabItem *)item {
-    if ([self.delegate respondsToSelector:@selector(didRemoveTab:from:)]) {
-        [self.delegate didRemoveTab:item from:self];
-    }
-}
-
-- (void)informItemChanged:(TMTTabItem *)item {
-    if (!item) {
-        return;
-    }
-    if ([self.delegate respondsToSelector:@selector(tabChanged:from:)]) {
-        [self.delegate tabChanged:item from:self];
-    }
-}
-
-- (TMTTabItemStyle *)styleForItem:(TMTTabItem *)item {
-    if ([self.delegate respondsToSelector:@selector(tabItemStyle:from:)]) {
-        return [self.delegate tabItemStyle:item from:self];
-    }
-    return [TMTTabItemStyle new];
-}
-
-- (bool)shouldDragToNewWindow:(TMTTabItem *)item {
-    if([self.delegate respondsToSelector:@selector(shouldDragToNewWindow:from:)]) {
-        return [self.delegate shouldDragToNewWindow:item from:self];
-    }
-    return YES;
-}
-
-- (bool)shouldBecomeFirstResponder:(TMTTabItem*)item {
-    if([self.delegate respondsToSelector:@selector(shouldBecomeFirstResponder:from:)]) {
-        return [self.delegate shouldBecomeFirstResponder:item from:self];
-    }
-    return YES;
-}
-
-- (TMTTabBarStyle *)styleForBar {
-    if ([self.delegate respondsToSelector:@selector(tabBarStyle:)]) {
-        return [self.delegate tabBarStyle:self];
-    }
-    return [TMTTabBarStyle new];
 }
 
 @end

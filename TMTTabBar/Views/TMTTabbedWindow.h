@@ -10,8 +10,11 @@
 
 @class TMTTabBarView;
 
-@interface TMTTabbedWindow : NSWindowController<TMTTabViewDelegate>
+@interface TMTTabbedWindow : NSWindowController<NSWindowDelegate>
 @property (strong) IBOutlet TMTTabBarView *tabBar;
 @property (strong) IBOutlet TMTTabViewContainerView *tabContainer;
 @property (strong) TMTTabViewController *controller;
+@property (weak) id<TMTTabViewDelegate> delegate;
+
+- (id)initWithTabDelegate:(id <TMTTabViewDelegate>)delegate;
 @end

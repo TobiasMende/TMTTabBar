@@ -19,15 +19,26 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    _windowController1 = [[TMTTabbedWindow alloc] initWithWindowNibName:@"TMTTabbedWindow"];
-    _windowController2 = [[TMTTabbedWindow alloc] initWithWindowNibName:@"TMTTabbedWindow"];
-    
+    _windowController1 = [[TMTTabbedWindow alloc] initWithTabDelegate:self];
+
     [self.windowController1 showWindow:self];
-    [self.windowController2 showWindow:self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+- (TMTTabItem *)createTab:(TMTTabViewController *)sender {
+    TMTTabItem *item = [TMTTabItem new];
+    item.label = [NSString stringWithFormat:@"Tab %li", _counter++];
+    NSTextField *label = [NSTextField new];
+    [label setStringValue:item.label];
+    item.view = label;
+
+    NSImageView *customView = [NSImageView new];
+    customView.image = [NSImage imageNamed:NSImageNameTrashFull];
+    item.customView = customView;
+    return item;
 }
 
 @end

@@ -6,6 +6,7 @@
 #import "TMTTabWindowFactory.h"
 #import "TMTTabViewController.h"
 #import "TMTTabbedWindow.h"
+#import "TMTTabViewDelegate.h"
 
 
 static NSMutableArray<TMTTabbedWindow*>* _windows;
@@ -16,8 +17,8 @@ static NSMutableArray<TMTTabbedWindow*>* _windows;
     _windows = [NSMutableArray new];
 }
 
-+ (TMTTabViewController *)createTabWindow {
-    TMTTabbedWindow *window = [[TMTTabbedWindow alloc] initWithWindowNibName:@"TMTTabbedWindow"];
++ (TMTTabViewController *)createTabWindow:(id<TMTTabViewDelegate>)delegate {
+    TMTTabbedWindow *window = [[TMTTabbedWindow alloc] initWithTabDelegate:delegate];
     [window showWindow:nil];
     [_windows addObject:window];
     return window.controller;
