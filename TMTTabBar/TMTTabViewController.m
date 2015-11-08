@@ -3,24 +3,20 @@
 // Copyright (c) 2015 Tobias Mende. All rights reserved.
 //
 
-
 #import <TMTTabBar/TMTTabBar.h>
-#import "TMTTabBarView.h"
-#import "TMTTabViewController.h"
-#import "TMTTabItemStack.h"
-#import "TMTTabItemView.h"
-#import "TMTTabItem.h"
-#import "TMTTabViewDelegate.h"
-#import "TMTTabItemStyle.h"
-#import "TMTTabBarStyle.h"
-#import "TMTTabViewContainerView.h"
 #import "TMTTabWindowFactory.h"
 #import "TMTTabViewDelegateProxy.h"
 
 @interface TMTTabViewController ()
 - (void)addTabItem:(TMTTabItem *)item atPoint:(NSPoint)point;
-
 - (TMTTabItemView *)insertTabForItem:(TMTTabItem *)item;
+- (void)removeItem:(TMTTabItem *)item;
+
+- (void)activateNextItem;
+- (void)activateItem:(TMTTabItem *)item;
+
+- (bool)canMoveItemToThisTabView:(TMTTabItemView *)itemView windowLocation:(NSPoint)windowLocation;
+- (bool)canDropItemOnContainer:(TMTTabItemView *)itemView;
 @end
 
 @implementation TMTTabViewController {
@@ -72,33 +68,39 @@
         return NO;
     }
 
+    [self removeItem:item];
+    [self activateNextItem];
+    return YES;
+}
+
+- (void)removeItem:(TMTTabItem *)item {
     [_tabOrder remove:item];
     TMTTabItemView *tab = _tabs[item];
     tab.parent = nil;
     [_tabs removeObjectForKey:item];
     [_tabBar removeTabView:tab];
     [_delegate informItemRemoved:item];
+}
 
+- (void)activateNextItem {
     TMTTabItem *activeItem = _tabOrder.peek;
-    if(activeItem) {
+    if (activeItem) {
         [self activateItem:activeItem];
-    } else if(_delegate.shouldCloseWindowIfLastTabIsRemoved) {
+    } else if (_delegate.shouldCloseWindowIfLastTabIsRemoved) {
         [_tabBar.window performClose:self];
     }
-    return YES;
 }
 
 - (void)activateItem:(TMTTabItem *)item {
     [_tabContainer setContentView:item.view];
     [_tabBar activateTabItem:_tabs[item]];
-    if([_delegate shouldBecomeFirstResponder:item]) {
-        if([_tabContainer.window isKeyWindow]) {
+    if ([_delegate shouldBecomeFirstResponder:item]) {
+        if ([_tabContainer.window isKeyWindow]) {
             [_tabContainer.window makeFirstResponder:_tabContainer.contentView];
         }
     }
     [_delegate informItemChanged:item];
 }
-
 
 #pragma mark - TMTTabItemDelegate
 
@@ -149,26 +151,37 @@
 
 - (bool)performDrop:(id <NSDraggingInfo>)info onView:(id)sender {
     TMTTabItemView *itemView = info.draggingSource;
-    TMTTabItem *item = itemView.item;
     NSPoint windowLocation = info.draggingLocation;
 
     if (sender == _tabContainer) {
-        if (itemView.parent == self) {
-            return NO;
-        }
-        [self addTabItem:item];
-        return YES;
+        return [self canDropItemOnContainer:itemView];
     }
-
     if (itemView.parent == self) {
         [_tabBar addTabView:itemView atPoint:windowLocation];
         return YES;
     }
-    if ([itemView.parent removeTabItem:item]) {
-        [self addTabItem:item atPoint:windowLocation];
+
+    return [self canMoveItemToThisTabView:itemView windowLocation:windowLocation];
+
+}
+
+- (bool)canMoveItemToThisTabView:(TMTTabItemView *)itemView windowLocation:(NSPoint)windowLocation {
+    if ([itemView.parent removeTabItem:itemView.item]) {
+        [self addTabItem:itemView.item atPoint:windowLocation];
         return YES;
     }
 
+    return NO;
+}
+
+- (bool)canDropItemOnContainer:(TMTTabItemView *)itemView {
+    if (itemView.parent == self) {
+        return NO;
+    }
+    if ([itemView.parent removeTabItem:itemView.item]) {
+        [self addTabItem:itemView.item];
+        return YES;
+    }
     return NO;
 }
 
@@ -177,10 +190,10 @@
         if (![[draggingItem.item types] containsObject:TMTTabItemDragType]) {
             *stop = YES;
         } else {
-            if(sender == _tabContainer) {
+            if (sender == _tabContainer) {
                 TMTTabItemView *itemView = info.draggingSource;
                 TMTTabItem *item = itemView.item;
-                if([_tabs.allKeys containsObject:item]) {
+                if ([_tabs.allKeys containsObject:item]) {
                     return;
                 }
             }
