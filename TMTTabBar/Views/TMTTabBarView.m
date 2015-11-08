@@ -11,7 +11,7 @@
 #import "TMTTabBarLayoutManager.h"
 #import "TMTTabBarStyle.h"
 #import "TMTTabBarDelegate.h"
-#import "NSView+TMTCoordinateHelpers.h"
+#import "NSStackView+TMTCoordinateHelpers.h"
 #import "TMTTabBar.h"
 #import "TMTTabAreaView.h"
 #import "TMTTabDraggingDelegate.h"

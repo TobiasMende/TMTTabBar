@@ -178,7 +178,6 @@
 - (NSArray<NSDraggingImageComponent *> *)draggingImages {
     NSRect itemBounds = self.bounds;
     NSRect scaledContentBounds = self.item.view.bounds;
-
     scaledContentBounds.size.height *= itemBounds.size.width / scaledContentBounds.size.width;
     scaledContentBounds.size.width = itemBounds.size.width;
     scaledContentBounds.origin.y -= scaledContentBounds.size.height;
@@ -193,7 +192,6 @@
 
     return @[item, contentView];
 }
-
 
 #pragma mark - NSDraggingSource
 

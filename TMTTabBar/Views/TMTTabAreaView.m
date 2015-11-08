@@ -5,7 +5,7 @@
 
 #import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabAreaView.h"
-#import "NSView+TMTCoordinateHelpers.h"
+#import "NSStackView+TMTCoordinateHelpers.h"
 
 
 @implementation TMTTabAreaView {
