@@ -9,7 +9,6 @@
 #import <TMTTabBar/TMTTabBar.h>
 #import "TMTTabItemView.h"
 #import "AppDelegate.h"
-#import "TMTTabbedWindow.h"
 
 @interface AppDelegate ()
 

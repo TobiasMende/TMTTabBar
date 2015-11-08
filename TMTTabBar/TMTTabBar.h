@@ -17,6 +17,7 @@
 #include "TMTTabViewController.h"
 #include "TMTTabViewContainerView.h"
 #include "TMTTabViewDelegate.h"
+#include "TMTTabbedWindow.h"
 
 //! Project version number for TMTTabBarView.
 FOUNDATION_EXPORT double TMTTabBarVersionNumber;

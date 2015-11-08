@@ -3,7 +3,7 @@
 // Copyright (c) 2015 Tobias Mende. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @class TMTTabViewController;
 @class TMTTabItem;
