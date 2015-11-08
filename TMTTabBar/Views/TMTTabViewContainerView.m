@@ -56,12 +56,10 @@
 #pragma  mark - NSDraggingDestination
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
-    // TODO ask controller, what to do
     return NSDragOperationMove;
 }
 
 - (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender {
-    // TODO ask controller, what to do
     return YES;
 }
 

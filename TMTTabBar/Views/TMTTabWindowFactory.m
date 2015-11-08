@@ -7,6 +7,7 @@
 #import "TMTTabViewController.h"
 #import "TMTTabbedWindow.h"
 #import "TMTTabViewDelegate.h"
+#import "NSWindow+TMTAppearance.h"
 
 
 static NSMutableArray<TMTTabbedWindow*>* _windows;
@@ -17,9 +18,11 @@ static NSMutableArray<TMTTabbedWindow*>* _windows;
     _windows = [NSMutableArray new];
 }
 
-+ (TMTTabViewController *)createTabWindow:(id<TMTTabViewDelegate>)delegate {
++ (nonnull TMTTabViewController *)createTabWindow:(id <TMTTabViewDelegate>)delegate atPosition:(NSPoint)position {
     TMTTabbedWindow *window = [[TMTTabbedWindow alloc] initWithTabDelegate:delegate];
-    [window showWindow:nil];
+
+    [window.window appearAtPosition:position];
+
     [_windows addObject:window];
     return window.controller;
 }

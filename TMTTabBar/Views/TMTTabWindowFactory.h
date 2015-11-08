@@ -13,7 +13,7 @@
 @interface TMTTabWindowFactory : NSObject
 
 
-+ (nonnull TMTTabViewController *)createTabWindow:(nonnull id <TMTTabViewDelegate>)delegate;
++ (nonnull TMTTabViewController *)createTabWindow:(nonnull id <TMTTabViewDelegate>)delegate atPosition:(NSPoint)position;
 
 + (void)unregister:(nonnull TMTTabbedWindow *)window;
 

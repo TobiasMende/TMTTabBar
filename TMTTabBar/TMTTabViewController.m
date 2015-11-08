@@ -119,7 +119,7 @@
     if (operation == NSDragOperationNone && [_delegate shouldDragToNewWindow:item]) {
         [self removeTabItem:item];
         [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-        TMTTabViewController *newController = [TMTTabWindowFactory createTabWindow:_delegate.delegate];
+        TMTTabViewController *newController = [TMTTabWindowFactory createTabWindow:_delegate.delegate atPosition:screenPoint];
         [newController beginWithItem:item];
     }
 }

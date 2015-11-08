@@ -27,7 +27,6 @@
 		27DC25B03EF9F863DCCDA37D /* TMTTabViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC287F34D1D9163048E70A /* TMTTabViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2604A0122F0ABAA03013 /* NSView+ImageRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC278F2394A6C4CDF85A29 /* NSView+ImageRepresentation.m */; };
 		27DC2641AB6C4AF57D39B36B /* NSImage+TMTTransformations.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC284C3A3284D91E21901D /* NSImage+TMTTransformations.h */; };
-		27DC26E50A0F557C99EA8299 /* TMTTabbedWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27DC2545FAF8D4D49A944533 /* TMTTabbedWindow.xib */; };
 		27DC2776C748971603F29B6C /* NSView+TMTCoordinateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC22111AA713B3BE82DAB7 /* NSView+TMTCoordinateHelpers.m */; };
 		27DC27C41B5F3588512DB305 /* TMTRenderingHints.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC24E65690ADB93464AB51 /* TMTRenderingHints.m */; };
 		27DC280050081CD1FB0781CE /* TMTTabItemDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2778B965411D2CEABE2E /* TMTTabItemDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,11 +35,11 @@
 		27DC29860173C8E7FAB5E979 /* TMTTabDraggingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC27CD54D0040E604C1665 /* TMTTabDraggingDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC29B674A388B7E7701BE1 /* NSView+TMTCoordinateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2CCA914167F2225194AE /* NSView+TMTCoordinateHelpers.h */; };
 		27DC2A1EB4CC5B4978E9CEEE /* TMTTabViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC241A4BE5F9BBA1F1AB0F /* TMTTabViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27DC2A6B13187FF184F0F472 /* TMTTabbedWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC28F19891B250D60E5EDF /* TMTTabbedWindow.m */; };
 		27DC2A70528DE4199E2DEE27 /* TMTRenderingHints.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC285464A6C5E277ACEFE7 /* TMTRenderingHints.h */; };
 		27DC2AD6BF619DAEA1909529 /* NSImage+TMTTransformations.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2BB2B42B9479EA479AAC /* NSImage+TMTTransformations.m */; };
 		27DC2AE08D1DAF3B7684D79E /* TMTTabBarDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2FC05579E2F6E7A54657 /* TMTTabBarDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2B5016ED4BF137675D07 /* TMTTabItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC2E64B8AF846A45C725B0 /* TMTTabItemView.m */; };
+		27DC2BDAEE50E72B97477D4A /* NSWindow+TMTAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC231B2BADC60D92294052 /* NSWindow+TMTAppearance.m */; };
 		27DC2C42FAD0F06A1BF7A05A /* TMTTabItemStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2FCFDA7B56A79ACFBA08 /* TMTTabItemStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2CB1CE2691AB17A10A36 /* TMTTabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DC23C168EF9DC8259BC1B1 /* TMTTabItem.m */; };
 		27DC2CD367030FA7F4BC4448 /* TMTTabItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC23FA017A5937FBCE40C4 /* TMTTabItemView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +50,7 @@
 		27DC2F085E8BB958F8C4345E /* TMTTabItemStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC28F06A52D38BA0E2B2EE /* TMTTabItemStyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2F4E5175EAAB5D55B286 /* TMTTabContainerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC268601D4A018072FF9B7 /* TMTTabContainerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27DC2F77D3AACEFFDC16B3F9 /* TMTTabBarLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC26DCDE6CF4DAB2CE959F /* TMTTabBarLayoutManager.h */; };
+		27DC2FCFBF15D16E11FB18E6 /* NSWindow+TMTAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DC2F804F96D14AC17684A3 /* NSWindow+TMTAppearance.h */; };
 		BDF22483229C7D78E56CF6E4 /* libPods-TMTTabBarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB89892152491EE55A109117 /* libPods-TMTTabBarTests.a */; };
 		D21E43EF1BE4175700B941CD /* TMTTabBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D221089A1BDD67E400852E6B /* TMTTabBar.framework */; };
 		D22108BC1BDD680000852E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D22108BB1BDD680000852E6B /* AppDelegate.m */; };
@@ -84,6 +84,7 @@
 		27DC220052CE8A4D0E8316CB /* TMTTabbedWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabbedWindow.h; sourceTree = "<group>"; };
 		27DC22111AA713B3BE82DAB7 /* NSView+TMTCoordinateHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+TMTCoordinateHelpers.m"; sourceTree = "<group>"; };
 		27DC224E686BAB899674E034 /* TMTTabBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarStyle.h; sourceTree = "<group>"; };
+		27DC231B2BADC60D92294052 /* NSWindow+TMTAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+TMTAppearance.m"; sourceTree = "<group>"; };
 		27DC23C168EF9DC8259BC1B1 /* TMTTabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMTTabItem.m; sourceTree = "<group>"; };
 		27DC23FA017A5937FBCE40C4 /* TMTTabItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemView.h; sourceTree = "<group>"; };
 		27DC241A4BE5F9BBA1F1AB0F /* TMTTabViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewDelegate.h; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		27DC2F3171ACB960485D5965 /* TMTTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarView.h; sourceTree = "<group>"; };
 		27DC2F6B49D398FB6179270D /* TMTTabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItem.h; sourceTree = "<group>"; };
 		27DC2F7A5440B5769B00E8A0 /* TMTTabAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabAreaView.h; sourceTree = "<group>"; };
+		27DC2F804F96D14AC17684A3 /* NSWindow+TMTAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+TMTAppearance.h"; sourceTree = "<group>"; };
 		27DC2FC05579E2F6E7A54657 /* TMTTabBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabBarDelegate.h; sourceTree = "<group>"; };
 		27DC2FCFDA7B56A79ACFBA08 /* TMTTabItemStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabItemStack.h; sourceTree = "<group>"; };
 		27DC2FE1013D225BD6CB157D /* TMTTabViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMTTabViewContainerView.h; sourceTree = "<group>"; };
@@ -205,6 +207,8 @@
 				27DC220052CE8A4D0E8316CB /* TMTTabbedWindow.h */,
 				27DC28F19891B250D60E5EDF /* TMTTabbedWindow.m */,
 				27DC2545FAF8D4D49A944533 /* TMTTabbedWindow.xib */,
+				27DC231B2BADC60D92294052 /* NSWindow+TMTAppearance.m */,
+				27DC2F804F96D14AC17684A3 /* NSWindow+TMTAppearance.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +362,7 @@
 				27DC24AD6AAC0D469EE0343C /* TMTTabAreaView.h in Headers */,
 				27DC2255DAE24C45DBF0DC10 /* TMTTabWindowFactory.h in Headers */,
 				27DC2E0E53E07D3E9DBEB24F /* TMTTabViewDelegateProxy.h in Headers */,
+				27DC2FCFBF15D16E11FB18E6 /* NSWindow+TMTAppearance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +481,6 @@
 			files = (
 				D22108C11BDD680000852E6B /* Assets.xcassets in Resources */,
 				D22108C41BDD680000852E6B /* MainMenu.xib in Resources */,
-				27DC26E50A0F557C99EA8299 /* TMTTabbedWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +565,7 @@
 				27DC2000CDE1E12950904D55 /* TMTTabAreaView.m in Sources */,
 				27DC21AA4E2CDF0F1515C641 /* TMTTabWindowFactory.m in Sources */,
 				27DC227422FB2E599301A230 /* TMTTabViewDelegateProxy.m in Sources */,
+				27DC2BDAEE50E72B97477D4A /* NSWindow+TMTAppearance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,7 +575,6 @@
 			files = (
 				D22108BF1BDD680000852E6B /* main.m in Sources */,
 				D22108BC1BDD680000852E6B /* AppDelegate.m in Sources */,
-				27DC2A6B13187FF184F0F472 /* TMTTabbedWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
